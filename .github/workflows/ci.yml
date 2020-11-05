@@ -1,0 +1,37 @@
+name: CI
+
+on:
+    push:
+    schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    defaults:
+      run:
+        shell: bash -l {0}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up miniconda and environment
+        uses: goanpeca/setup-miniconda@v1.6.0
+        with:
+          environment-file: ./environment.yml
+          activate-environment: review
+
+      - name: Install latex libs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-extra
+          sudo apt-get install -y texlive-xetex
+          sudo apt-get install latexmk
+          sudo apt-get install texlive-science
+          sudo apt-get install aspell aspell-en
+
+      - name: Test PDF compiles
+        run: inv compile
+
+      - name: Test spellcheck
+        run: inv spellcheck
