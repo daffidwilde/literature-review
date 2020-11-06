@@ -3,3 +3,125 @@
 This section comprises what could be considered a \emph{classical} literature
 review: an analysis of selected articles and publications that constitute the
 state of their respective topics, as well as their intersections.
+
+\subsection{Segmentation analysis}
+
+Segmentation analysis allows for the targeted analysis of otherwise
+heterogeneous datasets and encompasses several techniques from operational
+research, statistics and machine learning. One of the most desirable qualities
+of this kind of analysis is the ability to glean and communicate simplified
+summaries of patient needs to stakeholders within a healthcare
+system~\cite{Vuik2016b, Yoon2020}. For instance, clinical profiling often forms
+part of the broader analysis where each segment is summarised in a phrase or
+infographic~\cite{Vuik2016a, Yan2019}.
+
+The review for this chapter identified three commonplace groups of patient
+characteristics used to segment a patient population: system utilisation
+metrics; clinical attributes; and the pathway. The last is not used to segment
+the patients directly, instead of grouping their movements through a healthcare
+system, typically via process mining.~\cite{Arnolds2018}~and~\cite{Delias2015}
+demonstrate how this technique can be used to improve the efficiency of a
+hospital system as opposed to tackling the more relevant issue of
+patient-centred care. The remaining characteristics can be segmented in a
+variety of ways, but recent works tend to favour unsupervised methods —
+typically latent class analysis (LCA) or clustering~\cite{Yan2018}.
+
+LCA is a statistical, model-based method used to identify groups (called latent
+classes) in data by relating its observations to some unobserved (latent),
+categorical attribute. This attribute has multiple possible categories, each
+corresponding to a latent class. The discovered relations enable the
+observations to be separated into latent classes according to their maximum
+likelihood class membership~\cite{Hagenaars2002,Lazarsfeld1968}. This method has
+proved useful in the study of comorbidity patterns as
+in~\cite{Kuwornu2014,Larsen2017} where combinations of demographic and clinical
+attributes are related to various subgroups of chronic diseases.
+
+Similarly to LCA, clustering identifies groups (clusters) in data to produce
+labels for its instances. However, clustering includes a wide variety of methods
+where the common theme is to maximise homogeneity within, and heterogeneity
+between, each cluster~\cite{Everitt2011}. The \(k\)-means paradigm is the most
+popular form of clustering in literature. The method iteratively partitions
+numerical data into \(k \in \mathbb N\) distinct parts where \(k\) is fixed a
+priori. This method has proved popular as it is easily scalable, and its
+implementations are concise~\cite{Olafsson2008,Wu2009}. In addition to
+\(k\)-means, hierarchical clustering methods can be useful if a suitable number
+of parts cannot be found initially~\cite{Vuik2016a}. However, supervised
+hierarchical segmentation methods such as classification and regression trees
+(as in~\cite{Harper2006}) have been used where an existing, well-defined, label
+is of particular significance.
+
+\subsection{Queuing models}
+
+Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920} established the
+core concepts of queuing theory, the application of queues and queuing networks
+to real services has become abundant, including the healthcare service. By
+applying these models to healthcare settings, many aspects of the underlying
+system can be studied. A common area of study in healthcare settings is of
+service capacity.~\cite{McClain1976} is an early example of such work where
+acute bed capacity was determined using hospital occupancy data. Meanwhile, more
+modern works such as~\cite{Palvannan2012,Pinto2014} consider more extensive
+sources of data to build their queuing models.  Moreover, the output of a model
+is catered more towards being actionable --- as is the prerogative of
+operational research. For instance,~\cite{Pinto2014} devises new categorisations
+for both hospital beds and arrivals that are informed by the queuing model. A
+further example is~\cite{Komashie2015} where queuing models are used to measure
+and understand satisfaction among patients and staff.
+
+In addition to these theoretic models, healthcare queuing research has expanded
+to include computer simulation models. The simulation of queues, or networks
+thereof, have the benefit of adeptly capturing the stochastic nuances of
+hospital systems over their theoretic counterparts. Example areas include the
+construction and simulation of Markov processes via process
+mining~\cite{Arnolds2018,Rebuge2012}, and patient flow~\cite{Bhattacharjee2014}.
+Regardless of the advantages of simulation models, a prerequisite is reliable
+software with which to construct those simulations. A common approach to
+building simulation models of queues is to use a graphical user interface such
+as Simul8. These tools have the benefits of being highly visual, making them
+attractive to organisations looking to implement queuing models without
+necessary technical expertise, including the NHS.~\cite{Brailsford2013}
+discusses the issues around operational research and simulation being taken up
+in the NHS despite the availability of intuitive software packages like Simul8.
+However, they do not address a core principle of good simulation work:
+reproducibility. The ability to reliably reproduce a set of results is of great
+importance to scientific research but remains an issue in simulation research
+generally~\cite{Fitzpatrick2019}. When considering issues with reproducibility
+in scientific computing (simulation included), the source of any concerns is
+often with the software used~\cite{Ivie2018}. Using well-developed, open-source
+software can alleviate issues around reproducibility and reliability as how they
+are used involve less uncertainty and require more rigour than ‘drag-and-drop’
+software. One example of such a piece of software is Ciw~\cite{Palmer2019}. Ciw
+is a discrete event simulation library written in Python that is fully
+documented and tested. The simulations constructed and studied in
+Sections~\ref{sec:model}~and~\ref{sec:scenarios} utilise this library and aid
+the overall reproducibility of this chapter.
+
+\subsection{Handling incomplete queue data}
+
+As is discussed in other parts of this section, the data available in this chapter
+is not as detailed as in other comparative works. Without access to such data
+--- but intending to gain insight from what is available --- it is
+imperative to bridge the gap left by the incomplete data.
+
+Moreover, it is often the case that in practical situations where suitable data
+is not (immediately) available, further inquiry in that line of research will
+stop. Queuing models in healthcare settings appear to be such a case; the line
+ends at incomplete queue data.~\cite{Asanjarani2017} is a bibliographic work
+that collates articles on the estimation of queuing system characteristics ---
+including their parameters. Despite its breadth of almost 300 publications from
+1955, only two articles have been identified as being applied to
+healthcare:~\cite{Mohammadi2012,Yom2014}. Both works are concerned with
+customers who can re-enter services during their time in the queuing system,
+which is mainly of value when considering the effect of unpredictable behaviour
+in intensive care units, for instance.~\cite{Mohammadi2012} seeks to approximate
+service and re-service densities through a Bayesian approach and by filtering
+out those customers seeking to be serviced again. On the other
+hand,~\cite{Yom2014} considers an extension to the \(M/M/c\) queue with direct
+re-entries. The devised model is then used to determine resource requirements in
+two healthcare settings.
+
+Aside from healthcare-specific works, the approximation of queue parameters has
+formed a part of relevant modern queuing research. However, the scope is
+primarily focused on theoretic approximations rather than by
+simulation.~\cite{Djabali2018,Goldenshluger2016} are two such recent works that
+consider an underlying process to estimate a general service time distribution
+in single server and infinite server queues respectively.

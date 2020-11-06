@@ -1,15 +1,22 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
-\usepackage[margin=25mm,includefoot,footskip=35mm]{geometry}
+\usepackage[margin=25mm,includefoot,footskip=30mm]{geometry}
+\usepackage{setspace}
 
+\usepackage[numbers]{natbib}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
 
 \title{%
-    A survey of recent literature in the intersections of cluster analysis,
-    algorithm evaluation and healthcare modelling
+    Classic and data-driven surveys of literature covering the intersections of
+    cluster analysis, algorithm evaluation and healthcare modelling
 }
 \author{Henry Wilde}
 \date{}
 
+\onehalfspacing%
+\bibliographystyle{abbrvurl}
 
 \begin{document}
 \maketitle%
@@ -19,4 +26,5 @@
 \input{sec/bibliometric.tex}
 \input{sec/summary.tex}
 
+\bibliography{bibliography.bib}
 \end{document}

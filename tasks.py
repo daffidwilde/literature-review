@@ -126,6 +126,8 @@ def export_citations(citations, destination):
         writer.indent = "    "
         bibtexparser.dump(db, bibtexfile, writer)
 
+    print("Done! ✅")
+
 
 @task
 def bibliography(c, path="bibliography.bib", backup=True):
@@ -133,7 +135,7 @@ def bibliography(c, path="bibliography.bib", backup=True):
 
     if backup and pathlib.Path(path).exists():
         print("Backing up current bibliography.")
-        c.run(f"mv {path} _{path}")
+        c.run(f"cp {path} _{path}")
 
     bibentries = extract_bibentries(path)
     citations_to_export = get_citations_to_export(bibentries)
