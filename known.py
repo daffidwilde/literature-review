@@ -2,4 +2,6 @@
 
 patterns = {"s", "es", "ed", "ing", "y", "ies"}
 
-words = {"interpretable", "interpretabilit"}
+words = {
+    "bibliometric",
+}

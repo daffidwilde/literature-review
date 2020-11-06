@@ -33,14 +33,13 @@ def spellcheck(c):
     exit_codes = [0]
     for path in article:
 
-        print(f"Checking {path}")
+        print(f"Checking {path} 📖")
         latex = path.read_text()
         aspell_output = subprocess.check_output(
             ["aspell", "-t", "--list", "--lang=en_GB"], input=latex, text=True
         )
 
         errors = set(aspell_output.split("\n")) - {""}
-        print(errors)
         unknowns = set()
         for error in errors:
             if not any(
@@ -58,6 +57,9 @@ def spellcheck(c):
                 print(string)
 
             exit_codes.append(1)
+        else:
+            print("All good! ✅")
+            exit_codes.append(0)
 
     sys.exit(max(exit_codes))
 
