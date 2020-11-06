@@ -9,6 +9,7 @@ words = {
     "NHS",
     "Simul",
     "bibliometric",
+    "comorbidit",
     "dataset",
     "infographic",
     "iterative",
