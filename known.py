@@ -4,6 +4,7 @@ patterns = {"s", "es", "ed", "ing", "y", "ies", "ly"}
 
 words = {
     "Ciw",
+    "Erlang",
     "LCA",
     "NHS",
     "Simul",
