@@ -26,6 +26,7 @@ main.pdf
 _bibliography.bib
 *pyc*
 *.ipynb_checkpoints*
+.DS_Store
 
 ## API key files
 keys/*.py
