@@ -140,3 +140,28 @@ def bibliography(c, path="bibliography.bib", backup=True):
     bibentries = extract_bibentries(path)
     citations_to_export = get_citations_to_export(bibentries)
     export_citations(citations_to_export, path)
+
+
+@task
+def bibcheck(c, root="sec", path="bibliography.bib"):
+    """ Check for any entries in the bibliography that are not being used. """
+
+    bibentries = extract_bibentries(path)
+
+    lines = []
+    for section in pathlib.Path(root).glob("*.tex"):
+        with open(section, "r") as sec:
+            lines.extend(sec.read().splitlines())
+
+    unused = []
+    longest = 0
+    for _, (key, title) in bibentries[["ID", "title"]].iterrows():
+        if not any(key in line for line in lines):
+            unused.append((key, title))
+            longest = max(longest, len(key))
+
+    print("The following entries are not used:")
+    for key, title in unused:
+        keystring = key + " " * (longest - len(key))
+        titlestring = title[:40] + "..." if len(title) > 40 else title
+        print(" | ".join((keystring, titlestring)))
