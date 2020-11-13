@@ -43,10 +43,7 @@ def spellcheck(c):
         unknowns = set()
         for error in errors:
             if not any(
-                any(
-                    re.fullmatch(word.lower() + pattern, error.lower())
-                    for pattern in known.patterns | {""}
-                )
+                re.fullmatch(word.lower(), error.lower())
                 for word in known.words
             ):
                 unknowns.add(error)

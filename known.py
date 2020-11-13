@@ -1,7 +1,5 @@
 """ A set of known words and end-of-word patterns for the spellchecker. """
 
-patterns = {"s", "es", "ed", "ing", "y", "ies", "ly"}
-
 words = {
     "Ciw",
     "Erlang",
@@ -9,15 +7,15 @@ words = {
     "NHS",
     "Simul",
     "bibliometric",
-    "comorbidit",
-    "dataset",
+    "comorbidit(y|ies)",
+    "dataset(|s)",
     "findable",
     "geosciences",
     "interoperable",
     "infographic",
-    "iterative",
+    "iterative(|ly)",
     "preprint",
     "priori",
-    "reproducibility",
-    "scalable",
+    "reproducib(le|ility)",
+    "scalab(le|ility)",
 }
