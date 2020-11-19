@@ -17,5 +17,6 @@ words = {
     "preprint",
     "priori",
     "reproducib(le|ility)",
+    "rostering",
     "scalab(le|ility)",
 }

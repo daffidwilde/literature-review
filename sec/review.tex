@@ -1,10 +1,35 @@
 \section{Literature review}\label{sec:review}
 
-This section comprises what could be considered a \emph{classical} literature
-review: an analysis of selected articles and publications that constitute the
-state of their respective topics, as well as their intersections.
+This section comprises what could be considered a classical literature review:
+an analysis of selected articles and publications that constitute the state and
+progress of each research topic.
 
-\subsection{Segmentation analysis}
+\subsection{Clustering}
+
+\subsection{Healthcare modelling}
+
+Healthcare modelling is an broad term that encompasses a plethora of techniques
+from a number of disciplines such as financial modelling and forecasting, and
+operational problems like vehicle routing or staff rostering. This review
+focuses on these operational pursuits, and particularly those that are concerned
+with patients directly. The decision to narrow the literature in this way is
+both practical and conscientious. Practical by reducing the span of literature
+on `healthcare modelling' to something less cumbersome, and conscientious as it
+allows this review to make a small contribution to the research wing of the
+progressively more ubiquitous concept of patient-centred care. This form of
+healthcare, formally defined in~\cite{Robinson2008}, demands that the
+perspective of a healthcare system should align itself with its patients' needs
+and lived experiences. The alternative to patient-centred care would be a system
+in which patients are treated in an exact but vague way, according to only the
+needs of the system, say. Some form of patient-centred care has been adopted in
+healthcare systems around the world including both state-funded and private
+systems~\cite{DoH2010,Dewi2013,Luxford2011}. Unsurprisingly, its application has
+been commended by patients, advocates and practitioners alike for improving
+condition-specific
+populations~\cite{Foster2019,Gambling2010,Gondek2016,Tsianakas2012} and more
+broadly~\cite{IAPO2012,Richards2015,Santana2019}.
+
+\subsubsection{Segmentation analysis}
 
 Segmentation analysis allows for the targeted analysis of otherwise
 heterogeneous datasets and encompasses several techniques from operational
@@ -13,18 +38,19 @@ of this kind of analysis is the ability to glean and communicate simplified
 summaries of patient needs to stakeholders within a healthcare
 system~\cite{Vuik2016b, Yoon2020}. For instance, clinical profiling often forms
 part of the broader analysis where each segment is summarised in a phrase or
-infographic~\cite{Vuik2016a, Yan2019}.
+infographic~\cite{Vuik2016a,Yan2019}.
 
-The review for this chapter identified three commonplace groups of patient
-characteristics used to segment a patient population: system utilisation
-metrics; clinical attributes; and the pathway. The last is not used to segment
-the patients directly, instead of grouping their movements through a healthcare
-system, typically via process mining.~\cite{Arnolds2018}~and~\cite{Delias2015}
-demonstrate how this technique can be used to improve the efficiency of a
-hospital system as opposed to tackling the more relevant issue of
-patient-centred care. The remaining characteristics can be segmented in a
-variety of ways, but recent works tend to favour unsupervised methods —
-typically latent class analysis (LCA) or clustering~\cite{Yan2018}.
+The survey identified three commonplace groups of patient characteristics used
+to segment a patient population: system utilisation metrics; clinical
+attributes; and the pathway. The last is not used to segment the patients
+directly, but instead groups patients' movements through a healthcare system;
+this is typically done using a technique known as process
+mining.~\cite{Arnolds2018}~and~\cite{Delias2015} demonstrate how this technique
+can be used to improve the efficiency of a hospital system as opposed to
+tackling the more relevant issue of patient-centred care. The remaining
+characteristics can be segmented in a variety of ways, but recent works tend to
+favour unsupervised methods --- typically latent class analysis (LCA) or
+clustering~\cite{Yan2018}.
 
 LCA is a statistical, model-based method used to identify groups (called latent
 classes) in data by relating its observations to some unobserved (latent),
@@ -50,7 +76,7 @@ hierarchical segmentation methods such as classification and regression trees
 (as in~\cite{Harper2006}) have been used where an existing, well-defined, label
 is of particular significance.
 
-\subsection{Queuing models}
+\subsubsection{Queuing models}
 
 Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920} established the
 core concepts of queuing theory, the application of queues and queuing networks
@@ -91,37 +117,4 @@ software can alleviate issues around reproducibility and reliability as how they
 are used involve less uncertainty and require more rigour than ‘drag-and-drop’
 software. One example of such a piece of software is Ciw~\cite{Palmer2019}. Ciw
 is a discrete event simulation library written in Python that is fully
-documented and tested. The simulations constructed and studied in
-Sections~\ref{sec:model}~and~\ref{sec:scenarios} utilise this library and aid
-the overall reproducibility of this chapter.
-
-\subsection{Handling incomplete queue data}
-
-As is discussed in other parts of this section, the data available in this chapter
-is not as detailed as in other comparative works. Without access to such data
---- but intending to gain insight from what is available --- it is
-imperative to bridge the gap left by the incomplete data.
-
-Moreover, it is often the case that in practical situations where suitable data
-is not (immediately) available, further inquiry in that line of research will
-stop. Queuing models in healthcare settings appear to be such a case; the line
-ends at incomplete queue data.~\cite{Asanjarani2017} is a bibliographic work
-that collates articles on the estimation of queuing system characteristics ---
-including their parameters. Despite its breadth of almost 300 publications from
-1955, only two articles have been identified as being applied to
-healthcare:~\cite{Mohammadi2012,Yom2014}. Both works are concerned with
-customers who can re-enter services during their time in the queuing system,
-which is mainly of value when considering the effect of unpredictable behaviour
-in intensive care units, for instance.~\cite{Mohammadi2012} seeks to approximate
-service and re-service densities through a Bayesian approach and by filtering
-out those customers seeking to be serviced again. On the other
-hand,~\cite{Yom2014} considers an extension to the \(M/M/c\) queue with direct
-re-entries. The devised model is then used to determine resource requirements in
-two healthcare settings.
-
-Aside from healthcare-specific works, the approximation of queue parameters has
-formed a part of relevant modern queuing research. However, the scope is
-primarily focused on theoretic approximations rather than by
-simulation.~\cite{Djabali2018,Goldenshluger2016} are two such recent works that
-consider an underlying process to estimate a general service time distribution
-in single server and infinite server queues respectively.
+documented and tested. 
