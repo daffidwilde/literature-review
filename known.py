@@ -8,6 +8,7 @@ words = {
     "LCA",
     "NHS",
     "Simul",
+    "Sneath",
     "Sokal",
     "bibliometric",
     "comorbidit(y|ies)",
