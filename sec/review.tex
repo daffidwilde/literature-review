@@ -4,16 +4,18 @@ This section comprises what could be considered a classical literature review:
 an analysis of selected articles and publications that constitute the state and
 progress of each research topic.
 
+
 \subsection{Clustering}
 
 Clustering, or \emph{cluster analysis}, is a generic term used to describe a
 number of techniques whose objective is to partition some dataset into parts
-(clusters) according to some distance (similarity) measure such that the members
-of one cluster are more similar to one another than the rest of the data. Often
-lumped in with the task of classification, clustering is distinct in that it
-reveals the underlying structure of a dataset by only using knowledge that is
-fixed from the outset. The alternative being a method with access to some ground
-truth to refer to, such as a labelling.
+(clusters) according to some distance (similarity) measure. The generated
+partition should be such that the members of one cluster are more similar to one
+another than the rest of the data~\cite{Everitt2011}. Often lumped in with the
+task of classification, clustering is distinct in that it reveals the underlying
+structure of a dataset by only using knowledge that is fixed from the outset.
+The alternative being a method with access to some ground truth to refer to,
+such as a labelling.
 
 Clustering originated in the social sciences around the turn of the
 20\textsuperscript{th} century in a similar manner to several other (now
@@ -41,13 +43,42 @@ essential. As the size and complexity of research data increased, so did the
 span of the field that is now referred to as \emph{machine learning}. Machine
 learning is a loose term to describe how a computer (machine) may `learn' from a
 potentially large source of data without following explicit instructions. Owing
-to this vague definition, machine learning comprises a great deal of techniques
-that were borne from statistics, including regression, classification and
-clustering, despite having lost its connection with the statistics that underpin
-it, at least colloquially. In particular, clustering falls comfortably into the
-category of \emph{unsupervised learning} techniques as a method that relies
-solely on the observed data and some a priori knowledge~\cite{Dayan1999}.
+in part to this vague definition, machine learning comprises a great deal of
+techniques that were borne out of statistics, including regression,
+classification and clustering, despite having lost its connection with the
+statistics that underpin it, at least colloquially. In particular, clustering
+falls comfortably into the category of \emph{unsupervised learning} techniques
+as a method that relies solely on observed data and some a priori
+knowledge such as a set of parameters~\cite{Dayan1999}.
 
+The remainder of this section offers a brief summary of the literature around
+the three principle types of clustering algorithm: those belonging to the
+\(k\)-means paradigm, hierarchical connectivity models, and, finally,
+density-based algorithms.
+
+\subsubsection{The \(k\)-means paradigm}\label{subsubsec:kmeans}
+
+The concept of \(k\)-means clustering is straightforward: partition a
+real-valued dataset into \(k \in \mathbb N\) homogeneous parts, where each data
+point is assigned to the cluster to which the point is closest. The distance
+from a point to a cluster is defined as the distance from the point to the mean
+of the elements in that cluster. Typically, the distance measure used is the
+Euclidean distance, and several preprocessing techniques should be employed to
+account for any scaling discrepancies in the data. This form of clustering has
+existed as it does now since Sokal's numerical taxonomy
+works~\cite{Sneath1973,Sokal1966}, and is largely attributed
+to~\cite{Hartigan1979}.
+
+However, there are a multitude of algorithms that perform \(k\)-means
+clustering. The most commonly used is Lloyd's algorithm~\cite{Lloyd1982}. This
+procedure is remarkably uncomplicated in its statement, and has now become so
+synonymous with \(k\)-means clustering that it is referred to as `the
+\(k\)-means algorithm'. To summarise it in a sentence, the algorithm iteratively
+partitions the numerical data into \(k\) parts, reassigning data points and
+adjusting cluster means until no point moves cluster on a full cycle of the
+dataset. The algorithm has proven popular due to this simplicity. Furthermore,
+it is scalable and can be parallelised~\cite{Bahmani2012}, and its
+implementations are concise~\cite{Olafsson2008,Wu2009}.
 
 \subsection{Healthcare modelling}
 
@@ -107,18 +138,16 @@ in~\cite{Kuwornu2014,Larsen2017} where combinations of demographic and clinical
 attributes are related to various subgroups of chronic diseases.
 
 Similarly to LCA, clustering identifies groups (clusters) in data to produce
-labels for its instances. However, clustering includes a wide variety of methods
+labels for its instances. However, as discussed in
+Section~\ref{subsec:clustering}, clustering includes a wide variety of methods
 where the common theme is to maximise homogeneity within, and heterogeneity
-between, each cluster~\cite{Everitt2011}. The \(k\)-means paradigm is the most
-popular form of clustering in literature. The method iteratively partitions
-numerical data into \(k \in \mathbb N\) distinct parts where \(k\) is fixed a
-priori. This method has proved popular as it is easily scalable, and its
-implementations are concise~\cite{Olafsson2008,Wu2009}. In addition to
-\(k\)-means, hierarchical clustering methods can be useful if a suitable number
-of parts cannot be found initially~\cite{Vuik2016a}. However, supervised
-hierarchical segmentation methods such as classification and regression trees
-(as in~\cite{Harper2006}) have been used where an existing, well-defined, label
-is of particular significance.
+between, each cluster. Of those methods, \(k\)-means clustering is perhaps the
+most widely used in healthcare; this is likely due to its simplicity and
+scalability. In addition to \(k\)-means, hierarchical clustering methods can be
+useful if a suitable number of parts cannot be found initially~\cite{Vuik2016a}.
+Moreover, supervised hierarchical segmentation methods such as classification
+and regression trees (as in~\cite{Harper2006}) have been used where an existing,
+well-defined, label is of particular significance.
 
 \subsubsection{Queuing models}
 
