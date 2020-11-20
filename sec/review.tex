@@ -8,11 +8,12 @@ progress of each research topic.
 
 Clustering, or \emph{cluster analysis}, is a generic term used to describe a
 number of techniques whose objective is to partition some dataset into parts
-(clusters) such that the members of one cluster are more similar to one another
-than the rest of the data. Often lumped in with the task of classification,
-clustering is distinct in that it reveals the underlying structure of a dataset
-using knowledge that is fixed from the outset, a priori, rather than by learning
-from some portion of the data itself.
+(clusters) according to some distance (similarity) measure such that the members
+of one cluster are more similar to one another than the rest of the data. Often
+lumped in with the task of classification, clustering is distinct in that it
+reveals the underlying structure of a dataset by only using knowledge that is
+fixed from the outset. The alternative being a method with access to some ground
+truth to refer to, such as a labelling.
 
 Clustering originated in the social sciences around the turn of the
 20\textsuperscript{th} century in a similar manner to several other (now
@@ -24,19 +25,33 @@ psychological differences between groups of people, as opposed to studying the
 methods used to identify any partitions.
 
 The focus of clustering research shifted to the statistical nature of the
-methods following work by Sokal~\cite{Sokal1966} (and later with
+methods following work by Sokal~\cite{Sokal1966} (later revised with
 Sneath~\cite{Sneath1973}) on clustering under the name \emph{numerical
 taxonomy}. These works were highly influential and led to an abundance of
 research into clustering methods, including~\cite{Diday1976}
 and~\cite{Hartigan1975} which each formalised the principles of clustering as a
-part of statistics. Furthermore, this period witnessed the advent of seminal and
-presently fundamental clustering algorithms such as the \(k\)-means
-paradigm~\cite{Hartigan1979} and hierarchical
-clustering~\cite{Defays1977,Sibson1973}.
+part of statistics. Furthermore, this period witnessed the advent of seminal
+work on clustering algorithms such as \(k\)-means~\cite{Hartigan1979} and
+hierarchical clustering~\cite{Defays1977,Sibson1973} that are still considered
+fundamental methods.
+
+In tandem with this shift was the rise in the use of software to implement and
+compute algorithms (including clustering), and so electronic data became
+essential. As the size and complexity of research data increased, so did the
+span of the field that is now referred to as \emph{machine learning}. Machine
+learning is a loose term to describe how a computer (machine) may `learn' from a
+potentially large source of data without following explicit instructions. Owing
+to this vague definition, machine learning comprises a great deal of techniques
+that were borne from statistics, including regression, classification and
+clustering, despite having lost its connection with the statistics that underpin
+it, at least colloquially. In particular, clustering falls comfortably into the
+category of \emph{unsupervised learning} techniques as a method that relies
+solely on the observed data and some a priori knowledge~\cite{Dayan1999}.
+
 
 \subsection{Healthcare modelling}
 
-Healthcare modelling is an broad term that encompasses a plethora of techniques
+Healthcare modelling is a broad term that encompasses a plethora of techniques
 from a number of disciplines such as financial modelling and forecasting, and
 operational problems like vehicle routing or staff rostering. This review
 focuses on these operational pursuits, and particularly those that are concerned
