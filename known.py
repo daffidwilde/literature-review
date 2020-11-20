@@ -1,11 +1,14 @@
 """ A set of known words and end-of-word patterns for the spellchecker. """
 
 words = {
+    "Cattell",
     "Ciw",
     "Erlang",
+    "Kroeber",
     "LCA",
     "NHS",
     "Simul",
+    "Sokal",
     "bibliometric",
     "comorbidit(y|ies)",
     "dataset(|s)",
@@ -19,4 +22,5 @@ words = {
     "reproducib(le|ility)",
     "rostering",
     "scalab(le|ility)",
+    "th",
 }

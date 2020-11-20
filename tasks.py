@@ -49,7 +49,7 @@ def spellcheck(c):
                 unknowns.add(error)
 
         if unknowns:
-            print(f"In {path} the following words are not known:")
+            print(f"❗️ In {path} the following words are not known:")
             for string in sorted(unknowns):
                 print(string)
 
