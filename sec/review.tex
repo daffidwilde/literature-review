@@ -5,7 +5,7 @@ an analysis of selected articles and publications that constitute the state and
 progress of each research topic.
 
 
-\subsection{Clustering}
+\subsection{Clustering}\label{subsec:clustering}
 
 Clustering, or \emph{cluster analysis}, is a generic term used to describe a
 number of techniques whose objective is to partition some dataset into parts
@@ -59,26 +59,47 @@ density-based algorithms.
 \subsubsection{The \(k\)-means paradigm}\label{subsubsec:kmeans}
 
 The concept of \(k\)-means clustering is straightforward: partition a
-real-valued dataset into \(k \in \mathbb N\) homogeneous parts, where each data
-point is assigned to the cluster to which the point is closest. The distance
-from a point to a cluster is defined as the distance from the point to the mean
-of the elements in that cluster. Typically, the distance measure used is the
+real-valued dataset into \(k \in \mathbb N\) homogeneous parts (clusters), where
+each data point is assigned to the cluster to which the point is closest. The
+distance from a point to a cluster is defined as the distance from the point to
+the mean of the elements in that cluster, also referred to as the cluster centre
+or centroid; this alternative name gives another name to the paradigm,
+\emph{centroid-based clustering}. Typically, the distance measure used is the
 Euclidean distance, and several preprocessing techniques should be employed to
-account for any scaling discrepancies in the data. This form of clustering has
-existed as it does now since Sokal's numerical taxonomy
-works~\cite{Sneath1973,Sokal1966}, and is largely attributed
-to~\cite{Hartigan1979}.
+account for any scaling discrepancies in the data.
 
-However, there are a multitude of algorithms that perform \(k\)-means
-clustering. The most commonly used is Lloyd's algorithm~\cite{Lloyd1982}. This
-procedure is remarkably uncomplicated in its statement, and has now become so
-synonymous with \(k\)-means clustering that it is referred to as `the
-\(k\)-means algorithm'. To summarise it in a sentence, the algorithm iteratively
-partitions the numerical data into \(k\) parts, reassigning data points and
-adjusting cluster means until no point moves cluster on a full cycle of the
-dataset. The algorithm has proven popular due to this simplicity. Furthermore,
-it is scalable and can be parallelised~\cite{Bahmani2012}, and its
-implementations are concise~\cite{Olafsson2008,Wu2009}.
+Although \(k\)-means clustering has independently been discovered a number of
+times since as early as the 1950s (a comprehensive history on the subject is
+given in~\cite{Jain2010}), it is commonly attributed to~\cite{Hartigan1979}.
+Given its lengthy standing, there are a multitude of algorithms that perform
+\(k\)-means clustering. However, the most commonly used is Lloyd's
+algorithm~\cite{Lloyd1982}. This procedure is remarkably uncomplicated in its
+statement, and has now become so synonymous with \(k\)-means clustering that it
+is referred to as `the \(k\)-means algorithm'. To summarise it in a sentence,
+the algorithm iteratively partitions the numerical data into \(k\) parts,
+reassigning data points and adjusting cluster means until no point moves cluster
+on a full cycle of the dataset. The algorithm has proven popular due to this
+simplicity. Furthermore, it is scalable and can be
+parallelised~\cite{Bahmani2012}, and its implementations are
+concise~\cite{Olafsson2008,Wu2009}.
+
+However, centroid-based clustering is not without its drawbacks. The most
+notable of these is its dependency on being presented with a particular type of
+cluster. Namely, the true clusters should be isotropic, convex and
+well-separated. The reason these conditions exist, particularly for \(k\)-means,
+is because the \(k\)-means (Lloyd's) algorithm is an approximation for the
+centroidal Voronoi tessellation of a dataset~\cite{Du2006}. Hence, the true
+objective of the algorithm is to divide the search space into \(k\) equally
+weighted parts using the dataset as a sample, rather than focusing on dividing
+the dataset itself.
+
+In the time since the popularisation of Lloyd's algorithm, research into
+centroid-based clustering has been plentiful, the body of which can be broadly
+split into three parts: utilising other measures of central tendency, improving
+the initialisation of an algorithm, and implementing new features to overcome
+its particularities about clusters.
+
+
 
 \subsection{Healthcare modelling}
 
