@@ -110,7 +110,7 @@ As such, numerous extensions to Lloyd's algorithm exist in the literature that
 are designed to be more robust to these limitations. For continuous (or at least
 ordered) data, \(k\)-medians and \(k\)-medoids exist. The former uses the median
 value of each attribute in a cluster to form the
-centre~\cite{Bradley1997,Arya2001}; this mitigates the effect of outliers.
+centre~\cite{Bradley1997,Arya2001}, mitigating the effect of outliers.
 
 Meanwhile, \(k\)-medoids considers the centre of a cluster to be the data point
 which is closest to all other points in the cluster~\cite{Kaufman1987}.
@@ -133,8 +133,27 @@ variables with many distinct values in any distance calculation, as these will
 produce more binary variables. Another is that by introducing potentially many
 binary variables, the dimensionality of the dataset increases substantially, and
 so the points in the higher-dimension form of the data become intrinsically
-further from one another, thus loosening any sense of homogeneity. Hence,
-another approach should be taken.
+further from one another, thus loosening any sense of cluster homogeneity.
+
+Therefore, another approach should be taken that handles the data directly. The
+\(k\)-modes and \(k\)-prototypes algorithms (introduced in~\cite{Huang1998}) are
+capable of handling categorical and mixed-type data, respectively. The
+\(k\)-modes algorithm is an extension to Lloyd's algorithm, like \(k\)-medians
+and \(k\)-medoids, where the cluster centre is defined as a point whose
+attribute values are most frequent among those of the points in a
+cluster.~\cite{Huang1998} provides a so-called `matching dissimilarity' measure
+to expedite the centre calculations, making \(k\)-modes scalable and
+computationally efficient~\cite{Madhuri2014}. \(k\)-prototypes is essentially a
+blended form of \(k\)-modes and \(k\)-means where each method is applied to the
+categorical and numeric attributes at each iteration, before their respective
+costs are combined linearly according to some parameter, \(\gamma\). Work into
+\(k\)-modes clustering is largely formed around the initial choice of centroids,
+as in~\cite{Cao2009,Khan2013}, and improving on the simplistic distance
+measure.~\cite{Ng2007} and~\cite{Cao2012} offer novel dissimilarity measures for
+\(k\)-modes clustering that improve on the basic measure by taking into account
+the relative frequency of the values of each attribute.~\cite{Ng2007} focuses
+locally to the cluster at hand, while~\cite{Cao2012} considers their frequencies
+from a universal perspective.
 
 \cite{Sung1998}~demonstrates how the Mahalonobis distance can be used to
 circumvent the dependency on spherical clusters by \(k\)-means. The Mahalonobis
