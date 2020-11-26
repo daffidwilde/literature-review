@@ -7,6 +7,7 @@ words = {
     "ciw",
     "comorbidit(y|ies)",
     "dataset(|s)",
+    "dimensionality",
     "erlang",
     "findable",
     "geosciences",
