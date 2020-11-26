@@ -15,6 +15,8 @@ words = {
     "iterative(|ly)",
     "kroeber",
     "lca",
+    "mahalonobis",
+    "medoids",
     "nhs",
     "parallelised",
     "preprint",
