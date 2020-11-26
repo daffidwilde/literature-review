@@ -6,6 +6,7 @@ words = {
     "centroid(|s|al)",
     "ciw",
     "comorbidit(y|ies)",
+    "covariance",
     "dataset(|s)",
     "dimensionality",
     "erlang",
