@@ -99,19 +99,29 @@ itself.
 Leaving the geometry of the clusters aside, there is the issue of choosing a
 suitable value of \(k\) prior to clustering. A common approach to this problem
 is the so-called `elbow' method where a clustering algorithm is run using a
-range of values for \(k\). From these runs, the value of \(k\) is plotted
-against some objective and the plot is inspected for a kink or `elbow'.
-However, the definition of what constitutes an elbow is not necessarily
-well-defined.~\cite{Sujatha2013,Syakur2018} each employ the elbow method with
-final inertia as the objective. In each case, the authors offer little
-explanation of their methodologies other than choosing \(k\) where `drastic'
-changes occur in the objective. Attempts to formalise this method have been
-made, however. For instance,~\cite{Satopaa2011} provides a `knee-point`
-detection algorithm that finds the point of maximal curvature in the domain of
-a function when provided with some basic properties of that function (whether it
+range of values for \(k\); this range is typically informed by what is
+considered reasonable in the problem domain. From these runs, the value of \(k\)
+is plotted against some objective and the plot is inspected for a kink or
+`elbow'.  However, the definition of what constitutes an elbow is not
+necessarily well-defined.~\cite{Sujatha2013,Syakur2018} each employ the elbow
+method with final inertia as the objective. In each case, the authors offer
+little explanation of their methodologies other than choosing \(k\) where
+`drastic' changes occur in the objective. Attempts to formalise this method have
+been made, however. For instance,~\cite{Satopaa2011} provides a `knee-point`
+detection algorithm that finds the point of maximal curvature in the domain of a
+function when provided with some basic properties of that function (whether it
 is convex, monotonic, etc.). This algorithm has been adapted to cleanly carry
 out the elbow method in software packages, such as
 Yellowbrick~\cite{Bengfort2019}, by interpolating the objective values.
+
+Further to this formalisation of the elbow method, other extensions to
+\(k\)-means itself have been presented to alleviate all dependency on making a
+choice for \(k\).~\cite{Olukanmi2019} proposes a computationally efficient,
+automatic decision scheme for \(k\)-means based on a vector comprised of the
+values that constitute the inertia of a clustering. The process determines that
+if this vector meets some criterion attached to its standard deviation, then
+each cluster is sufficiently unimodal and Gaussian, fulfilling the condition
+that clusters be roughly spherical.
 
 Another limitation of \(k\)-means is that it is dependent on its initial
 solution. The standard initialisation process is to select \(k\) points in the
@@ -198,7 +208,14 @@ The benefit of handling adverse noise in this way is twofold: first, it
 preserves the computational efficiencies that come with using the mean (as
 opposed to sorting the attributes of each cluster to find a median in
 \(k\)-medians, say); and, second, there are no additional parameters to
-determine.
+determine.~\cite{Gupta2017} provides another integration with \(k\)-means for
+detecting outliers by way of a local search, but in order to do so, it
+introduces another parameter determining the cardinality of the neighbourhood of
+a point. In addition to these mitigating extensions,~\cite{Lei2012,Wei2019} are
+examples of works that exploit this weakness of \(k\)-means clustering. In each
+case, the \(k\)-means algorithm partitions a dataset, and outliers are
+identified according to some neighbourhood threshold based on the density of the
+cluster.
 
 The final remark in this section of the survey is concerned with the relaxation
 of the constraints on cluster geometry by centroid-based clustering algorithms.
@@ -211,7 +228,10 @@ be convex and well-separated. The Mahalanobis distance commonly used to detect
 outliers in other settings, and is dependent on the eigenvalues of the
 covariance matrix derived from that dataset~\cite{Mahalanobis1936}; a potential
 downside to this measure is the singularity of that matrix, which is
-particularly likely in high-dimensional data.
+particularly likely in high-dimensional data. Another exemplar work
+is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
+agnostic to its distance measure, and removes the requirement for the attribute
+space to be a metric space at all.
 
 \subsection{Healthcare modelling}
 
