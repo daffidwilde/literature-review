@@ -17,7 +17,7 @@ words = {
     "iterative(|ly)",
     "kroeber",
     "lca",
-    "mahalonobis",
+    "mahalanobis",
     "medoids",
     "nhs",
     "parallelised",
@@ -32,4 +32,5 @@ words = {
     "sokal(|'s)",
     "th",
     "voronoi",
+    "yellowbrick",
 }

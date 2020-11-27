@@ -51,8 +51,8 @@ falls comfortably into the category of \emph{unsupervised learning} techniques
 as a method that relies solely on observed data and some a priori
 knowledge such as a set of parameters~\cite{Dayan1999}.
 
-The remainder of this section offers a brief summary of the literature around
-the three principle types of clustering algorithm: those belonging to the
+The remainder of this section offers a summary of the literature around the
+three principle types of clustering algorithm: those belonging to the
 \(k\)-means paradigm, hierarchical connectivity models, and, finally,
 density-based algorithms.
 
@@ -61,12 +61,14 @@ density-based algorithms.
 The concept of \(k\)-means clustering is straightforward: partition a
 real-valued dataset into \(k \in \mathbb N\) homogeneous parts (clusters), where
 each data point is assigned to the cluster to which the point is closest. The
-distance from a point to a cluster is defined as the distance from the point to
-the mean of the elements in that cluster, also referred to as the cluster centre
-or centroid; this alternative name gives another name to the paradigm,
-\emph{centroid-based clustering}. Typically, the distance measure used is the
-Euclidean distance, with the assumption that several preprocessing techniques
-are used to mitigate any scaling discrepancies in the attributes of the data.
+sum of these within-cluster distances is often referred to as the \emph{inertia}
+of the clustering. The distance from a point to a cluster is defined as the
+distance from the point to the mean of the elements in that cluster, also
+referred to as the cluster centre or centroid; this alternative name gives
+another name to the paradigm, \emph{centroid-based clustering}. Typically, the
+distance measure used is the Euclidean distance, with the assumption that
+several preprocessing techniques are used to mitigate any scaling discrepancies
+in the attributes of the data.
 
 Although \(k\)-means clustering has independently been discovered a number of
 times since as early as the 1950s (comprehensive histories on the subject can be
@@ -84,35 +86,67 @@ parallelised~\cite{Bahmani2012}, and its implementations are
 concise~\cite{Olafsson2008,Wu2009}.
 
 However, centroid-based clustering is not without its drawbacks. The most
-notable of these is its dependency on being presented with a particular type of
-cluster. Namely, the true clusters should be isotropic, convex and
-well-separated. The reason these conditions exist, particularly for \(k\)-means,
-is because the \(k\)-means (Lloyd's) algorithm is a heuristic for identifying
-the centroidal Voronoi tessellation of a dataset~\cite{Du2006}. Hence, the true
-objective of the algorithm is to divide the search space into \(k\) equally
-weighted parts using the dataset as a sample, rather than focusing on dividing
-the dataset itself.
+notable of these is its dependency on being presented with data that can be
+naturally partitioned into \(k\) clusters of a particular type. Namely, the true
+clusters should be isotropic, convex and well-separated. The reason these
+conditions exist, particularly for \(k\)-means, is because the \(k\)-means
+(Lloyd's) algorithm is a heuristic for identifying the centroidal Voronoi
+tessellation of a dataset~\cite{Du2006}. Hence, the true objective of the
+algorithm is to divide the attribute space into \(k\) equally weighted parts
+using the dataset as a sample, rather than focusing on dividing the dataset
+itself.
 
-In the time since the popularisation of Lloyd's algorithm, research into
-centroid-based clustering has been plentiful, the body of which can be broadly
-split into four parts: utilising other measures for the centre of a cluster,
-improving the initial choice of centroids, implementing new features to
-overcome its particularities about clusters, and selecting a suitable choice for
-\(k\).
+Leaving the geometry of the clusters aside, there is the issue of choosing a
+suitable value of \(k\) prior to clustering. A common approach to this problem
+is the so-called `elbow' method where a clustering algorithm is run using a
+range of values for \(k\). From these runs, the value of \(k\) is plotted
+against some objective and the plot is inspected for a kink or `elbow'.
+However, the definition of what constitutes an elbow is not necessarily
+well-defined.~\cite{Sujatha2013,Syakur2018} each employ the elbow method with
+final inertia as the objective. In each case, the authors offer little
+explanation of their methodologies other than choosing \(k\) where `drastic'
+changes occur in the objective. Attempts to formalise this method have been
+made, however. For instance,~\cite{Satopaa2011} provides a `knee-point`
+detection algorithm that finds the point of maximal curvature in the domain of
+a function when provided with some basic properties of that function (whether it
+is convex, monotonic, etc.). This algorithm has been adapted to cleanly carry
+out the elbow method in software packages, such as
+Yellowbrick~\cite{Bengfort2019}, by interpolating the objective values.
 
-A cluster centroid is taken as a purely geometric object, and is measured using
-a distance metric and a measure of central tendency. Using the Euclidean mean as
-the centre of a cluster is a sensible choice when clustering continuous,
-normalised data. However, if the data is not scalable (if it is categorical, for
-instance) then this approach is not suitable. Further, the Euclidean distance is
-linear, leading \(k\)-means to be prone to the effects of outliers in the data.
-As such, numerous extensions to Lloyd's algorithm exist in the literature that
-are designed to be more robust to these limitations. For continuous (or at least
-ordered) data, \(k\)-medians and \(k\)-medoids exist. The former uses the median
-value of each attribute in a cluster to form the
-centre~\cite{Arya2001,Bradley1997}, mitigating the effect of outliers.
+Another limitation of \(k\)-means is that it is dependent on its initial
+solution. The standard initialisation process is to select \(k\) points in the
+dataset at random, introducing a stochastic element to the algorithm. Studying
+methods to find sensible (ideally, deterministic) initial solutions has formed a
+substantial part of centroid-based clustering research. For
+instance,~\cite{Manoharan2016} provides a novel initialisation that pursues the
+Voronoi tessellation by use of a `divide-and-conquer' approach. Under the
+presented scheme, the initial centroids are selected based on a rough partition
+of the attribute space according to their extreme values.
+Likewise,~\cite{Singh2013} offers an initialisation that assigns each centroid
+using the arithmetic mean and dividing the remaining attribute space in two.
+Meanwhile,~\cite{Katara2015} initialises \(k\)-means by sorting the instances in
+the dataset according to their distance from the origin. Once sorted, the
+instances are split into \(k\) disjoint sets and the mean of each set is
+assigned as a centroid. A likely issue with this approach is that there are new
+assumptions about the data, i.e. that it is centred about the origin in all
+dimensions (rectifiable through feature scaling), and that all points
+equidistant from the origin are similar to one another.
 
-Meanwhile, \(k\)-medoids considers the centre of a cluster to be the data point
+A crucial part of centroid-based clustering research is dedicated to alternative
+measurements for the centre of a cluster. A cluster centroid is broadly regarded
+as a purely geometric object, and is measured using a distance metric and a
+measure of central tendency. Using the Euclidean mean as the centre of a cluster
+is a sensible choice when clustering continuous, normalised data. However, if
+the data is not scalable (if it is categorical, for instance) then this approach
+is not suitable. Further, the Euclidean distance is linear, leading \(k\)-means
+to be prone to the effects of outliers in the data. As such, numerous
+extensions to Lloyd's algorithm exist in the literature that are designed to be
+more robust to these limitations. For continuous (or at least ordered) data,
+\(k\)-medians and \(k\)-medoids exist. The former uses the median value of each
+attribute in a cluster to form the centre~\cite{Arya2001,Bradley1997},
+mitigating the effect of outliers.
+
+In \(k\)-medoids, the centre of a cluster is taken to be the data point
 which is closest to all other points in the cluster~\cite{Kaufman1987}.
 Typically, \(k\)-medoids makes use of the Manhattan distance, but is generic in
 its schema. If Euclidean distance is used, then \(k\)-medoids is identical to
@@ -155,13 +189,29 @@ the basic measure by taking into account the relative frequency of the values of
 each attribute.~\cite{Ng2007} focuses locally to the cluster at hand,
 while~\cite{Cao2012} considers their frequencies from a universal perspective.
 
-\cite{Sung1998}~demonstrates how the Mahalonobis distance can be used to
-circumvent the dependency on spherical clusters by \(k\)-means. The Mahalonobis
-distance is a straightforward, outlier-detecting distance measure that is
-dependent on the eigenvalues of the covariance matrix derived from a
-dataset~\cite{Mahalonobis1936}; a potential downside to this measure is the
-singularity of that matrix, which is particularly likely in high-dimensional
-data.
+At this point, the survey returns to the effect of outliers on Lloyd-like
+algorithms, especially \(k\)-means, and the literature around reducing that
+effect.~\cite{Olukanmi2017} introduces the \(k\)-means\# algorithm --- an
+extension to \(k\)-means that embeds an outlier detection feature which relies
+solely on the underlying structures from the original \(k\)-means algorithm.
+The benefit of handling adverse noise in this way is twofold: first, it
+preserves the computational efficiencies that come with using the mean (as
+opposed to sorting the attributes of each cluster to find a median in
+\(k\)-medians, say); and, second, there are no additional parameters to
+determine.
+
+The final remark in this section of the survey is concerned with the relaxation
+of the constraints on cluster geometry by centroid-based clustering algorithms.
+This particularity is fundamental to how these algorithms operate and are
+designed, and so little research has been done on the subject. Having said
+that,~\cite{Sung1998} demonstrates how the Mahalanobis distance can be used in
+place of the Euclidean distance to circumvent the dependency on spherical (i.e.
+isotropic) clusters by \(k\)-means. However, the resultant clusters must still
+be convex and well-separated. The Mahalanobis distance commonly used to detect
+outliers in other settings, and is dependent on the eigenvalues of the
+covariance matrix derived from that dataset~\cite{Mahalanobis1936}; a potential
+downside to this measure is the singularity of that matrix, which is
+particularly likely in high-dimensional data.
 
 \subsection{Healthcare modelling}
 
