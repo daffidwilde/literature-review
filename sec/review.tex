@@ -90,14 +90,14 @@ concise~\cite{Olafsson2008,Wu2009}.
 
 However, centroid-based clustering is not without its drawbacks. The most
 notable of these is its dependency on being presented with data that can be
-naturally partitioned into \(k\) clusters of a particular type. Namely, the true
-clusters should be isotropic, convex and linearly separable. The reason these
-conditions exist, particularly for \(k\)-means, is because the \(k\)-means
-(Lloyd's) algorithm is a heuristic for identifying the centroidal Voronoi
-tessellation of a dataset~\cite{Du2006}. Hence, the true objective of the
-algorithm is to divide the attribute space into \(k\) equally weighted parts
-using the dataset as a sample, rather than focusing on dividing the dataset
-itself.
+naturally partitioned into \(k\) clusters of a particular
+type~\cite{Ostrovsky2013}. Namely, the true clusters should be isotropic, convex
+and linearly separable. The reason these conditions exist, particularly for
+\(k\)-means, is because the \(k\)-means (Lloyd's) algorithm is a heuristic for
+identifying the centroidal Voronoi tessellation of a dataset~\cite{Du2006}.
+Hence, the true objective of the algorithm is to divide the attribute space into
+\(k\) equally weighted parts using the dataset as a sample, rather than focusing
+on dividing the dataset itself.
 
 Regardless of the true nature of a centroid-based clustering algorithm, there is
 the issue of choosing a suitable value of \(k\) prior to clustering. A common
@@ -254,31 +254,42 @@ space to be a metric space at all.
 
 \subsubsection{Hierarchical clustering}
 
-Hierarchical clustering seeks to identify a hierarchy of the points in a dataset
-using a distance metric for measuring inter-point similarity, and a
-\emph{linkage criterion} to determine the distance between two sets of points.
-For the most part, algorithms for hierarchical clustering are one of two types;
-agglomerative or divisive~\cite{Kaufman1990}. Agglomerative algorithms,
-originating with~\cite{Johnson1967,Ward1963}, begin with each point in its own
-cluster and work to merge clusters together, constructing the hierarchy from the
-bottom up. Meanwhile, divisive algorithms, with~\cite{Edwards1965} being an
-early example, take a top-down approach and seek to split the dataset into
-reasonably homogeneous clusters.
+Hierarchical clustering seeks to identify a hierarchy of the relationships
+between the points in a dataset. A hierarchical clustering algorithm depends on
+a distance metric for measuring inter-point similarity, and a \emph{linkage
+criterion} to determine the distance between two sets of points. For the most
+part, algorithms for hierarchical clustering are one of two types: agglomerative
+or divisive~\cite{Kaufman1990}. Agglomerative algorithms, originating
+with~\cite{Johnson1967,Ward1963}, begin with each point in its own cluster and
+work to merge clusters together, constructing the hierarchy from the bottom up.
+Meanwhile, divisive algorithms, with~\cite{Edwards1965} being an early example,
+take a top-down approach and seek to split the dataset into reasonably
+homogeneous clusters.
 
 Since its origins, hierarchical clustering research has been dominated by
 agglomerative methods; this is due, largely, to the computational issues
-associated with splitting the entire dataset into parts recursively. For a
-dataset of \(n\) points, a complete search of the possible splits takes \(2^n\)
-calculations, and so divisive methods require efficient heuristics to be even
-remotely plausible on real-world data. A common choice is the \(k\)-means
-algorithm~\cite{Moseley2017,Peterson2018}. Comprehensive and ongoing reviews on
-the subject of hierarchical (although mainly agglomerative) clustering can be
-found by Murtagh and Contreras~\cite{Murtagh1983,Murtagh2012,Murtagh2017}.
+associated with how to best split a heterogeneous dataset into parts
+recursively. For a dataset of \(n\) points, a complete search of the possible
+splits takes \(2^n\) calculations, and so divisive methods require efficient
+heuristics to be even remotely plausible on real-world data. A common choice is
+the \(k\)-means algorithm~\cite{Moseley2017,Peterson2018}.
 
-While the distance metric used is largely dependent on the type of data
-presented~\cite{Nielsen2016}, the linkage criterion is what defines an
-agglomerative clustering algorithm. Two of the fundamental criteria are complete
-linkage, giving the CLINK algorithm~\cite{Defays1977}, and single linkage,
+In addition, divisive hierarchical clustering has been successfully reframed as
+a combinatorial optimisation problem, as in~\cite{Dasgupta2016}, which allows
+for the application of techniques such as linear programming~\cite{Roy2017} to
+identify a clustering in good time. Furthermore, related works exist which
+concern themselves with determining the quality of a hierarchical structure with
+respect to some cost function, like~\cite{Bilu2012,Lyzinski2017}.
+Then,~\cite{CohenAddad2018} combines these methodologies to produce a divisive
+clustering algorithm that achieves logarithmic complexity.
+
+Agglomerative clustering algorithms do not bear the same burdens; the grouping
+together of parts can be achieved with more straightforward tools. As it
+happens, the definition of an agglomerative algorithm is predominantly reliant
+on their linkage criterion. Meanwhile, the distance metric used is largely
+dependent on the type of data presented~\cite{Nielsen2016}. Two of the
+fundamental criteria for hierarchical clustering are complete linkage, which
+defines the CLINK algorithm~\cite{Defays1977}, and single linkage,
 providing the SLINK algorithm~\cite{Sibson1973}. For two clusters, \(X\) and
 \(Y\), and a point-wise distance metric, \(d\), each criterion is evaluated as
 follows:
@@ -290,20 +301,32 @@ follows:
 
 These definitions give each approach the colloquial names \emph{farthest
 neighbour} and \emph{nearest neighbour} clustering, respectively. Moreover,
-defining linkage in this way allows a hierarchical algorithm to be run using
-only a point-wise distance matrix, as opposed to a dataset directly.
+defining linkage in this way allows a hierarchical (agglomerative or divisive)
+algorithm to be run using only a point-wise distance matrix, as opposed to a
+dataset directly, allowing for increases in computational efficiency by use of
+caching~\cite{Nielsen2016}. Ongoing reviews on the subject of hierarchical
+(although predominantly agglomerative) clustering methods can be found by
+Murtagh~\cite{Murtagh1983} and later with
+Contreras~\cite{Murtagh2012,Murtagh2017}.
 
 Like centroid-based clustering, a principle issue with hierarchical clustering
 is knowing how many clusters is the most appropriate number. Hierarchical
-algorithms typically terminate when all points exist in a single cluster
-(agglomerative) or are all separate (divisive). However, a key advantage of
-hierarchical clustering is that the methods retain a complete history of how the
-points relate to one another. These histories are used to visualise the
-clustering process via a dendogram --- an acyclic graph (tree) arranged into
-levels according to the merging or splitting stages. With such a visualisation,
-and the underlying tree itself, an appropriate number of clusters can be
-identified after running the algorithm once, as opposed to the ranges of runs
-required for the elbow method in centroid-based clustering.
+algorithms terminate when all points exist in a single cluster (for
+agglomerative methods) or are all separate (for divisive). A key advantage of
+clustering in this way is the retention of a complete history of how the points
+relate to one another. These histories are used to visualise the clustering
+process via a dendogram. A dendogram is an acyclic graph (tree) arranged into
+levels corresponding to the stages at which two clusters are merged (or split).
+
+With such a visualisation, and the underlying tree itself, an appropriate number
+of clusters can be identified after running the algorithm once, as opposed to
+the ranges of runs required for the elbow method in centroid-based
+clustering.~\cite{Tellaroli2016} presents a hierarchical clustering schema that
+incorporates complete-linkage clustering with the minimum variance criterion
+presented in~\cite{Ward1963}. In doing so, the method automates the process of
+choosing an appropriate number of clusters; a decision that is usually made post
+hoc according to another metric, such as the silhouette coefficient, evaluated
+at each level of the tree.
 
 
 \subsection{Healthcare modelling}
