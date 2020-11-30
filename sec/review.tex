@@ -54,7 +54,10 @@ knowledge such as a set of parameters~\cite{Dayan1999}.
 The remainder of this section offers a summary of the literature around the
 three principle types of clustering algorithm: those belonging to the
 \(k\)-means paradigm, hierarchical connectivity models, and, finally,
-density-based algorithms.
+density-based algorithms. In addition to these, fuzzy clustering and model-based
+clustering are popular. For overviews and reviews of the methods belonging to
+the former, consider~\cite{Ferraro2019,Gosain2016,Li2016},
+and~\cite{Bouveyron2019,Fruhwirth2019,McNicholas2016} for the latter.
 
 \subsubsection{The \(k\)-means paradigm}\label{subsubsec:kmeans}
 
@@ -88,7 +91,7 @@ concise~\cite{Olafsson2008,Wu2009}.
 However, centroid-based clustering is not without its drawbacks. The most
 notable of these is its dependency on being presented with data that can be
 naturally partitioned into \(k\) clusters of a particular type. Namely, the true
-clusters should be isotropic, convex and well-separated. The reason these
+clusters should be isotropic, convex and linearly separable. The reason these
 conditions exist, particularly for \(k\)-means, is because the \(k\)-means
 (Lloyd's) algorithm is a heuristic for identifying the centroidal Voronoi
 tessellation of a dataset~\cite{Du2006}. Hence, the true objective of the
@@ -96,18 +99,22 @@ algorithm is to divide the attribute space into \(k\) equally weighted parts
 using the dataset as a sample, rather than focusing on dividing the dataset
 itself.
 
-Leaving the geometry of the clusters aside, there is the issue of choosing a
-suitable value of \(k\) prior to clustering. A common approach to this problem
-is the so-called `elbow' method where a clustering algorithm is run using a
-range of values for \(k\); this range is typically informed by what is
-considered reasonable in the problem domain. From these runs, the value of \(k\)
-is plotted against some objective and the plot is inspected for a kink or
-`elbow'.  However, the definition of what constitutes an elbow is not
-necessarily well-defined.~\cite{Sujatha2013,Syakur2018} each employ the elbow
-method with final inertia as the objective. In each case, the authors offer
-little explanation of their methodologies other than choosing \(k\) where
+Regardless of the true nature of a centroid-based clustering algorithm, there is
+the issue of choosing a suitable value of \(k\) prior to clustering. A common
+approach to this problem is the so-called `elbow' method where a clustering
+algorithm is run using a range of values for \(k\); this range is typically
+informed by what is considered reasonable in the problem domain. From these
+runs, the value of \(k\) is plotted against some objective and the plot is
+inspected for a kink or `elbow'. Typically, inertia is used, but another popular
+metric is the silhouette coefficient: a measure for both the intra-cluster
+tightness and inter-cluster separation of a clustering~\cite{Rousseeuw1987}.
+
+Irrespective of the objective used, the definition of what constitutes an elbow
+is not necessarily well-defined.~\cite{Sujatha2013,Syakur2018} each employ the
+elbow method with final inertia as the objective. In each case, the authors
+offer little explanation of their methodologies other than choosing \(k\) where
 `drastic' changes occur in the objective. Attempts to formalise this method have
-been made, however. For instance,~\cite{Satopaa2011} provides a `knee-point`
+been made, however. For instance,~\cite{Satopaa2011} provides a `knee-point'
 detection algorithm that finds the point of maximal curvature in the domain of a
 function when provided with some basic properties of that function (whether it
 is convex, monotonic, etc.). This algorithm has been adapted to cleanly carry
@@ -116,12 +123,12 @@ Yellowbrick~\cite{Bengfort2019}, by interpolating the objective values.
 
 Further to this formalisation of the elbow method, other extensions to
 \(k\)-means itself have been presented to alleviate all dependency on making a
-choice for \(k\).~\cite{Olukanmi2019} proposes a computationally efficient,
-automatic decision scheme for \(k\)-means based on a vector comprised of the
-values that constitute the inertia of a clustering. The process determines that
-if this vector meets some criterion attached to its standard deviation, then
-each cluster is sufficiently unimodal and Gaussian, fulfilling the condition
-that clusters be roughly spherical.
+choice for \(k\).~\cite{Olukanmi2019} proposes a automatic decision scheme for
+\(k\)-means based on a vector comprised of the values that constitute the
+inertia of a clustering. The process determines that if this vector meets some
+criterion attached to its standard deviation, then each cluster is sufficiently
+unimodal and Gaussian, fulfilling the condition that clusters be roughly
+spherical.
 
 Another limitation of \(k\)-means is that it is dependent on its initial
 solution. The standard initialisation process is to select \(k\) points in the
@@ -187,17 +194,29 @@ and \(k\)-medoids, where the cluster centre is defined as a point whose
 attribute values are most frequent among those of the points in a
 cluster.~\cite{Huang1998} provides a so-called `matching dissimilarity' measure
 to expedite the centre calculations, making \(k\)-modes scalable and
-computationally efficient~\cite{Madhuri2014}. \(k\)-prototypes is essentially a
-blended form of \(k\)-modes and \(k\)-means where each method is applied to the
-categorical and numeric attributes at each iteration, before their respective
-costs are combined linearly according to some parameter, \(\gamma\). Work into
-\(k\)-modes clustering is largely formed around the initial choice of centroids,
-as in~\cite{Cao2009,Jiang2016,Khan2013,Khan2007,Taoying2013}, and improving on
-the original distance measure.~\cite{Cao2012} and~\cite{Ng2007} offer two
-popular, novel dissimilarity measures for \(k\)-modes clustering that improve on
-the basic measure by taking into account the relative frequency of the values of
-each attribute.~\cite{Ng2007} focuses locally to the cluster at hand,
-while~\cite{Cao2012} considers their frequencies from a universal perspective.
+computationally efficient~\cite{Madhuri2014}. The \(k\)-prototypes algorithm is
+essentially a blended form of \(k\)-modes and \(k\)-means where each method is
+applied to the categorical and numeric attributes at each iteration, before
+their respective costs are combined linearly according to some parameter,
+\(\gamma\). Work into \(k\)-modes clustering is largely focused on the initial
+choice of centroids, as
+in~\cite{Cao2009,Jiang2016,Khan2013,Khan2007,Taoying2013}, and
+improving on the original distance measure.~\cite{Cao2012} and~\cite{Ng2007}
+offer two popular, novel dissimilarity measures for \(k\)-modes clustering that
+improve on the basic measure by taking into account the relative frequency of
+the values of each attribute.~\cite{Ng2007} focuses locally to the cluster at
+hand, while~\cite{Cao2012} considers their frequencies from a universal
+perspective.
+
+While centroid-based clustering is dominated by Lloyd-like algorithms, recent
+work has sought out alternative approached. For instance,~\cite{Chen2019}
+revises centroid clustering from an expectation-maximisation process to one that
+considers its data points as agents that act with preferences based on their
+locale. The overall aim of this approach is to incorporate a sense of
+mathematical fairness by identifying a solution that can not be justifiably
+rejected by any subset of its agents. Such a solution is found through a
+proportional (i.e. Pareto-optimal) distribution of the cluster centres according
+to some distance metric.
 
 At this point, the survey returns to the effect of outliers on Lloyd-like
 algorithms, especially \(k\)-means, and the literature around reducing that
@@ -211,11 +230,10 @@ opposed to sorting the attributes of each cluster to find a median in
 determine.~\cite{Gupta2017} provides another integration with \(k\)-means for
 detecting outliers by way of a local search, but in order to do so, it
 introduces another parameter determining the cardinality of the neighbourhood of
-a point. In addition to these mitigating extensions,~\cite{Lei2012,Wei2019} are
-examples of works that exploit this weakness of \(k\)-means clustering. In each
-case, the \(k\)-means algorithm partitions a dataset, and outliers are
-identified according to some neighbourhood threshold based on the density of the
-cluster.
+a point. In contract to these extensions,~\cite{Lei2012,Wei2019} are examples of
+works that exploit this weakness of \(k\)-means clustering. In each case, the
+\(k\)-means algorithm partitions a dataset, and outliers are identified
+according to some neighbourhood threshold based on the density of the cluster.
 
 The final remark in this section of the survey is concerned with the relaxation
 of the constraints on cluster geometry by centroid-based clustering algorithms.
@@ -224,14 +242,69 @@ designed, and so little research has been done on the subject. Having said
 that,~\cite{Sung1998} demonstrates how the Mahalanobis distance can be used in
 place of the Euclidean distance to circumvent the dependency on spherical (i.e.
 isotropic) clusters by \(k\)-means. However, the resultant clusters must still
-be convex and well-separated. The Mahalanobis distance commonly used to detect
-outliers in other settings, and is dependent on the eigenvalues of the
+be convex and linearly separable. The Mahalanobis distance commonly used to
+detect outliers in other settings, and is dependent on the eigenvalues of the
 covariance matrix derived from that dataset~\cite{Mahalanobis1936}; a potential
 downside to this measure is the singularity of that matrix, which is
 particularly likely in high-dimensional data. Another exemplar work
 is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
 agnostic to its distance measure, and removes the requirement for the attribute
 space to be a metric space at all.
+
+
+\subsubsection{Hierarchical clustering}
+
+Hierarchical clustering seeks to identify a hierarchy of the points in a dataset
+using a distance metric for measuring inter-point similarity, and a
+\emph{linkage criterion} to determine the distance between two sets of points.
+For the most part, algorithms for hierarchical clustering are one of two types;
+agglomerative or divisive~\cite{Kaufman1990}. Agglomerative algorithms,
+originating with~\cite{Johnson1967,Ward1963}, begin with each point in its own
+cluster and work to merge clusters together, constructing the hierarchy from the
+bottom up. Meanwhile, divisive algorithms, with~\cite{Edwards1965} being an
+early example, take a top-down approach and seek to split the dataset into
+reasonably homogeneous clusters.
+
+Since its origins, hierarchical clustering research has been dominated by
+agglomerative methods; this is due, largely, to the computational issues
+associated with splitting the entire dataset into parts recursively. For a
+dataset of \(n\) points, a complete search of the possible splits takes \(2^n\)
+calculations, and so divisive methods require efficient heuristics to be even
+remotely plausible on real-world data. A common choice is the \(k\)-means
+algorithm~\cite{Moseley2017,Peterson2018}. Comprehensive and ongoing reviews on
+the subject of hierarchical (although mainly agglomerative) clustering can be
+found by Murtagh and Contreras~\cite{Murtagh1983,Murtagh2012,Murtagh2017}.
+
+While the distance metric used is largely dependent on the type of data
+presented~\cite{Nielsen2016}, the linkage criterion is what defines an
+agglomerative clustering algorithm. Two of the fundamental criteria are complete
+linkage, giving the CLINK algorithm~\cite{Defays1977}, and single linkage,
+providing the SLINK algorithm~\cite{Sibson1973}. For two clusters, \(X\) and
+\(Y\), and a point-wise distance metric, \(d\), each criterion is evaluated as
+follows:
+
+\begin{itemize}
+    \item Complete linkage: \(D(X, Y) = \max_{x \in X, y \in Y} d(x, y)\)
+    \item Single linkage: \(D(X, Y) = \min_{x \in X, y \in Y} d(x, y)\)
+\end{itemize}
+
+These definitions give each approach the colloquial names \emph{farthest
+neighbour} and \emph{nearest neighbour} clustering, respectively. Moreover,
+defining linkage in this way allows a hierarchical algorithm to be run using
+only a point-wise distance matrix, as opposed to a dataset directly.
+
+Like centroid-based clustering, a principle issue with hierarchical clustering
+is knowing how many clusters is the most appropriate number. Hierarchical
+algorithms typically terminate when all points exist in a single cluster
+(agglomerative) or are all separate (divisive). However, a key advantage of
+hierarchical clustering is that the methods retain a complete history of how the
+points relate to one another. These histories are used to visualise the
+clustering process via a dendogram --- an acyclic graph (tree) arranged into
+levels according to the merging or splitting stages. With such a visualisation,
+and the underlying tree itself, an appropriate number of clusters can be
+identified after running the algorithm once, as opposed to the ranges of runs
+required for the elbow method in centroid-based clustering.
+
 
 \subsection{Healthcare modelling}
 
