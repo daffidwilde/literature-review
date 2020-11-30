@@ -242,7 +242,7 @@ designed, and so little research has been done on the subject. Having said
 that,~\cite{Sung1998} demonstrates how the Mahalanobis distance can be used in
 place of the Euclidean distance to circumvent the dependency on spherical (i.e.
 isotropic) clusters by \(k\)-means. However, the resultant clusters must still
-be convex and linearly separable. The Mahalanobis distance commonly used to
+be convex and linearly separable. The Mahalanobis distance is commonly used to
 detect outliers in other settings, and is dependent on the eigenvalues of the
 covariance matrix derived from that dataset~\cite{Mahalanobis1936}; a potential
 downside to this measure is the singularity of that matrix, which is
@@ -291,8 +291,8 @@ dependent on the type of data presented~\cite{Nielsen2016}. Two of the
 fundamental criteria for hierarchical clustering are complete linkage, which
 defines the CLINK algorithm~\cite{Defays1977}, and single linkage,
 providing the SLINK algorithm~\cite{Sibson1973}. For two clusters, \(X\) and
-\(Y\), and a point-wise distance metric, \(d\), each criterion is evaluated as
-follows:
+\(Y\), and a point-wise distance metric, \(d\), each criterion, \(D\), is
+evaluated as follows:
 
 \begin{itemize}
     \item Complete linkage: \(D(X, Y) = \max_{x \in X, y \in Y} d(x, y)\)
