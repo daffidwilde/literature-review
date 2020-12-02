@@ -11,9 +11,13 @@ Clustering, or \emph{cluster analysis}, is a generic term used to describe a
 number of techniques whose objective is to partition some dataset into parts
 (clusters) according to some distance (similarity) measure. The generated
 partition should be such that the members of one cluster are more similar to one
-another than the rest of the data~\cite{Everitt2011}. Often lumped in with the
-task of classification, clustering is distinct in that it reveals the underlying
-structure of a dataset by only using knowledge that is fixed from the outset.
+another than the rest of the data~\cite{Everitt2011}. This form of analysis has
+found applications in a multitude of fields, including recently the optimisation
+of energy systems~\cite{Jing2019,Teichgraeber2019}, wireless sensor
+networking~\cite{Goswami2019}, and the biological
+sciences~\cite{Bulut2020,Kiselev2019}. Often lumped in with the task of
+classification, clustering is distinct in that it reveals the underlying
+structure of a dataset with knowledge that is fixed from the outset exclusively.
 The alternative being a method with access to some ground truth to refer to,
 such as a labelling.
 
@@ -251,20 +255,19 @@ is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
 agnostic to its distance measure, and removes the requirement for the attribute
 space to be a metric space at all.
 
-
 \subsubsection{Hierarchical clustering}
 
 Hierarchical clustering seeks to identify a hierarchy of the relationships
-between the points in a dataset. A hierarchical clustering algorithm depends on
-a distance metric for measuring inter-point similarity, and a \emph{linkage
-criterion} to determine the distance between two sets of points. For the most
-part, algorithms for hierarchical clustering are one of two types: agglomerative
-or divisive~\cite{Kaufman1990}. Agglomerative algorithms, originating
-with~\cite{Johnson1967,Ward1963}, begin with each point in its own cluster and
-work to merge clusters together, constructing the hierarchy from the bottom up.
-Meanwhile, divisive algorithms, with~\cite{Edwards1965} being an early example,
-take a top-down approach and seek to split the dataset into reasonably
-homogeneous clusters.
+between subsets of points in a dataset. A hierarchical clustering algorithm
+depends on a distance metric for measuring inter-point similarity, and a
+\emph{linkage criterion} to determine the distance between two sets of points.
+For the most part, algorithms for hierarchical clustering are one of two types:
+agglomerative or divisive~\cite{Kaufman1990}. Agglomerative algorithms,
+originating with~\cite{Johnson1967,Ward1963}, begin with each point in its own
+cluster and work to merge clusters together, constructing the hierarchy from the
+bottom up. Meanwhile, divisive algorithms, with~\cite{Edwards1965} being an
+early example, take a top-down approach and seek to split the dataset into
+reasonably homogeneous clusters.
 
 Since its origins, hierarchical clustering research has been dominated by
 agglomerative methods; this is due, largely, to the computational issues
@@ -274,25 +277,29 @@ splits takes \(2^n\) calculations, and so divisive methods require efficient
 heuristics to be even remotely plausible on real-world data. A common choice is
 the \(k\)-means algorithm~\cite{Moseley2017,Peterson2018}.
 
-In addition, divisive hierarchical clustering has been successfully reframed as
-a combinatorial optimisation problem, as in~\cite{Dasgupta2016}, which allows
-for the application of techniques such as linear programming~\cite{Roy2017} to
-identify a clustering in good time. Furthermore, related works exist which
+In addition, hierarchical clustering has been successfully reframed as a
+combinatorial optimisation problem, as is done with divisive clustering
+in~\cite{Dasgupta2016}, which allows for the application of optimisation
+heuristics such as linear programming~\cite{Roy2017}, local
+search~\cite{Aljarah2019} and probabilistic estimation~\cite{Fan2015} to
+identify a clustering in reasonable time. Furthermore, related works exist which
 concern themselves with determining the quality of a hierarchical structure with
-respect to some cost function, like~\cite{Bilu2012,Lyzinski2017}.
-Then,~\cite{CohenAddad2018} combines these methodologies to produce a divisive
-clustering algorithm that achieves logarithmic complexity.
+respect to some cost function,
+like~\cite{Bilu2012,Lyzinski2017}.~\cite{CohenAddad2018} combines these
+methodologies to produce a divisive clustering algorithm that achieves
+logarithmic complexity.
 
-Agglomerative clustering algorithms do not bear the same burdens; the grouping
-together of parts can be achieved with more straightforward tools. As it
-happens, the definition of an agglomerative algorithm is predominantly reliant
-on their linkage criterion. Meanwhile, the distance metric used is largely
-dependent on the type of data presented~\cite{Nielsen2016}. Two of the
-fundamental criteria for hierarchical clustering are complete linkage, which
-defines the CLINK algorithm~\cite{Defays1977}, and single linkage,
-providing the SLINK algorithm~\cite{Sibson1973}. For two clusters, \(X\) and
-\(Y\), and a point-wise distance metric, \(d\), each criterion, \(D\), is
-evaluated as follows:
+While heuristic methods exist for agglomerative
+clustering~\cite{Aljarah2019,Fan2015}, its methods do not bear the same burdens
+as divisive methods; the grouping together of parts can be achieved with more
+straightforward tools. Generally, the definition of an agglomerative
+algorithm is reliant on their linkage criterion. Meanwhile, the
+distance metric used is largely dependent on the type of data
+presented~\cite{Nielsen2016}. Two of the fundamental criteria for hierarchical
+clustering are complete linkage, which defines the CLINK
+algorithm~\cite{Defays1977}, and single linkage, providing the SLINK
+algorithm~\cite{Sibson1973}. For two clusters, \(X\) and \(Y\), and a point-wise
+distance metric, \(d\), each criterion, \(D\), is evaluated as follows:
 
 \begin{itemize}
     \item Complete linkage: \(D(X, Y) = \max_{x \in X, y \in Y} d(x, y)\)
@@ -304,10 +311,11 @@ neighbour} and \emph{nearest neighbour} clustering, respectively. Moreover,
 defining linkage in this way allows a hierarchical (agglomerative or divisive)
 algorithm to be run using only a point-wise distance matrix, as opposed to a
 dataset directly, allowing for increases in computational efficiency by use of
-caching~\cite{Nielsen2016}. Ongoing reviews on the subject of hierarchical
-(although predominantly agglomerative) clustering methods can be found by
-Murtagh~\cite{Murtagh1983} and later with
-Contreras~\cite{Murtagh2012,Murtagh2017}.
+caching~\cite{Nielsen2016}. However, hierarchical methods remain prone to
+outliers and are biased towards globular clusters because of definitions such as
+these. Ongoing reviews on the subject of hierarchical (although predominantly
+agglomerative) clustering methods can be found by Murtagh~\cite{Murtagh1983} and
+later with Contreras~\cite{Murtagh2012,Murtagh2017}.
 
 Like centroid-based clustering, a principle issue with hierarchical clustering
 is knowing how many clusters is the most appropriate number. Hierarchical
@@ -328,6 +336,74 @@ choosing an appropriate number of clusters; a decision that is usually made post
 hoc according to another metric, such as the silhouette coefficient, evaluated
 at each level of the tree.
 
+\subsubsection{Density-based clustering}
+
+Density-based clustering differs from centroid-based methods in that
+it actively seeks more of the underlying structure of a dataset. In
+centroid-based clustering, decisions are made using the distance between two
+points, which provides a \emph{flat} clustering without an underlying structure.
+Meanwhile, hierarchical methods make use of identification and aggregation
+devices, which are derived from point-wise distances, to measure and organise
+the connectivity of subsets in a dataset, providing insight into the structure
+of the data. Arguably, density-based clustering takes this structural approach a
+step further and considers the attribute space of a dataset as a density
+surface. Then, a cluster is defined as a high-density region of that surface.
+
+By considering a dataset in this way, the clusters can be of arbitrary shape,
+overcoming the major shortfall of the other paradigms considered here.
+Furthermore, recognising data points in sparse areas of the surface (i.e. with
+low density) affords density-based methods the automatic filtration of noise,
+without having to implement a specific schema.
+
+Density-based clustering is relatively young when compared to other paradigms,
+only emerging at the end of the 20\textsuperscript{th} century with the DBSCAN
+algorithm~\cite{Ester1996}. Given its youth, contemporary clustering literature
+surveys (such as~\cite{Jain1999,Xu2005}) lacked thorough study of density-based
+clustering methods. Over time, specific surveys have been published, culminating
+in a most recent survey~\cite{Bhattacharjee2020} which provides an exceptionally
+detailed review of density-based clustering algorithms. This survey includes a
+descriptive taxonomy of 32 density-based methods, categorised by their density
+definition, parameter sensitivity, mode of execution and the nature of the data
+being clustered.
+
+DBSCAN is a point-based, parameter-sensitive clustering algorithm that has
+proven popular, and is now synonymous with density-based clustering. The initial
+work has spurred a slue of extensions to DBSCAN which aim to bypass its
+shortcomings, including Generalised DBSCAN~\cite{Sander1998}, Incremental
+DBSCAN~\cite{Bakr2015,Ester1998}, Improved DBSCAN~\cite{Borah2004}, and various
+parallelised versions of the algorithm~\cite{Bohm2009,He2011,Loh2014,Xu2002}.
+The primary issues with DBSCAN relate to its parameters: a radius, \(\epsilon >
+0\), defining the neighbourhood of a point, and an integer, \(Minpts \in \mathbb
+N\), that specifies the minimum cardinality of a neighbourhood required for a
+point to be considered dense. These parameters correspond to DBSCAN being
+point-based: regions of high density are determined using the points directly.
+The first disadvantage of DBSCAN is in estimating these
+parameters.~\cite{Ester1996} provides some default values based on
+dimensionality, but a good understanding of the dataset at hand is required for
+effective use. This issue leads to the second, which is that the parameters are
+global in scope, meaning that DBSCAN is unable to identify clusters that are of
+varying densities. Finally, the performance of DBSCAN is limited in
+high-dimensional space, because of the so-called \emph{curse of
+dimensionality}~\cite{Keogh2017} --- the same is true of other clustering
+algorithms, including \(k\)-means.
+
+However, these limitations are not without an alternative. For instance,
+CLIQUE~\cite{Agrawal1998} and OPTIGRID~\cite{Hinneburg1999} each provide
+density-based clustering algorithms that are designed to perform well in
+high-dimensional space. Each of these algorithms is grid-based (as opposed to
+point-based), so the attribute space is discretised into rectangles. These
+rectangles are then used to identify dense regions. To identify clusters of
+variable densities, DVBSCAN~\cite{Ram2010} and HDBSCAN~\cite{Campello2013} are
+available. The latter aggregates outputs from DBSCAN using a range of radii,
+making it more resilient to changes in either parameter. The former runs DBSCAN
+with the addition of allowing a cluster to expand provided its core points local
+(\(\epsilon\)-neighbourhood) density satisfies some criterion; because of this,
+it requires careful consideration of its parameters to perform well. Lastly, any
+parameter-adaptive, density-based algorithm will do away with the trouble of
+choosing precise parameters. Examples include the popular OPTICS
+algorithm~\cite{Ankerst1999}, DBCLASD~\cite{Xu1998} for spatial data, and
+DSets-DBSCAN~\cite{Hou2016}. The last provides a clustering that is independent
+of the parameters provided, but is exclusively for the clustering of images. 
 
 \subsection{Healthcare modelling}
 
