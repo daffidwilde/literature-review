@@ -350,10 +350,16 @@ step further and considers the attribute space of a dataset as a density
 surface. Then, a cluster is defined as a high-density region of that surface.
 
 By considering a dataset in this way, the clusters can be of arbitrary shape,
-overcoming the major shortfall of the other paradigms considered here.
-Furthermore, recognising data points in sparse areas of the surface (i.e. with
-low density) affords density-based methods the automatic filtration of noise,
-without having to implement a specific schema.
+overcoming the major shortfall of the other paradigms considered
+here~\cite{Raykov2016}. Furthermore, recognising data points in sparse areas of
+the surface (i.e. with low density) often affords density-based methods the
+automatic filtration of noise, without having to implement a specific schema. As
+such, several methods splicing density-based clustering with the other paradigms
+have been offered. For example, (Fast)DPeak~\cite{Chen2020},
+HDBSCAN~\cite{Campello2013} and DenPEHC~\cite{Xu2016} incorporate hierarchical
+structures with density-based decision making. Likewise,
+KIDBSCAN~\cite{Tsai2006} utilises \(k\)-means clustering to identify centres
+with a high density.
 
 Density-based clustering is relatively young when compared to other paradigms,
 only emerging at the end of the 20\textsuperscript{th} century with the DBSCAN
@@ -371,14 +377,14 @@ proven popular, and is now synonymous with density-based clustering. The initial
 work has spurred a slue of extensions to DBSCAN which aim to bypass its
 shortcomings, including Generalised DBSCAN~\cite{Sander1998}, Incremental
 DBSCAN~\cite{Bakr2015,Ester1998}, Improved DBSCAN~\cite{Borah2004}, and various
-parallelised versions of the algorithm~\cite{Bohm2009,He2011,Loh2014,Xu2002}.
-The primary issues with DBSCAN relate to its parameters: a radius, \(\epsilon >
-0\), defining the neighbourhood of a point, and an integer, \(Minpts \in \mathbb
-N\), that specifies the minimum cardinality of a neighbourhood required for a
-point to be considered dense. These parameters correspond to DBSCAN being
-point-based: regions of high density are determined using the points directly.
-The first disadvantage of DBSCAN is in estimating these
-parameters.~\cite{Ester1996} provides some default values based on
+parallelised versions of the algorithm~\cite{Bohm2009,He2011,Loh2014,Xu2002} to
+overcome its time-complexity. The primary issues with DBSCAN relate to its
+parameters: a radius, \(\epsilon > 0\), defining the neighbourhood of a point,
+and an integer, \(Minpts \in \mathbb N\), that specifies the minimum cardinality
+of a neighbourhood required for a point to be considered dense. These parameters
+correspond to DBSCAN being point-based: regions of high density are determined
+using the points directly. The first disadvantage of DBSCAN is in estimating
+these parameters.~\cite{Ester1996} provides some default values based on
 dimensionality, but a good understanding of the dataset at hand is required for
 effective use. This issue leads to the second, which is that the parameters are
 global in scope, meaning that DBSCAN is unable to identify clusters that are of
@@ -392,18 +398,23 @@ CLIQUE~\cite{Agrawal1998} and OPTIGRID~\cite{Hinneburg1999} each provide
 density-based clustering algorithms that are designed to perform well in
 high-dimensional space. Each of these algorithms is grid-based (as opposed to
 point-based), so the attribute space is discretised into rectangles. These
-rectangles are then used to identify dense regions. To identify clusters of
-variable densities, DVBSCAN~\cite{Ram2010} and HDBSCAN~\cite{Campello2013} are
-available. The latter aggregates outputs from DBSCAN using a range of radii,
-making it more resilient to changes in either parameter. The former runs DBSCAN
-with the addition of allowing a cluster to expand provided its core points local
-(\(\epsilon\)-neighbourhood) density satisfies some criterion; because of this,
-it requires careful consideration of its parameters to perform well. Lastly, any
-parameter-adaptive, density-based algorithm will do away with the trouble of
-choosing precise parameters. Examples include the popular OPTICS
+rectangles are then used to identify dense regions. DCore~\cite{Chen2018}
+provides powerful point-based clustering in arbitrarily high dimensions.
+
+To identify clusters of variable densities, DVBSCAN~\cite{Ram2010} and
+HDBSCAN~\cite{Campello2013} are available. The latter aggregates outputs from
+DBSCAN using a range of radii, making it more resilient to changes in either
+parameter. The former runs DBSCAN with the addition of allowing a cluster to
+expand provided its core points' local (\(\epsilon\)-neighbourhood) density
+satisfy some criterion; because of this, it requires careful consideration of
+its parameters to perform well.
+
+Lastly, any parameter-adaptive, density-based algorithm will do away with the
+trouble of choosing precise parameters. Examples include the popular OPTICS
 algorithm~\cite{Ankerst1999}, DBCLASD~\cite{Xu1998} for spatial data, and
 DSets-DBSCAN~\cite{Hou2016}. The last provides a clustering that is independent
 of the parameters provided, but is exclusively for the clustering of images. 
+
 
 \subsection{Healthcare modelling}
 
