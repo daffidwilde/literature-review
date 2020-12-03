@@ -15,11 +15,7 @@ another than the rest of the data~\cite{Everitt2011}. This form of analysis has
 found applications in a multitude of fields, including recently the optimisation
 of energy systems~\cite{Jing2019,Teichgraeber2019}, wireless sensor
 networking~\cite{Goswami2019}, and the biological
-sciences~\cite{Bulut2020,Kiselev2019}. Often lumped in with the task of
-classification, clustering is distinct in that it reveals the underlying
-structure of a dataset with knowledge that is fixed from the outset exclusively.
-The alternative being a method with access to some ground truth to refer to,
-such as a labelling.
+sciences~\cite{Bulut2020,Kiselev2019}.
 
 Clustering originated in the social sciences around the turn of the
 20\textsuperscript{th} century in a similar manner to several other (now
@@ -39,31 +35,21 @@ and~\cite{Hartigan1975} which each formalised the principles of clustering as a
 part of statistics. Furthermore, this period witnessed the advent of seminal
 work on clustering algorithms such as \(k\)-means~\cite{Hartigan1979} and
 hierarchical clustering~\cite{Defays1977,Sibson1973} that are still considered
-fundamental methods.
-
-In tandem with this shift was the rise in the use of software to implement and
-compute algorithms (including clustering), and so electronic data became
-essential. As the size and complexity of research data increased, so did the
-span of the field that is now referred to as \emph{machine learning}. Machine
-learning is a loose term to describe how a computer (machine) may `learn' from a
-potentially large source of data without following explicit instructions. Owing
-in part to this vague definition, machine learning comprises a great deal of
-techniques that were borne out of statistics, including regression,
-classification and clustering, despite having lost its connection with the
-statistics that underpin it, at least colloquially. In particular, clustering
-falls comfortably into the category of \emph{unsupervised learning} techniques
-as a method that relies solely on observed data and some a priori
+fundamental methods. Since then, with an increase in the data under study,
+clustering has fallen more squarely into the category of machine learning
+techniques that perform \emph{unsupervised learning} --- this is because
+clustering relies solely on the entirety of the observed data and some a priori
 knowledge such as a set of parameters~\cite{Dayan1999}.
 
-The remainder of this section offers a summary of the literature around the
-three principle types of clustering algorithm: those belonging to the
-\(k\)-means paradigm, hierarchical connectivity models, and, finally,
-density-based algorithms. In addition to these, fuzzy clustering and model-based
-clustering are popular. For overviews and reviews of the methods belonging to
-the former, consider~\cite{Ferraro2019,Gosain2016,Li2016},
+The remainder of this section offers a summary of the three principle types of
+clustering algorithm: those belonging to the \(k\)-means (centroid-based)
+paradigm, hierarchical models, and, finally, density-based algorithms. In
+addition to these, fuzzy clustering and model-based clustering are popular. For
+overviews and reviews of the methods belonging to the former,
+consider~\cite{Ferraro2019,Gosain2016,Li2016},
 and~\cite{Bouveyron2019,Fruhwirth2019,McNicholas2016} for the latter.
 
-\subsubsection{The \(k\)-means paradigm}\label{subsubsec:kmeans}
+\subsubsection{Centroid-based clustering}\label{subsubsec:kmeans}
 
 The concept of \(k\)-means clustering is straightforward: partition a
 real-valued dataset into \(k \in \mathbb N\) homogeneous parts (clusters), where
@@ -447,9 +433,9 @@ heterogeneous datasets and encompasses several techniques from operational
 research, statistics and machine learning. One of the most desirable qualities
 of this kind of analysis is the ability to glean and communicate simplified
 summaries of patient needs to stakeholders within a healthcare
-system~\cite{Vuik2016b, Yoon2020}. For instance, clinical profiling often forms
-part of the broader analysis where each segment is summarised in a phrase or
-infographic~\cite{Vuik2016a,Yan2019}.
+system~\cite{Tomar2013,Vuik2016b,Yoon2020}. For instance, clinical profiling
+often forms part of the broader analysis where each segment is summarised in a
+phrase or infographic~\cite{Vuik2016a,Yan2019}.
 
 The survey identified three commonplace groups of patient characteristics used
 to segment a patient population: system utilisation metrics; clinical
@@ -473,17 +459,33 @@ proved useful in the study of comorbidity patterns as
 in~\cite{Kuwornu2014,Larsen2017} where combinations of demographic and clinical
 attributes are related to various subgroups of chronic diseases.
 
-Similarly to LCA, clustering identifies groups (clusters) in data to produce
-labels for its instances. However, as discussed in
-Section~\ref{subsec:clustering}, clustering includes a wide variety of methods
-where the common theme is to maximise homogeneity within, and heterogeneity
-between, each cluster. Of those methods, \(k\)-means clustering is perhaps the
-most widely used in healthcare; this is likely due to its simplicity and
-scalability. In addition to \(k\)-means, hierarchical clustering methods can be
-useful if a suitable number of parts cannot be found initially~\cite{Vuik2016a}.
-Moreover, supervised hierarchical segmentation methods such as classification
+As demonstrated in Section~\ref{subsec:clustering}, clustering includes a wide
+variety of methods where the common theme is to maximise homogeneity within, and
+heterogeneity between, each cluster. Of those methods, \(k\)-means clustering
+(or a variant thereof) is the most widely used in
+healthcare~\cite{%
+    Elbattah2017,Haraty2015,Ogbuabor2018,Santhi2010,Silitonga2018,Vuik2016a%
+}; this is likely due to its simplicity and scalability. Hierarchical clustering
+methods have also been applied to operational healthcare problems in recognising
+patient utilisation patterns~\cite{Zayas2016}, profiling their healthcare
+preferences~\cite{Liu2009}, and in mapping out effective healthcare leadership
+models~\cite{Hargett2017}.
+
+Furthermore,~\cite{Vuik2016a} demonstrates how hierarchical clustering methods
+form part of the formative analysis, identifying a suitable number of clusters.
+In addition, supervised hierarchical segmentation methods such as classification
 and regression trees (as in~\cite{Harper2006}) have been used where an existing,
-well-defined, label is of particular significance.
+well-defined label is of particular significance. An crucial and attractive
+reason for using hierarchical methods in healthcare settings comes from the
+dendogram visualisation. The use of effective visualisation tools encourages
+(and allows, in some cases) involvement by key, expert stakeholders in the
+simulation process. The same is true of \(k\)-means for its straightforward
+construction.~\cite{Jahangirian2015} presents a analysis of the factors which
+result in a low level of engagement from stakeholders with healthcare simulation
+work. The key findings indicate that complexity and communication are the
+limiting factors for stakeholders, and so the onus resides with researchers to
+make their models informative, effective and transferable.
+
 
 \subsubsection{Queuing models}
 
@@ -516,14 +518,54 @@ attractive to organisations looking to implement queuing models without
 necessary technical expertise, including the NHS.~\cite{Brailsford2013}
 discusses the issues around operational research and simulation being taken up
 in the NHS despite the availability of intuitive software packages like Simul8.
+
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
 importance to scientific research but remains an issue in simulation research
-generally~\cite{Fitzpatrick2019}. When considering issues with reproducibility
-in scientific computing (simulation included), the source of any concerns is
-often with the software used~\cite{Ivie2018}. Using well-developed, open-source
-software can alleviate issues around reproducibility and reliability as how they
-are used involve less uncertainty and require more rigour than ‘drag-and-drop’
-software. One example of such a piece of software is Ciw~\cite{Palmer2019}. Ciw
-is a discrete event simulation library written in Python that is fully
-documented and tested. 
+generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues with
+reproducibility in scientific computing (simulation included), the source of any
+concerns is often with the software used~\cite{Ivie2018}. Using well-developed,
+open-source software can alleviate issues around reproducibility and reliability
+as how they are used involve less uncertainty and require more rigour than
+‘drag-and-drop’ software. One example of such a piece of software is
+Ciw~\cite{Palmer2019}. Ciw is a discrete event simulation library written in
+Python that is fully documented and tested. 
+
+% TODO discussion of multiclass queuing models and lack of integration with
+% clustering
+
+\subsection{Evaluating a model}
+
+\begin{itemize}
+    \item General overview of evaluation
+    \item Objectivity vs. fairness
+    \item Human intervention
+    \item Unconscious bias
+\end{itemize}
+
+\subsubsection{Clustering}
+
+Often lumped in with the task of
+classification, clustering is distinct in that it reveals the underlying
+structure of a dataset with knowledge that is fixed from the outset exclusively.
+The alternative being a method with access to some ground truth to refer to,
+such as a labelling.
+
+\begin{itemize}
+    \item internal or external metrics
+    \item mean-squared error (inertia), silhouette, other label-invariant
+        metrics
+    \item information retrieval metrics (fundamentally flawed; see above)
+    \item deriving agnostic cluster quality measures
+    \item fair clustering methods
+    \item benchmark datasets (often classification datasets)
+    \item synthetic datasets (benchmarks(?), how are they made?)
+\end{itemize}
+
+\subsubsection{Healthcare settings}
+
+\begin{itemize}
+    \item often dependent on model
+    \item incorporating staff and patient feedback
+    \item where is model accountability?
+\end{itemize}
