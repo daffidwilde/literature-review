@@ -33,7 +33,7 @@ def spellcheck(c):
     exit_codes = [0]
     for path in article:
 
-        print(f"Checking {path} 📖")
+        print(f"📖 Checking {path}")
         latex = path.read_text()
         aspell_output = subprocess.check_output(
             ["aspell", "-t", "--list", "--lang=en_GB"], input=latex, text=True
@@ -49,7 +49,7 @@ def spellcheck(c):
                 unknowns.add(error)
 
         if unknowns:
-            print(f"In {path} the following words are not known:")
+            print(f"❗️ In {path} the following words are not known:")
             for string in sorted(unknowns):
                 print(string)
 
