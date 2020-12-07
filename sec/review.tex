@@ -426,16 +426,26 @@ for improving condition-specific
 populations~\cite{Foster2019,Gambling2010,Gondek2016,Tsianakas2012} and more
 broadly~\cite{IAPO2012,Richards2015,Santana2019}.
 
+The remainder of this section considers two aspects of healthcare modelling
+research that directly contribute to the advancement of patient-centred care:
+segmentation analysis and the modelling of queues. The former is often achieved
+through clustering, and could be regarded as a direct application of cluster
+analysis to healthcare populations. The latter is a broader form of analysis
+with use cases in a variety of healthcare problems, including resource
+utilisation~\cite{Prokofyeva2020}, estimating bed capacity~\cite{Williams2015},
+and the taxonomy of patient pathways~\cite{Rojas2016}.
+
+
 \subsubsection{Segmentation analysis}
 
 Segmentation analysis allows for the targeted analysis of otherwise
-heterogeneous datasets and encompasses several techniques from operational
-research, statistics and machine learning. One of the most desirable qualities
-of this kind of analysis is the ability to glean and communicate simplified
-summaries of patient needs to stakeholders within a healthcare
-system~\cite{Tomar2013,Vuik2016b,Yoon2020}. For instance, clinical profiling
-often forms part of the broader analysis where each segment is summarised in a
-phrase or infographic~\cite{Vuik2016a,Yan2019}.
+heterogeneous healthcare datasets and encompasses several techniques from
+operational research, statistics and machine learning. One of the most desirable
+qualities of this kind of analysis is the ability to glean and communicate
+simplified summaries of patient needs to stakeholders within a healthcare
+system~\cite{ElDarzi2009,Tomar2013,Vuik2016b,Yoon2020}. For instance, clinical
+profiling often forms part of the broader analysis where each segment is
+summarised in a phrase or infographic~\cite{Vuik2016a,Yan2019}.
 
 The survey identified three commonplace groups of patient characteristics used
 to segment a patient population: system utilisation metrics; clinical
@@ -511,9 +521,11 @@ to include computer simulation models. The simulation of queues, or networks
 thereof, have the benefit of adeptly capturing the stochastic nuances of
 hospital systems over their theoretic counterparts. Example areas include the
 construction and simulation of Markov processes via process
-mining~\cite{Arnolds2018,Prokofyeva2020,Rebuge2012}, and patient
-flow~\cite{Bhattacharjee2014}. Regardless of the advantages of simulation
-models, a prerequisite is reliable software with which to construct those
+mining~\cite{Arnolds2018,Prokofyeva2020,Rebuge2012}, and phase-type patient
+flow analysis~\cite{Bhattacharjee2014,McClean2011}.
+
+Regardless of the advantages of simulation models, a prerequisite for simulation
+research is having access to reliable software with which to construct those
 simulations. A common approach to building simulation models of queues is to use
 a graphical user interface such as Simul8. These tools have the benefits of
 being highly visual, making them attractive to organisations looking to
@@ -571,15 +583,35 @@ defined clinical ideal.~\cite{Aspland2019,DeRamonFernandez2019} provide recent
 surveys of works into clinical pathway modelling with the latter focusing on
 process management tools such as process mining.
 
-Often, clustering forms a fundamental part of these methodologies, rationalising
-an otherwise vast, heterogeneous set of behaviours. As an
-example,~\cite{Prokofyeva2020} uses hierarchical clustering is used to group
-clinical pathways which, in turn, informs a broader, adaptive patient flow model.
-Meanwhile,~\cite{Rebuge2012} considers a pathway as a sequence of events sampled
-from a Markov chain. These chains (and their respective transition matrices)
-define the clusters in the sequence data, in accordance with the methodology
-presented in~\cite{Cadez2000}.
+Often, clustering forms a fundamental part of these methodologies, creating a
+significant overlap. Clustering is a common sense resort in scenarios such as
+this where something must be implemented to rationalise an otherwise vast,
+heterogeneous set of behaviours. As an example,~\cite{Prokofyeva2020} uses
+hierarchical clustering is used to group clinical pathways which, in turn,
+informs a broader, adaptive patient flow model. Meanwhile,~\cite{Rebuge2012}
+considers a pathway as a sequence of events sampled from a Markov chain. These
+chains (and their respective transition matrices) define the clusters in the
+sequence data, in accordance with the methodology presented in~\cite{Cadez2000}.
 
+Other than process mining, clustering has acted as a catalyst for optimising
+other healthcare processes which relate to the efficient treatment of patients.
+Namely, the scheduling and planning of resources, as exemplified
+in~\cite{Nasir2018,Yousefi2020}. In each of these works, some form of clustering
+is used to categorise patients according to their requirements. This clustering
+then informs the scheduling model, providing a richer and more sophisticated
+picture of the overall system. With the other methods discussed in this survey,
+clustering exclusively sits in the post hoc stage of analysis. In process
+mining, a generalisation is formed for patient pathways. In segmentation
+analysis, clustering provides a patient profiling scheme.
+
+Recalling the benefits of multi-class queues --- being able to better model the
+variety of agents in real-world queues --- it appears that clustering would be a
+natural fit to inform a model. Segmentation analysis would be able to quantise
+the idiosyncrasies of patients and quantify their effect on attributes of
+queuing networks, including arrival behaviour, transition probabilities,
+priority levels, and service requirements. However, the literature survey
+revealed scarce research into the application of clustering to inform a
+multi-class queuing model, theoretical or otherwise.
 
 \subsection{Evaluating a model}
 
