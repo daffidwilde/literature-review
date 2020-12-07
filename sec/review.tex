@@ -474,50 +474,53 @@ models~\cite{Hargett2017}.
 Furthermore,~\cite{Vuik2016a} demonstrates how hierarchical clustering methods
 form part of the formative analysis, identifying a suitable number of clusters.
 In addition, supervised hierarchical segmentation methods such as classification
-and regression trees (as in~\cite{Harper2006}) have been used where an existing,
-well-defined label is of particular significance. An crucial and attractive
-reason for using hierarchical methods in healthcare settings comes from the
-dendogram visualisation. The use of effective visualisation tools encourages
-(and allows, in some cases) involvement by key, expert stakeholders in the
-simulation process. The same is true of \(k\)-means for its straightforward
-construction.~\cite{Jahangirian2015} presents a analysis of the factors which
-result in a low level of engagement from stakeholders with healthcare simulation
-work. The key findings indicate that complexity and communication are the
-limiting factors for stakeholders, and so the onus resides with researchers to
-make their models informative, effective and transferable.
+and regression trees (as in~\cite{Harper2006,Kumar2019}) have been used where an
+existing, well-defined label or attribute is of particular significance. A
+crucial and attractive reason for using hierarchical methods in healthcare
+settings comes from the dendogram visualisation. The use of effective
+visualisation tools encourages (and allows, in some cases) involvement by key,
+expert stakeholders in the simulation process. The same is true of \(k\)-means
+for its straightforward construction.~\cite{Jahangirian2015} presents a analysis
+of the factors which result in a low level of engagement from stakeholders with
+healthcare simulation work. The key findings indicate that complexity and
+communication are the limiting factors for stakeholders, and so the onus resides
+with researchers to make their models informative, effective and transferable.
 
 
-\subsubsection{Queuing models}
+\subsubsection{Queuing models}\label{subsubsec:queuing}
 
-Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920} established the
-core concepts of queuing theory, the application of queues and queuing networks
-to real services has become abundant, including the healthcare service. By
-applying these models to healthcare settings, many aspects of the underlying
-system can be studied. A common area of study in healthcare settings is of
-service capacity.~\cite{McClain1976} is an early example of such work where
-acute bed capacity was determined using hospital occupancy data. Meanwhile, more
-modern works such as~\cite{Palvannan2012,Pinto2014} consider more extensive
-sources of data to build their queuing models.  Moreover, the output of a model
-is catered more towards being actionable --- as is the prerogative of
-operational research. For instance,~\cite{Pinto2014} devises new categorisations
-for both hospital beds and arrivals that are informed by the queuing model. A
-further example is~\cite{Komashie2015} where queuing models are used to measure
-and understand satisfaction among patients and staff.
+A queue models the arrival (and exit) of customers to (and from) a point of
+service. A queuing network describes how two or more queues may interact with
+each other. Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920}
+established the core concepts of queuing theory, the application of queues and
+queuing networks to real services has become abundant, including in healthcare
+modelling. By applying these models to healthcare settings, many aspects of the
+underlying system can be studied. A common area of study in healthcare settings
+is of service capacity.~\cite{McClain1976} is an early example of such work
+where acute bed capacity was determined using hospital occupancy data.
+Meanwhile, more modern works such as~\cite{Palvannan2012,Pinto2014,Williams2015}
+consider more extensive sources of data to build their queuing models. Moreover,
+the output of a model is catered more towards being actionable --- as is the
+prerogative of operational research. For instance,~\cite{Pinto2014} devises new
+categorisations for both hospital beds and arrivals that are informed by the
+queuing model. A further example is~\cite{Komashie2015} where queuing models are
+used to measure and understand satisfaction among patients and staff.
 
 In addition to these theoretic models, healthcare queuing research has expanded
 to include computer simulation models. The simulation of queues, or networks
 thereof, have the benefit of adeptly capturing the stochastic nuances of
 hospital systems over their theoretic counterparts. Example areas include the
 construction and simulation of Markov processes via process
-mining~\cite{Arnolds2018,Rebuge2012}, and patient flow~\cite{Bhattacharjee2014}.
-Regardless of the advantages of simulation models, a prerequisite is reliable
-software with which to construct those simulations. A common approach to
-building simulation models of queues is to use a graphical user interface such
-as Simul8. These tools have the benefits of being highly visual, making them
-attractive to organisations looking to implement queuing models without
-necessary technical expertise, including the NHS.~\cite{Brailsford2013}
-discusses the issues around operational research and simulation being taken up
-in the NHS despite the availability of intuitive software packages like Simul8.
+mining~\cite{Arnolds2018,Prokofyeva2020,Rebuge2012}, and patient
+flow~\cite{Bhattacharjee2014}. Regardless of the advantages of simulation
+models, a prerequisite is reliable software with which to construct those
+simulations. A common approach to building simulation models of queues is to use
+a graphical user interface such as Simul8. These tools have the benefits of
+being highly visual, making them attractive to organisations looking to
+implement queuing models without necessary technical expertise, including the
+NHS.~\cite{Brailsford2013} discusses the issues around operational research and
+simulation being taken up in the NHS despite the availability of intuitive
+software packages like Simul8.
 
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
@@ -527,12 +530,56 @@ reproducibility in scientific computing (simulation included), the source of any
 concerns is often with the software used~\cite{Ivie2018}. Using well-developed,
 open-source software can alleviate issues around reproducibility and reliability
 as how they are used involve less uncertainty and require more rigour than
-‘drag-and-drop’ software. One example of such a piece of software is
-Ciw~\cite{Palmer2019}. Ciw is a discrete event simulation library written in
-Python that is fully documented and tested. 
+‘drag-and-drop’ software. One example of such a piece of software is the
+discrete event simulation library, Ciw~\cite{Palmer2019}.
 
-% TODO discussion of multiclass queuing models and lack of integration with
-% clustering
+The simulation of queues (or networks thereof) also makes the modelling of
+complex scenarios more practical and accessible. One scenario of interest in
+real-world settings is a queue with multiple customer classes. In a multi-class
+queue, each class of customer has its own set of attributes, which may include
+levels of priority for servicing, a specific arrival discipline or a particular
+service rate. Incorporating these characteristics allows for more realistic
+modelling and addresses the variety exhibited by agents in real-world queues.
+Defining attributes such as these is straightforward in a computer simulation,
+but this scenario is certainly not restricted to empirical studies. For
+instance,~\cite{RomeroSilva2017} provides empirical, simulation-based evidence
+which dispels the idea that customers in multi-class queues experience identical
+waiting time distributions. Meanwhile,~\cite{Pompigna2020} demonstrates how a
+purely theoretical model of a motorway tollgate is improved by the use of
+multiple customer classes, and is verified using simulation.~\cite{Reveil2014}
+derives a model that groups arrivals from the same class together by way of a
+two-stage arrival process. The motivation for grouping arrivals is to provide a
+schema which supports the common assumption that reducing the number of times a
+server must change the task they are completing will influence the overall
+throughput of that server; the article succeeds in demonstrating this.
+
+\subsubsection{Queuing and clustering}
+
+The beginning of Section~\ref{subsubsec:queuing} briefly mentions two methods
+for investigating patient pathways --- process mining and patient flow analysis
+--- that are underpinned by a queuing network. In each case, the healthcare
+system is represented as a network of nodes through which patients and resources
+move at certain rates, as in a queuing network. Patient flow analysis considers
+the entire network, while process mining attempts to identify critical parts of
+the network. 
+
+The modelling of patient pathways is of great importance to understanding
+patient care in a healthcare system. Recording and studying how a patient moves
+through the system may provide insights into the dynamics of the characteristics
+presented by individuals, and how their true pathway differs from any previously
+defined clinical ideal.~\cite{Aspland2019,DeRamonFernandez2019} provide recent
+surveys of works into clinical pathway modelling with the latter focusing on
+process management tools such as process mining.
+
+Often, clustering forms a fundamental part of these methodologies, rationalising
+an otherwise vast, heterogeneous set of behaviours. As an
+example,~\cite{Prokofyeva2020} uses hierarchical clustering is used to group
+clinical pathways which, in turn, informs a broader, adaptive patient flow model.
+Meanwhile,~\cite{Rebuge2012} considers a pathway as a sequence of events sampled
+from a Markov chain. These chains (and their respective transition matrices)
+define the clusters in the sequence data, in accordance with the methodology
+presented in~\cite{Cadez2000}.
+
 
 \subsection{Evaluating a model}
 
