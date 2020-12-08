@@ -4,6 +4,7 @@ This section comprises what could be considered a classical literature review:
 an analysis of selected articles and publications that constitute the state and
 progress of each research topic.
 
+% TODO Would a diagram of some sort be nice here?
 
 \subsection{Clustering}\label{subsec:clustering}
 
@@ -22,6 +23,8 @@ Clustering originated in the social sciences around the turn of the
 ubiquitous) statistical tools, including hypothesis testing and \(p\)-values,
 correlation, and factor analysis. Early work on cluster analysis, such as Driver
 and Kroeber~\cite{Driver1932} and Cattell~\cite{Cattell1943}, focused on its
+% TODO Careful with names and citations, when they go in to a journal's style
+% file you might end up duplicating the names, (I'd just omit them).
 applications in attempting to identify traits which led to cultural and
 psychological differences between groups of people, as opposed to studying the
 methods used to identify any partitions.
@@ -29,20 +32,22 @@ methods used to identify any partitions.
 The focus of clustering research shifted to the statistical nature of the
 methods following work by Sokal~\cite{Sokal1966} (later revised with
 Sneath~\cite{Sneath1973}) on clustering under the name \emph{numerical
+% TODO Same comment about names and citations.
 taxonomy}. These works were highly influential and led to an abundance of
 research into clustering methods, including~\cite{Diday1976}
 and~\cite{Hartigan1975} which each formalised the principles of clustering as a
 part of statistics. Furthermore, this period witnessed the advent of seminal
 work on clustering algorithms such as \(k\)-means~\cite{Hartigan1979} and
 hierarchical clustering~\cite{Defays1977,Sibson1973} that are still considered
-fundamental methods. Since then, with an increase in the data under study,
+fundamental methods.  % TODO Can we have a reference or 2 here to backup claim that they're still fundamental? (Perhaps even the initialisation paper of yours.
+Since then, with an increase in the data under study,
 clustering has fallen more squarely into the category of machine learning
 techniques that perform \emph{unsupervised learning} --- this is because
 clustering relies solely on the entirety of the observed data and some a priori
 knowledge such as a set of parameters~\cite{Dayan1999}.
 
 The remainder of this section offers a summary of the three principle types of
-clustering algorithm: those belonging to the \(k\)-means (centroid-based)
+clustering algorithms: those belonging to the \(k\)-means (centroid-based)
 paradigm, hierarchical models, and, finally, density-based algorithms. In
 addition to these, fuzzy clustering and model-based clustering are popular. For
 overviews and reviews of the methods belonging to the former,
@@ -51,7 +56,7 @@ and~\cite{Bouveyron2019,Fruhwirth2019,McNicholas2016} for the latter.
 
 \subsubsection{Centroid-based clustering}\label{subsubsec:kmeans}
 
-The concept of \(k\)-means clustering is straightforward: partition a
+The concept of \(k\)-means clustering is to partition a
 real-valued dataset into \(k \in \mathbb N\) homogeneous parts (clusters), where
 each data point is assigned to the cluster to which the point is closest. The
 sum of these within-cluster distances is often referred to as the \emph{inertia}
@@ -92,6 +97,7 @@ on dividing the dataset itself.
 Regardless of the true nature of a centroid-based clustering algorithm, there is
 the issue of choosing a suitable value of \(k\) prior to clustering. A common
 approach to this problem is the so-called `elbow' method where a clustering
+% TODO Let us point at a text book here.
 algorithm is run using a range of values for \(k\); this range is typically
 informed by what is considered reasonable in the problem domain. From these
 runs, the value of \(k\) is plotted against some objective and the plot is
@@ -191,6 +197,7 @@ their respective costs are combined linearly according to some parameter,
 \(\gamma\). Work into \(k\)-modes clustering is largely focused on the initial
 choice of centroids, as
 in~\cite{Cao2009,Jiang2016,Khan2013,Khan2007,Taoying2013}, and
+% TODO We should reference your paper here.
 improving on the original distance measure.~\cite{Cao2012} and~\cite{Ng2007}
 offer two popular, novel dissimilarity measures for \(k\)-modes clustering that
 improve on the basic measure by taking into account the relative frequency of
@@ -211,6 +218,7 @@ to some distance metric.
 At this point, the survey returns to the effect of outliers on Lloyd-like
 algorithms, especially \(k\)-means, and the literature around reducing that
 effect.~\cite{Olukanmi2017} introduces the \(k\)-means\# algorithm --- an
+% TODO Just double checking the \# is correct and not a typo
 extension to \(k\)-means that embeds an outlier detection feature which relies
 solely on the underlying structures from the original \(k\)-means algorithm.
 The benefit of handling adverse noise in this way is twofold: first, it
@@ -262,6 +270,7 @@ recursively. For a dataset of \(n\) points, a complete search of the possible
 splits takes \(2^n\) calculations, and so divisive methods require efficient
 heuristics to be even remotely plausible on real-world data. A common choice is
 the \(k\)-means algorithm~\cite{Moseley2017,Peterson2018}.
+% TODO Add a pointer to previous section: "which was discussed in ..."
 
 In addition, hierarchical clustering has been successfully reframed as a
 combinatorial optimisation problem, as is done with divisive clustering
@@ -321,6 +330,9 @@ presented in~\cite{Ward1963}. In doing so, the method automates the process of
 choosing an appropriate number of clusters; a decision that is usually made post
 hoc according to another metric, such as the silhouette coefficient, evaluated
 at each level of the tree.
+% TODO I wonder if a figure  with a tree would be nice here (on an actual data
+% set). And likewise we could have one of those classic k-means scatter plots in
+% the previous section?
 
 \subsubsection{Density-based clustering}
 
@@ -366,7 +378,7 @@ DBSCAN~\cite{Bakr2015,Ester1998}, Improved DBSCAN~\cite{Borah2004}, and various
 parallelised versions of the algorithm~\cite{Bohm2009,He2011,Loh2014,Xu2002} to
 overcome its time-complexity. The primary issues with DBSCAN relate to its
 parameters: a radius, \(\epsilon > 0\), defining the neighbourhood of a point,
-and an integer, \(Minpts \in \mathbb N\), that specifies the minimum cardinality
+and an integer, \(\text{Minpts} \in \mathbb N\), that specifies the minimum cardinality
 of a neighbourhood required for a point to be considered dense. These parameters
 correspond to DBSCAN being point-based: regions of high density are determined
 using the points directly. The first disadvantage of DBSCAN is in estimating
@@ -399,7 +411,8 @@ Lastly, any parameter-adaptive, density-based algorithm will do away with the
 trouble of choosing precise parameters. Examples include the popular OPTICS
 algorithm~\cite{Ankerst1999}, DBCLASD~\cite{Xu1998} for spatial data, and
 DSets-DBSCAN~\cite{Hou2016}. The last provides a clustering that is independent
-of the parameters provided, but is exclusively for the clustering of images. 
+of the parameters provided, but is exclusively for the clustering of images.
+% TODO Some sort of figure to complement the other two?
 
 
 \subsection{Healthcare modelling}
@@ -409,9 +422,12 @@ from a number of disciplines such as financial modelling and forecasting, and
 operational problems like vehicle routing or staff rostering. This review
 focuses on these operational pursuits, and particularly those that are concerned
 with patients directly. The decision to narrow the literature in this way is
-both practical and conscientious. Practical by reducing the span of literature
+both practical and conscientious.
+% TODO We should point at other healthcare modelling literature reviews that are
+% out there.
+Practical by reducing the span of literature
 on `healthcare modelling' to something less cumbersome, and conscientious as it
-allows this review to make a small contribution to the research wing of the
+allows this review to make a small contribution to the research of the
 progressively more commonplace concept of patient-centred care.
 
 This form of healthcare, formally defined in~\cite{Robinson2008}, demands that
@@ -475,6 +491,7 @@ Furthermore,~\cite{Vuik2016a} demonstrates how hierarchical clustering methods
 form part of the formative analysis, identifying a suitable number of clusters.
 In addition, supervised hierarchical segmentation methods such as classification
 and regression trees (as in~\cite{Harper2006}) have been used where an existing,
+% TODO Glad you got that one in.
 well-defined label is of particular significance. An crucial and attractive
 reason for using hierarchical methods in healthcare settings comes from the
 dendogram visualisation. The use of effective visualisation tools encourages
@@ -514,6 +531,12 @@ Regardless of the advantages of simulation models, a prerequisite is reliable
 software with which to construct those simulations. A common approach to
 building simulation models of queues is to use a graphical user interface such
 as Simul8. These tools have the benefits of being highly visual, making them
+% TODO This is certainly the type of sentence that is often included when
+% discussing this. However I have often argued that the visulisation can in fact
+% be unhelpful as it can accentuate biaises. I also argue that the correct
+% visualisations of the output of any simulation are more important the the nice
+% shiny things moving around. I don't suggest you change this as I have no
+% evidence for my hypothesis.
 attractive to organisations looking to implement queuing models without
 necessary technical expertise, including the NHS.~\cite{Brailsford2013}
 discusses the issues around operational research and simulation being taken up
@@ -521,7 +544,7 @@ in the NHS despite the availability of intuitive software packages like Simul8.
 
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
-importance to scientific research but remains an issue in simulation research
+importance to scientific research but continues to be an issue in simulation research
 generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues with
 reproducibility in scientific computing (simulation included), the source of any
 concerns is often with the software used~\cite{Ivie2018}. Using well-developed,
@@ -529,7 +552,7 @@ open-source software can alleviate issues around reproducibility and reliability
 as how they are used involve less uncertainty and require more rigour than
 ‘drag-and-drop’ software. One example of such a piece of software is
 Ciw~\cite{Palmer2019}. Ciw is a discrete event simulation library written in
-Python that is fully documented and tested. 
+Python that is fully documented and tested.
 
 % TODO discussion of multiclass queuing models and lack of integration with
 % clustering
