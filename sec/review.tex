@@ -96,13 +96,13 @@ on dividing the dataset itself.
 Regardless of the true nature of a centroid-based clustering algorithm, there is
 the issue of choosing a suitable value of \(k\) prior to clustering. A common
 approach to this problem is the so-called `elbow' method where a clustering
-% TODO Let us point at a text book here.
-algorithm is run using a range of values for \(k\); this range is typically
-informed by what is considered reasonable in the problem domain. From these
-runs, the value of \(k\) is plotted against some objective and the plot is
-inspected for a kink or `elbow'. Typically, inertia is used, but another popular
-metric is the silhouette coefficient: a measure for both the intra-cluster
-tightness and inter-cluster separation of a clustering~\cite{Rousseeuw1987}.
+algorithm is run using a range of values for \(k\)~\cite{Aggarwal2013}. This
+range is typically informed by what is considered reasonable in the problem
+domain. From these runs, the value of \(k\) is plotted against some objective
+and the plot is inspected for a kink or `elbow'. Typically, inertia is used, but
+another popular metric is the silhouette coefficient: a measure for both the
+intra-cluster tightness and inter-cluster separation of a
+clustering~\cite{Rousseeuw1987}.
 
 Irrespective of the objective used, the definition of what constitutes an elbow
 is not necessarily well-defined.~\cite{Sujatha2013,Syakur2018} each employ the
