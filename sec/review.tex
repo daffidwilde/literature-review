@@ -554,16 +554,17 @@ service rate. Incorporating these characteristics allows for more realistic
 modelling and addresses the variety exhibited by agents in real-world queues.
 Defining attributes such as these is straightforward in a computer simulation,
 but this scenario is certainly not restricted to empirical studies. For
-instance,~\cite{RomeroSilva2017} provides empirical, simulation-based evidence
-which dispels the idea that customers in multi-class queues experience identical
-waiting time distributions. Meanwhile,~\cite{Pompigna2020} demonstrates how a
-purely theoretical model of a motorway tollgate is improved by the use of
-multiple customer classes, and is verified using simulation.~\cite{Reveil2014}
-derives a model that groups arrivals from the same class together by way of a
-two-stage arrival process. The motivation for grouping arrivals is to provide a
-schema which supports the common assumption that reducing the number of times a
-server must change the task they are completing will influence the overall
-throughput of that server; the article succeeds in demonstrating this.
+instance, in~\cite{RomeroSilva2017}, the authors provide empirical,
+simulation-based evidence to dispel the idea that customers in multi-class
+queues experience identical waiting time distributions. Meanwhile, the authors
+of~\cite{Pompigna2020} demonstrate how a purely theoretical model of a motorway
+tollgate is improved by the use of multiple customer classes, and is verified
+using simulation. Finally, in~\cite{Reveil2014}, the authors derive a model that
+groups arrivals from the same class together by way of a two-stage arrival
+process. The motivation for grouping arrivals is to provide a schema which
+supports the common assumption that reducing the number of times a server must
+change the task they are completing will influence the overall throughput of
+that server; the article succeeds in demonstrating this.
 
 \subsubsection{Queuing and clustering}
 
@@ -579,19 +580,20 @@ The modelling of patient pathways is of great importance to understanding
 patient care in a healthcare system. Recording and studying how a patient moves
 through the system may provide insights into the dynamics of the characteristics
 presented by individuals, and how their true pathway differs from any previously
-defined clinical ideal.~\cite{Aspland2019,DeRamonFernandez2019} provide recent
-surveys of works into clinical pathway modelling with the latter focusing on
-process management tools such as process mining.
+defined clinical ideal. Two recent surveys on the literature surrounding the
+modelling of clinical pathways are~\cite{Aspland2019,DeRamonFernandez2019} with
+the latter focusing on process management tools such as process mining.
 
 Often, clustering forms a fundamental part of these methodologies, creating a
 significant overlap. Clustering is a common sense resort in scenarios such as
 this where something must be implemented to rationalise an otherwise vast,
-heterogeneous set of behaviours. As an example,~\cite{Prokofyeva2020} uses
-hierarchical clustering is used to group clinical pathways which, in turn,
-informs a broader, adaptive patient flow model. Meanwhile,~\cite{Rebuge2012}
-considers a pathway as a sequence of events sampled from a Markov chain. These
-chains (and their respective transition matrices) define the clusters in the
-sequence data, in accordance with the methodology presented in~\cite{Cadez2000}.
+heterogeneous set of behaviours. As an example, the authors
+of~\cite{Prokofyeva2020} use hierarchical clustering to group clinical pathways
+which, in turn, informs a broader, adaptive patient flow model. Meanwhile, the
+authors of~\cite{Rebuge2012} consider a pathway as a sequence of events sampled
+from a Markov chain. These chains (and their respective transition matrices)
+define the clusters in the sequence data, in accordance with the methodology
+presented in~\cite{Cadez2000}.
 
 Other than process mining, clustering has acted as a catalyst for optimising
 other healthcare processes which relate to the efficient treatment of patients.
