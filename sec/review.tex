@@ -247,6 +247,18 @@ is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
 agnostic to its distance measure, and removes the requirement for the attribute
 space to be a metric space at all.
 
+\begin{table}
+    \input{tex/datasets.tex}
+    \caption{A summary of the synthetic datasets}\label{tab:datasets}
+\end{table}
+
+Figure~\ref{fig:kmeans_examples} shows how the \(k\)-means algorithm performs on
+three synthetic datasets with varying properties. These properties are provided
+in Table~\ref{tab:datasets}. The datasets were created
+using the Python library Scikit-learn~\cite{scikit-learn}, and the source code
+to generate them (as well as the plots in this survey) has been archived online
+under~\doi{doi-info}.  % TODO archive online
+
 \begin{figure}
     \centering
     \begin{subfigure}{.333\textwidth}
@@ -269,20 +281,6 @@ space to be a metric space at all.
         (\subref{fig:kmeans_spheres}) spheres datasets.%
     }\label{fig:kmeans_examples}
 \end{figure}
-
-Figure~\ref{fig:kmeans_examples} shows how the \(k\)-means algorithm performs on
-three synthetic datasets with varying properties. These datasets were created
-using the Python library Scikit-learn~\cite{scikit-learn}, and the source code
-to generate them has been archived online under~\doi{doi-info}.  % TODO archive online
-The datasets can be described as follows:
-
-\begin{itemize}
-    \item Moons: two interlocking crescent moons. These regions are non-convex,
-        non-spherical, and are not linearly separable.
-    \item Ellipses: three elliptical shapes that are linearly separable, but are
-        are not isotropic, i.e. they are not spherical.
-    \item Spheres: three linearly separable, approximately isotropic globules.
-\end{itemize}
 
 \subsubsection{Hierarchical clustering}
 
