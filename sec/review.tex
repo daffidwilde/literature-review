@@ -7,6 +7,7 @@ progress of each research topic.
 % TODO Would a diagram of some sort be nice here?
 
 \subsection{Clustering}\label{subsec:clustering}
+\graphicspath{{img/clusters/}}
 
 Clustering, or \emph{cluster analysis}, is a generic term used to describe a
 number of techniques whose objective is to partition some dataset into parts
@@ -215,7 +216,7 @@ to some distance metric.
 
 At this point, the survey returns to the effect of outliers on Lloyd-like
 algorithms, especially \(k\)-means, and the literature around reducing that
-effect.~\cite{Olukanmi2017} introduces the \(k\)-means\# (sharp) algorithm ---
+effect.~\cite{Olukanmi2017} introduces the \(k\)-means-sharp algorithm ---
 an extension to \(k\)-means that embeds an outlier detection feature which
 relies solely on the underlying structures from the original \(k\)-means
 algorithm. The benefit of handling adverse noise in this way is twofold: first,
@@ -225,7 +226,7 @@ opposed to sorting the attributes of each cluster to find a median in
 determine.~\cite{Gupta2017} provides another integration with \(k\)-means for
 detecting outliers by way of a local search, but in order to do so, it
 introduces another parameter determining the cardinality of the neighbourhood of
-a point. In contract to these extensions,~\cite{Lei2012,Wei2019} are examples of
+a point. In contrast to these extensions,~\cite{Lei2012,Wei2019} are examples of
 works that exploit this weakness of \(k\)-means clustering. In each case, the
 \(k\)-means algorithm partitions a dataset, and outliers are identified
 according to some neighbourhood threshold based on the density of the cluster.
@@ -245,6 +246,43 @@ particularly likely in high-dimensional data. Another exemplar work
 is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
 agnostic to its distance measure, and removes the requirement for the attribute
 space to be a metric space at all.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{kmeans_moons}
+        \caption{}\label{fig:kmeans_moons}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{kmeans_ellipses}
+        \caption{}\label{fig:kmeans_ellipses}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{kmeans_spheres}
+        \caption{}\label{fig:kmeans_spheres}
+    \end{subfigure}
+    \caption{%
+        Clusters identified by \(k\)-means on the (\subref{fig:kmeans_moons})
+        moons, (\subref{fig:kmeans_ellipses}) ellipses, and
+        (\subref{fig:kmeans_spheres}) spheres datasets.%
+    }\label{fig:kmeans_examples}
+\end{figure}
+
+Figure~\ref{fig:kmeans_examples} shows how the \(k\)-means algorithm performs on
+three synthetic datasets with varying properties. These datasets were created
+using the Python library Scikit-learn~\cite{scikit-learn}, and the source code
+to generate them has been archived online under~\doi{doi-info}.  % TODO archive online
+The datasets can be described as follows:
+
+\begin{itemize}
+    \item Moons: two interlocking crescent moons. These regions are non-convex,
+        non-spherical, and are not linearly separable.
+    \item Ellipses: three elliptical shapes that are linearly separable, but are
+        are not isotropic, i.e. they are not spherical.
+    \item Spheres: three linearly separable, approximately isotropic globules.
+\end{itemize}
 
 \subsubsection{Hierarchical clustering}
 
@@ -299,15 +337,18 @@ distance metric, \(d\), each criterion, \(D\), is evaluated as follows:
 \end{itemize}
 
 These definitions give each approach the colloquial names \emph{farthest
-neighbour} and \emph{nearest neighbour} clustering, respectively. Moreover,
-defining linkage in this way allows a hierarchical (agglomerative or divisive)
-algorithm to be run using only a point-wise distance matrix, as opposed to a
-dataset directly, allowing for increases in computational efficiency by use of
-caching~\cite{Nielsen2016}. However, hierarchical methods remain prone to
-outliers and are biased towards globular clusters because of definitions such as
-these. Ongoing reviews on the subject of hierarchical (although predominantly
-agglomerative) clustering methods can be found by Murtagh~\cite{Murtagh1983} and
-later with Contreras~\cite{Murtagh2012,Murtagh2017}.
+neighbour} and \emph{nearest neighbour} clustering, respectively. Another
+popular linkage criterion is average-linkage, which defines the distance between
+two clusters as the mean distance between any point in one cluster and any point
+in the other. Defining linkage criteria with point-wise distances allows a
+hierarchical (agglomerative or divisive) algorithm to be run using only a
+point-wise distance matrix, as opposed to a dataset directly, allowing for
+increases in computational efficiency by use of caching~\cite{Nielsen2016}.
+However, hierarchical methods continue to be prone to outliers and are biased
+towards globular clusters because of definitions such as these. Ongoing reviews
+on the subject of hierarchical (although predominantly agglomerative) clustering
+methods can be found by Murtagh~\cite{Murtagh1983} and later with
+Contreras~\cite{Murtagh2012,Murtagh2017}.
 
 Like centroid-based clustering, a principle issue with hierarchical clustering
 is knowing how many clusters is the most appropriate number. Hierarchical
@@ -330,6 +371,38 @@ at each level of the tree.
 % TODO I wonder if a figure  with a tree would be nice here (on an actual data
 % set). And likewise we could have one of those classic k-means scatter plots in
 % the previous section?
+
+Figure~\ref{fig:hierarchical_examples} shows how average-linkage, agglomerative
+clustering performs on the synthetic datasets. For each example, both the
+grouped scatter plot and a truncated dendogram is shown.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=\hierheight]{hierarchical_moons}
+        \includegraphics[height=\hierheight]{dendogram_moons}
+        \caption{The moons dataset}\label{fig:hierarchical_moons}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=\hierheight]{hierarchical_ellipses}
+        \includegraphics[height=\hierheight]{dendogram_ellipses}
+        \caption{The ellipses dataset}\label{fig:hierarchical_ellipses}
+    \end{subfigure}%
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[height=\hierheight]{hierarchical_spheres}
+        \includegraphics[height=\hierheight]{dendogram_spheres}
+        \caption{The spheres dataset}\label{fig:hierarchical_spheres}
+    \end{subfigure}
+    \caption{%
+        Clusters and dendograms identified by average-linkage clustering on the
+        synthetic datasets.%
+    }\label{fig:hierarchical_examples}
+\end{figure}
 
 \subsubsection{Density-based clustering}
 
@@ -411,6 +484,28 @@ DSets-DBSCAN~\cite{Hou2016}. The last provides a clustering that is independent
 of the parameters provided, but is exclusively for the clustering of images.
 % TODO Some sort of figure to complement the other two?
 
+\begin{figure}
+    \centering
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{dbscan_moons}
+        \caption{}\label{fig:dbscan_moons}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{dbscan_ellipses}
+        \caption{}\label{fig:dbscan_ellipses}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}{.333\textwidth}
+        \includegraphics[width=\linewidth]{dbscan_spheres}
+        \caption{}\label{fig:dbscan_spheres}
+    \end{subfigure}
+    \caption{%
+        Clusters identified by DBSCAN on the (\subref{fig:dbscan_moons}) moons,
+        (\subref{fig:dbscan_ellipses}) ellipses, and
+        (\subref{fig:dbscan_spheres}) spheres datasets.%
+    }\label{fig:dbscan_examples}
+\end{figure}
 
 \subsection{Healthcare modelling}\label{subsec:healthcare}
 
