@@ -252,11 +252,12 @@ space to be a metric space at all.
     \caption{A summary of the synthetic datasets}\label{tab:datasets}
 \end{table}
 
-Figure~\ref{fig:kmeans_examples} shows how the \(k\)-means algorithm performs on
-three synthetic datasets with varying properties. These properties are provided
-in Table~\ref{tab:datasets}. The datasets were created
-using the Python library Scikit-learn~\cite{scikit-learn}, and the source code
-to generate them (as well as the plots in this survey) has been archived online
+Figure~\ref{fig:kmeans_examples} demonstrates the nuances of centroid-based
+clustering discussed in this section, and shows how the \(k\)-means algorithm
+performs on three synthetic datasets. A brief summary of these datasets is
+provided in Table~\ref{tab:datasets}. The datasets were created using the Python
+library Scikit-learn~\cite{scikit-learn}, and the source code to generate them
+(and the plots included in this survey) has been archived online
 under~\doi{doi-info}.  % TODO archive online
 
 \begin{figure}
@@ -281,6 +282,19 @@ under~\doi{doi-info}.  % TODO archive online
         (\subref{fig:kmeans_spheres}) spheres datasets.%
     }\label{fig:kmeans_examples}
 \end{figure}
+
+Each plot in the figure shows a grouped scatter plot of the identified clusters,
+with the true clusters indicated by the marker shape. In addition to this
+scatter, the cluster centres are shown (as crosses), as well as the Voronoi
+cells defined by those centres (as shaded regions).
+Figure~\ref{fig:kmeans_moons} shows a stark example of where centroid-based
+clustering fails; despite the clusters in the dataset being distinct,
+\(k\)-means is unable to identify them. Instead, the attribute space is divided
+to create two equally weighted regions. Likewise, in
+Figure~\ref{fig:kmeans_ellipses}, the placement of the cell boundaries has been
+determined by weighting, rather than the cluster locations. Finally, with
+Figure~\ref{fig:kmeans_spheres}, \(k\)-means performs well, correctly
+partitioning the dataset into its four clusters.
 
 \subsubsection{Hierarchical clustering}
 
@@ -366,13 +380,17 @@ presented in~\cite{Ward1963}. In doing so, the method automates the process of
 choosing an appropriate number of clusters; a decision that is usually made post
 hoc according to another metric, such as the silhouette coefficient, evaluated
 at each level of the tree.
-% TODO I wonder if a figure  with a tree would be nice here (on an actual data
-% set). And likewise we could have one of those classic k-means scatter plots in
-% the previous section?
 
-Figure~\ref{fig:hierarchical_examples} shows how average-linkage, agglomerative
-clustering performs on the synthetic datasets. For each example, both the
-grouped scatter plot and a truncated dendogram is shown.
+Figure~\ref{fig:hierarchical_examples} shows the output of agglomerative
+clustering with average linkage on the three synthetic datasets described in
+Table~\ref{tab:datasets}. For each example, both the grouped scatter plot (left)
+and a dendogram (right) are shown. To obtain the scatter plot, the clustering
+was stopped when the required number of clusters had been identified. The same
+clustering can be identified by drawing a horizontal line on the dendogram at
+the level where the number of vertical links equals the number of clusters. The
+subtrees below that line form the clusters in the scatter plot. In the figure,
+this level has been indicated by colouring the requisite links with the
+corresponding cluster colour.
 
 \begin{figure}
     \centering
@@ -401,6 +419,13 @@ grouped scatter plot and a truncated dendogram is shown.
         synthetic datasets.%
     }\label{fig:hierarchical_examples}
 \end{figure}
+
+Like \(k\)-means, average-linkage clustering struggled to identify the moons in
+Figure~\ref{fig:hierarchical_moons}, but other linkage criteria may be robust to
+shapes such as these. For the remaining examples, hierarchical clustering
+appears to perform well at identifying convex, linearly separable regions in the
+datasets. However, there are a handful of incorrectly clustered points along the
+borders of some regions.
 
 \subsubsection{Density-based clustering}
 
@@ -480,7 +505,6 @@ trouble of choosing precise parameters. Examples include the popular OPTICS
 algorithm~\cite{Ankerst1999}, DBCLASD~\cite{Xu1998} for spatial data, and
 DSets-DBSCAN~\cite{Hou2016}. The last provides a clustering that is independent
 of the parameters provided, but is exclusively for the clustering of images.
-% TODO Some sort of figure to complement the other two?
 
 \begin{figure}
     \centering
@@ -504,6 +528,16 @@ of the parameters provided, but is exclusively for the clustering of images.
         (\subref{fig:dbscan_spheres}) spheres datasets.%
     }\label{fig:dbscan_examples}
 \end{figure}
+
+Figure~\ref{fig:dbscan_examples} shows the equivalent plots to the other
+paradigms discussed here, with the clustering being performed by the DBSCAN
+algorithm. Unlike \(k\)-means or average-linkage, DBSCAN is able to identify the
+crescent moon shapes in Figure~\ref{fig:dbscan_moons}. DBSCAN performs well at
+clustering the globular datasets. However, Figure~\ref{fig:dbscan_ellipses}
+exemplifies the sensitivity of DBSCAN and its parameters; a small number of
+points have been deemed outliers with the particular value of \(\epsilon\) used
+here. DBSCAN narrowly improves upon the hierarchical method for the spheres
+dataset, but remains unable to correctly identify all of the data points.
 
 \subsection{Healthcare modelling}\label{subsec:healthcare}
 
