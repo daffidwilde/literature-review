@@ -3,6 +3,7 @@
 words = {
     "acyclic",
     "agglomerative",
+    "analytics",
     "bibliometric",
     "cardinality",
     "centroid(|s|al)",

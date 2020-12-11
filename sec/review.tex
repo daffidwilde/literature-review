@@ -106,43 +106,43 @@ intra-cluster tightness and inter-cluster separation of a
 clustering~\cite{Rousseeuw1987}.
 
 Irrespective of the objective used, the definition of what constitutes an elbow
-is not necessarily well-defined.~\cite{Sujatha2013,Syakur2018} each employ the
-elbow method with final inertia as the objective. In each case, the authors
-offer little explanation of their methodologies other than choosing \(k\) where
-`drastic' changes occur in the objective. Attempts to formalise this method have
-been made, however. For instance,~\cite{Satopaa2011} provides a `knee-point'
-detection algorithm that finds the point of maximal curvature in the domain of a
-function when provided with some basic properties of that function (whether it
-is convex, monotonic, etc.). This algorithm has been adapted to cleanly carry
-out the elbow method in software packages, such as
+is not necessarily well-defined. The works \cite{Sujatha2013,Syakur2018} each
+employ the elbow method with final inertia as the objective. In each case, the
+authors offer little explanation of their methodologies other than choosing
+\(k\) where `drastic' changes occur in the objective. Attempts to formalise this
+method have been made, however. For instance, the authors of \cite{Satopaa2011}
+provide a `knee-point' detection algorithm that finds the point of maximal
+curvature in the domain of a function when provided with some basic properties
+of that function (whether it is convex, monotonic, etc.). This algorithm has
+been adapted to cleanly carry out the elbow method in software packages, such as
 Yellowbrick~\cite{Bengfort2019}, by interpolating the objective values.
 
 Further to this formalisation of the elbow method, other extensions to
 \(k\)-means itself have been presented to alleviate all dependency on making a
-choice for \(k\).~\cite{Olukanmi2019} proposes a automatic decision scheme for
-\(k\)-means based on a vector comprised of the values that constitute the
-inertia of a clustering. The process determines that if this vector meets some
-criterion attached to its standard deviation, then each cluster is sufficiently
-unimodal and Gaussian, fulfilling the condition that clusters be roughly
-spherical.
+choice for \(k\). For example, in~\cite{Olukanmi2019}, the authors propose an
+automatic decision scheme for \(k\)-means based on a vector comprised of the
+values that constitute the inertia of a clustering. The process determines that
+if this vector meets some criterion attached to its standard deviation, then
+each cluster is sufficiently unimodal and Gaussian, fulfilling the condition
+that clusters be roughly spherical.
 
 Another limitation of \(k\)-means is that it is dependent on its initial
 solution. The standard initialisation process is to select \(k\) points in the
 dataset at random, introducing a stochastic element to the algorithm. Studying
 methods to find sensible (ideally, deterministic) initial solutions has formed a
-substantial part of centroid-based clustering research. For
-instance,~\cite{Manoharan2016} provides a novel initialisation that pursues the
+substantial part of centroid-based clustering research. For instance, the
+authors of~\cite{Manoharan2016} provide a novel initialisation that pursues the
 Voronoi tessellation by use of a `divide-and-conquer' approach. Under the
 presented scheme, the initial centroids are selected based on a rough partition
-of the attribute space according to their extreme values.
-Likewise,~\cite{Singh2013} offers an initialisation that assigns each centroid
-using the arithmetic mean and dividing the remaining attribute space in two.
-Meanwhile,~\cite{Katara2015} initialises \(k\)-means by sorting the instances in
-the dataset according to their distance from the origin. Once sorted, the
-instances are split into \(k\) disjoint sets and the mean of each set is
-assigned as a centroid. A likely issue with this approach is that there are new
-assumptions about the data, i.e. that it is centred about the origin in all
-dimensions (rectifiable through feature scaling), and that all points
+of the attribute space according to their extreme values.  Likewise, the
+initialisation presented in \cite{Singh2013} assigns each centroid using the
+arithmetic mean and dividing the remaining attribute space in two.  Meanwhile,
+the method introduced in~\cite{Katara2015} initialises \(k\)-means by sorting
+the instances in the dataset according to their distance from the origin. Once
+sorted, the instances are split into \(k\) disjoint sets and the mean of each
+set is assigned as a centroid. A likely issue with this approach is that there
+are new assumptions about the data, i.e. that it is centred about the origin in
+all dimensions (rectifiable through feature scaling), and that all points
 equidistant from the origin are similar to one another.
 
 A crucial part of centroid-based clustering research is dedicated to alternative
@@ -197,55 +197,56 @@ their respective costs are combined linearly according to some parameter,
 \(\gamma\). Work into \(k\)-modes clustering is largely focused on the initial
 choice of centroids, as
 in~\cite{Cao2009,Jiang2016,Khan2013,Khan2007,Taoying2013,Wilde2020}, and
-improving on the original distance measure.~\cite{Cao2012} and~\cite{Ng2007}
-offer two popular, novel dissimilarity measures for \(k\)-modes clustering that
-improve on the basic measure by taking into account the relative frequency of
-the values of each attribute.~\cite{Ng2007} focuses locally to the cluster at
-hand, while~\cite{Cao2012} considers their frequencies from a universal
-perspective.
+improving on the original distance measure. Two popular dissimilarity measures
+for \(k\)-modes clustering were presented in~\cite{Cao2012} and~\cite{Ng2007}.
+Each of these novel measures improve on the basic metric by taking into account
+the relative frequency of the values of each attribute. The latter
+measure~\cite{Ng2007} focuses locally to the cluster at hand, while the
+former~\cite{Cao2012} considers their frequencies from a universal perspective.
 
 While centroid-based clustering is dominated by Lloyd-like algorithms, recent
-work has sought out alternative approached. For instance,~\cite{Chen2019}
-revises centroid clustering from an expectation-maximisation process to one that
-considers its data points as agents that act with preferences based on their
-locale. The overall aim of this approach is to incorporate a sense of
-mathematical fairness by identifying a solution that can not be justifiably
-rejected by any subset of its agents. Such a solution is found through a
-proportional (i.e. Pareto-optimal) distribution of the cluster centres according
-to some distance metric.
+work has sought out alternative approached. For instance, the authors
+of~\cite{Chen2019} revise centroid clustering from an expectation-maximisation
+process to one that considers its data points as agents that act with
+preferences based on their locale. The overall aim of this approach is to
+incorporate a sense of mathematical fairness by identifying a solution that can
+not be justifiably rejected by any subset of its agents. Such a solution is
+found through a proportional (i.e. Pareto-optimal) distribution of the cluster
+centres according to some distance metric.
 
 At this point, the survey returns to the effect of outliers on Lloyd-like
 algorithms, especially \(k\)-means, and the literature around reducing that
-effect.~\cite{Olukanmi2017} introduces the \(k\)-means-sharp algorithm ---
-an extension to \(k\)-means that embeds an outlier detection feature which
-relies solely on the underlying structures from the original \(k\)-means
-algorithm. The benefit of handling adverse noise in this way is twofold: first,
-it preserves the computational efficiencies that come with using the mean (as
-opposed to sorting the attributes of each cluster to find a median in
-\(k\)-medians, say); and, second, there are no additional parameters to
-determine.~\cite{Gupta2017} provides another integration with \(k\)-means for
-detecting outliers by way of a local search, but in order to do so, it
-introduces another parameter determining the cardinality of the neighbourhood of
-a point. In contrast to these extensions,~\cite{Lei2012,Wei2019} are examples of
-works that exploit this weakness of \(k\)-means clustering. In each case, the
-\(k\)-means algorithm partitions a dataset, and outliers are identified
-according to some neighbourhood threshold based on the density of the cluster.
+effect. The \(k\)-means-sharp algorithm was presented in~\cite{Olukanmi2017};
+this revision to \(k\)-means embeds an outlier detection feature which relies
+solely on the underlying structures from the original \(k\)-means algorithm. The
+benefit of handling adverse noise in this way is twofold: first, it preserves
+the computational efficiencies that come with using the mean (as opposed to
+sorting the attributes of each cluster to find a median in \(k\)-medians, say);
+and, second, there are no additional parameters to determine.
+In~\cite{Gupta2017}, the authors provide another integration with \(k\)-means
+for detecting outliers by way of a local search, but in order to do so, they
+introduce another parameter determining the cardinality of the neighbourhood of
+a point. In contract to these extensions, are examples of works that exploit
+this weakness of \(k\)-means clustering~\cite{Lei2012,Wei2019}. In each case,
+the \(k\)-means algorithm partitions a dataset, and outliers are identified
+according to some neighbourhood threshold associated with the elements of a
+cluster.
 
 The final remark in this section of the survey is concerned with the relaxation
 of the constraints on cluster geometry by centroid-based clustering algorithms.
 This particularity is fundamental to how these algorithms operate and are
-designed, and so little research has been done on the subject. Having said
-that,~\cite{Sung1998} demonstrates how the Mahalanobis distance can be used in
-place of the Euclidean distance to circumvent the dependency on spherical (i.e.
-isotropic) clusters by \(k\)-means. However, the resultant clusters must still
-be convex and linearly separable. The Mahalanobis distance is commonly used to
-detect outliers in other settings, and is dependent on the eigenvalues of the
-covariance matrix derived from that dataset~\cite{Mahalanobis1936}; a potential
-downside to this measure is the singularity of that matrix, which is
-particularly likely in high-dimensional data. Another exemplar work
-is~\cite{Statman2020} where a variant of \(k\)-means is presented as being
-agnostic to its distance measure, and removes the requirement for the attribute
-space to be a metric space at all.
+designed, and so little research has been done on the subject. Having said that,
+the work in~\cite{Sung1998} demonstrates how the Mahalanobis distance can be
+used in place of the Euclidean distance to circumvent the dependency on
+spherical (i.e.  isotropic) clusters by \(k\)-means. However, the resultant
+clusters must still be convex and linearly separable. The Mahalanobis distance
+is commonly used to detect outliers in other settings, and is dependent on the
+eigenvalues of the covariance matrix derived from a
+dataset~\cite{Mahalanobis1936}. A potential downside to this measure is the
+singularity of that matrix, which is particularly likely in high-dimensional
+data. Another exemplar work is~\cite{Statman2020}, where a variant of
+\(k\)-means is presented as being agnostic to its distance measure, and removes
+the requirement for the attribute space to be a metric space at all.
 
 \begin{table}
     \input{tex/datasets.tex}
@@ -326,10 +327,9 @@ heuristics such as linear programming~\cite{Roy2017}, local
 search~\cite{Aljarah2019} and probabilistic estimation~\cite{Fan2015} to
 identify a clustering in reasonable time. Furthermore, related works exist which
 concern themselves with determining the quality of a hierarchical structure with
-respect to some cost function,
-like~\cite{Bilu2012,Lyzinski2017}.~\cite{CohenAddad2018} combines these
-methodologies to produce a divisive clustering algorithm that achieves
-logarithmic complexity.
+respect to some cost function, like~\cite{Bilu2012,Lyzinski2017}.
+In~\cite{CohenAddad2018}, the authors combine these methodologies to produce a
+divisive clustering algorithm that achieves logarithmic complexity.
 
 While heuristic methods exist for agglomerative
 clustering~\cite{Aljarah2019,Fan2015}, its methods do not bear the same burdens
@@ -359,8 +359,7 @@ increases in computational efficiency by use of caching~\cite{Nielsen2016}.
 However, hierarchical methods continue to be prone to outliers and are biased
 towards globular clusters because of definitions such as these. Ongoing reviews
 on the subject of hierarchical (although predominantly agglomerative) clustering
-methods can be found by Murtagh~\cite{Murtagh1983} and later with
-Contreras~\cite{Murtagh2012,Murtagh2017}.
+methods are available~\cite{Murtagh1983,Murtagh2012,Murtagh2017}.
 
 Like centroid-based clustering, a principle issue with hierarchical clustering
 is knowing how many clusters is the most appropriate number. Hierarchical
@@ -373,13 +372,13 @@ levels corresponding to the stages at which two clusters are merged (or split).
 
 With such a visualisation, and the underlying tree itself, an appropriate number
 of clusters can be identified after running the algorithm once, as opposed to
-the ranges of runs required for the elbow method in centroid-based
-clustering.~\cite{Tellaroli2016} presents a hierarchical clustering schema that
+the ranges of runs required for the elbow method in centroid-based clustering.
+The authors of~\cite{Tellaroli2016} present a hierarchical clustering schema that
 incorporates complete-linkage clustering with the minimum variance criterion
 presented in~\cite{Ward1963}. In doing so, the method automates the process of
 choosing an appropriate number of clusters; a decision that is usually made post
-hoc according to another metric, such as the silhouette coefficient, evaluated
-at each level of the tree.
+hoc according to another metric, such as the silhouette coefficient, evaluated at
+each level of the tree.
 
 Figure~\ref{fig:hierarchical_examples} shows the output of agglomerative
 clustering with average linkage on the three synthetic datasets described in
@@ -475,14 +474,14 @@ and an integer, \(\text{Minpts} \in \mathbb N\), that specifies the minimum
 cardinality of a neighbourhood required for a point to be considered dense.
 These parameters correspond to DBSCAN being point-based: regions of high density
 are determined using the points directly. The first disadvantage of DBSCAN is in
-estimating these parameters.~\cite{Ester1996} provides some default values based
-on dimensionality, but a good understanding of the dataset at hand is required
-for effective use. This issue leads to the second, which is that the parameters
-are global in scope, meaning that DBSCAN is unable to identify clusters that are
-of varying densities. Finally, the performance of DBSCAN is limited in
-high-dimensional space, because of the so-called \emph{curse of
-dimensionality}~\cite{Keogh2017} --- the same is true of other clustering
-algorithms, including \(k\)-means.
+estimating these parameters. The seminal work on DBSCAN~\cite{Ester1996}
+includes some default parameters based on dimensionality, but a good
+understanding of the dataset at hand is required for effective use. This issue
+leads to the second, which is that the parameters are global in scope, meaning
+that DBSCAN is unable to identify clusters that are of varying densities.
+Finally, the performance of DBSCAN is limited in high-dimensional space, because
+of the so-called \emph{curse of dimensionality}~\cite{Keogh2017} --- the same is
+true of other clustering algorithms, including \(k\)-means.
 
 However, these limitations are not without an alternative. For instance,
 CLIQUE~\cite{Agrawal1998} and OPTIGRID~\cite{Hinneburg1999} each provide
@@ -580,12 +579,11 @@ The survey identified three commonplace groups of patient characteristics used
 to segment a patient population: system utilisation metrics; clinical
 attributes; and the pathway. The last is not used to segment the patients
 directly, but instead groups patients' movements through a healthcare system;
-this is typically done using a technique known as process
-mining.~\cite{Arnolds2018}~and~\cite{Delias2015} demonstrate how this technique
-can be used to improve the efficiency of a hospital system as opposed to
-tackling the more relevant issue of patient-centred care. The remaining
-characteristics can be segmented in a variety of ways, but recent works tend to
-favour unsupervised methods --- typically latent class analysis (LCA) or
+this is typically done using a technique known as process mining. This technique
+originates in business analytics, and has been used to study the efficiency of
+hospital systems~\cite{Arnolds2018,Delias2015}. The remaining characteristics
+can be segmented in a variety of ways, but recent works tend to favour
+unsupervised methods --- typically latent class analysis (LCA) or
 clustering~\cite{Yan2018}.
 
 LCA is a statistical, model-based method used to identify groups (called latent
@@ -594,8 +592,8 @@ categorical attribute. This attribute has multiple possible categories, each
 corresponding to a latent class. The discovered relations enable the
 observations to be separated into latent classes according to their maximum
 likelihood class membership~\cite{Hagenaars2002,Lazarsfeld1968}. This method has
-proved useful in the study of comorbidity patterns as
-in~\cite{Kuwornu2014,Larsen2017} where combinations of demographic and clinical
+proved useful in the study of comorbidity patterns (as
+in~\cite{Kuwornu2014,Larsen2017}) where combinations of demographic and clinical
 attributes are related to various subgroups of chronic diseases.
 
 As demonstrated in Section~\ref{subsec:clustering}, clustering includes a wide
@@ -610,20 +608,20 @@ patient utilisation patterns~\cite{Zayas2016}, profiling their healthcare
 preferences~\cite{Liu2009}, and in mapping out effective healthcare leadership
 models~\cite{Hargett2017}.
 
-Furthermore,~\cite{Vuik2016a} demonstrates how hierarchical clustering methods
-form part of the formative analysis, identifying a suitable number of clusters.
-In addition, supervised hierarchical segmentation methods such as classification
+Furthermore, in \cite{Vuik2016a}, hierarchical clustering is utilised as a part
+of the formative analysis, identifying a suitable number of clusters.  In
+addition, supervised hierarchical segmentation methods such as classification
 and regression trees (as in~\cite{Harper2006}) have been used where an existing,
 well-defined label is of particular significance. An crucial and attractive
 reason for using hierarchical methods in healthcare settings comes from the
 dendogram visualisation. The use of effective visualisation tools encourages
 (and allows, in some cases) involvement by key, expert stakeholders in the
 simulation process. The same is true of \(k\)-means for its straightforward
-construction.~\cite{Jahangirian2015} presents a analysis of the factors which
-result in a low level of engagement from stakeholders with healthcare simulation
-work. The key findings indicate that complexity and communication are the
-limiting factors for stakeholders, and so the onus resides with researchers to
-make their models informative, effective and transferable.
+construction. The authors of~\cite{Jahangirian2015} present a analysis of the
+factors which result in a low level of engagement from stakeholders with
+healthcare simulation work. The key findings indicate that complexity and
+communication are the limiting factors for stakeholders, and so the onus resides
+with researchers to make their models informative, effective and transferable.
 
 
 \subsubsection{Queuing models}
@@ -633,15 +631,15 @@ core concepts of queuing theory, the application of queues and queuing networks
 to real services has become abundant, including the healthcare service. By
 applying these models to healthcare settings, many aspects of the underlying
 system can be studied. A common area of study in healthcare settings is of
-service capacity.~\cite{McClain1976} is an early example of such work where
-acute bed capacity was determined using hospital occupancy data. Meanwhile, more
-modern works such as~\cite{Palvannan2012,Pinto2014} consider more extensive
-sources of data to build their queuing models. Moreover, the output of a model
-is catered more towards being actionable --- as is the prerogative of
-operational research. For instance,~\cite{Pinto2014} devises new categorisations
-for both hospital beds and arrivals that are informed by the queuing model. A
-further example is~\cite{Komashie2015} where queuing models are used to measure
-and understand satisfaction among patients and staff.
+service capacity. The study~\cite{McClain1976} is an early example of such work
+where acute bed capacity was determined using hospital occupancy data.
+Meanwhile, more modern works consider more extensive sources of data to build
+their queuing models~\cite{Palvannan2012,Pinto2014}. Moreover, the output of a
+model is catered more towards being actionable --- as is the prerogative of
+operational research. For instance, in~\cite{Pinto2014}, the authors devise new
+categorisations for both hospital beds and arrivals that are informed by the
+queuing model. A further example is~\cite{Komashie2015} where queuing models are
+used to measure and understand satisfaction among patients and staff.
 
 In addition to these theoretic models, healthcare queuing research has expanded
 to include computer simulation models. The simulation of queues, or networks
@@ -654,9 +652,9 @@ software with which to construct those simulations. A common approach to
 building simulation models of queues is to use a graphical user interface such
 as Simul8. These tools are designed to be highly visual, making them attractive
 to organisations looking to implement queuing models without necessary technical
-expertise, including the NHS.~\cite{Brailsford2013} discusses the issues around
-operational research and simulation being taken up in the NHS despite the
-availability of intuitive software packages like Simul8.
+expertise, including the NHS. The authors of~\cite{Brailsford2013} discuss the
+issues around operational research and simulation being taken up in the NHS
+despite the availability of intuitive software packages like Simul8.
 
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
