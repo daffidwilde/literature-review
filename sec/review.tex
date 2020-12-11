@@ -258,10 +258,9 @@ clustering discussed in this section, and shows how the \(k\)-means algorithm
 performs on three synthetic datasets. A brief summary of these datasets is
 provided in Table~\ref{tab:datasets}. The datasets were created using the Python
 library Scikit-learn~\cite{scikit-learn}, and the source code to generate them
-(and the plots included in this survey) is available at the GitHub repository for 
-this manscript \url{}  % TODO Add GitHub repo
-and has also been archived online
-under~\doi{doi-info}.  % TODO archive online
+(and the plots included in this survey) is available at the GitHub repository
+for this manuscript (\url{github.com/daffidwilde/literature-review}), and has
+also been archived online under~\doi{10.5281/zenodo.4317636}.
 
 \begin{figure}
     \centering
@@ -289,7 +288,11 @@ under~\doi{doi-info}.  % TODO archive online
 Each plot in the figure shows a grouped scatter plot of the identified clusters,
 with the true clusters indicated by the marker shape. In addition to this
 scatter, the cluster centres are shown (as crosses), as well as the Voronoi
-cells defined by those centres (as shaded regions).
+cells defined by those centres (as shaded regions). Note that the axes are
+presented without labels. The name and scale of each attribute detracts from the
+purpose of this figure, which is to demonstrate the clustering. As such, all
+unnecessary information has been removed.
+
 Figure~\ref{fig:kmeans_moons} shows a stark example of where centroid-based
 clustering fails; despite the clusters in the dataset being distinct,
 \(k\)-means is unable to identify them. Instead, the attribute space is divided
@@ -391,7 +394,9 @@ clustering can be identified by drawing a horizontal line on the dendogram at
 the level where the number of vertical links equals the number of clusters. The
 subtrees below that line form the clusters in the scatter plot. In the figure,
 this level has been indicated by colouring the requisite links with the
-corresponding cluster colour.
+corresponding cluster colour. Note again, that the figures are deliberately bear
+to focus on the outcome of the clustering, rather than the artificial attribute
+values.
 
 \begin{figure}
     \centering
