@@ -51,7 +51,7 @@ words = {
     "scalab(le|ility)",
     "scikit",
     "simul",
-    "subtree(|s)"
+    "subtree(|s)",
     "th",
     "unimodal",
     "voronoi",
