@@ -134,7 +134,7 @@ def make_plot(dataset, true_labels, name):
                 xs,
                 ys,
                 extreme(ys),
-                color=colours[i],
+                fc=colours[i],
                 ec="None",
                 alpha=alpha,
                 zorder=-2,
