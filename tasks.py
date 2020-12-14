@@ -111,7 +111,7 @@ def export_citations(citations, destination):
         {
             attribute: value
             for attribute, value in citation.items()
-            if value is not np.nan
+            if value is not np.nan and attribute != "month"
         }
         for citation in citation_dicts
     ]
