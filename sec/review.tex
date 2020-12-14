@@ -762,7 +762,6 @@ processes for clustering algorithms and healthcare models, highlighting their
 limitations and potential improvements to the current regime.
 
 \begin{itemize}
-    \item General overview of evaluation
     \item Objectivity vs. fairness
     \item Human intervention
     \item Unconscious bias
@@ -785,23 +784,74 @@ such as~\cite{Agrawal1998,Aljarah2019,Bakr2015,Cao2009,Huang1998}.
 Information retrieval metrics can be considered \emph{external criteria} in that
 they measure an aspect of a model's clustering according to a external labelling
 of the dataset~\cite{Mitchell1997}. By evaluating a clustering algorithm based
-on a ground truth, the algorithm is being evaluated as a classifier --- a method
-which is trained using that ground truth. Regardless of the inherent structures
-of the dataset, if a clustering algorithm cannot replicate the external
-labelling, it will not be deemed fit using external, label-dependent criteria.
-When discussing the demonstrative figures in Section~\ref{subsec:clustering}, an
-informal form of this evaluation was made when referring to a `mis-labelling' of
-points. In reality, the data synthesis produced a structure within the data that
-is not necessarily congruent with the generative process. Therefore, a
-clustering algorithm (which identifies structure) should not be required to
-account for such anomalies.
+on a ground truth, the algorithm is effectively being evaluated as a classifier
+--- a method which is trained using that ground truth. Hence, the quality of any
+clustering is predicated on the data generation process, and if a clustering
+algorithm cannot replicate the external labelling, it will not be deemed fit
+using external, label-dependent criteria. When discussing the demonstrative
+figures in Section~\ref{subsec:clustering}, an informal form of this evaluation
+was made when referring to a `mislabelling' of points. In reality, the data
+synthesis produced a structure within the data that is not necessarily congruent
+with the generative process. Therefore, the clustering algorithms (which
+identify unknown structures) should not be penalised for not recognising these
+anomalies.
+
+Without the use of an external truth, \emph{internal criteria} exist to evaluate
+clustering algorithms. A criterion is considered internal if its sole source of
+information is the clustering produced by the algorithm. For centroid-based and
+divisive clustering algorithms, a common internal measure is the inertia of a
+clustering, i.e. some loss function regarding the cluster
+centres~\cite{Everitt2011}. Using inertia as a quality measure is convenient
+given that practical implementations of centroid-based methods use inertia as
+their objective function, meaning it is readily available. However, interpreting
+inertia values can be difficult as it is scale-variant. As such, the inertia can
+be presented as a normalised measure using the all-cluster loss (i.e. the
+inertia when all points are contained in a single cluster), for instance.
+
+Another popular internal quality measure is the silhouette
+coefficient~\cite{Rousseeuw1987} which presents a ratio between the tightness
+and separation of a set of clusters. This measure has the benefit of taking
+values in a finite range (from \(-1\) to \(1\)), making it interpretable across
+several methods. Furthermore, it does not rely on cluster centres, and so can be
+applied to other clustering
+paradigms~\cite{Garcia2011,Guan2019,Starczewski2015}. However, the primary
+drawback of the silhouette coefficient (as with inertia) is that it strongly
+favours linearly separable, spherical clusters. The authors
+of~\cite{Frederix2004} present two cluster-quality measures that avoid this
+bias, but rely on knowing the `true' clusters of a dataset.
+
+Further to particular metrics --- objective or otherwise --- clustering
+evaluation has been generalised to study more intrinsic properties of clustering
+instances such as clusterability~\cite{Ackerman2009,Ostrovsky2006,Zhang2001}.
+These works often rely on an axiomatic description of clustering (examples of
+which include~\cite{Bezdek1978,Jardine1971,Kleinberg2002}).
+In~\cite{Kleinberg2002}, the author presents a theorem stating that no
+clustering function (i.e. a function that partitions a set of points according
+to a distance measure) exists which satisfies all three of the following
+axiomatic properties: 
 
 \begin{itemize}
-    \item internal or external metrics
-    \item mean-squared error (inertia), silhouette, other label-invariant
-        metrics
-    \item information retrieval metrics (fundamentally flawed; see above)
-    \item deriving agnostic cluster quality measures
+    \item Scale-invariance: the function is insensitive to changes in the unit
+        distance
+    \item Richness: all partitions of the dataset are possible outputs of the
+        function (by use of an alternative distance function)
+    \item Consistency: the outputted clustering is unchanged when within-cluster
+        distances are decreased and between-cluster distances are increased
+\end{itemize}
+
+However, small changes to these properties accommodate various well-known
+clustering algorithms, including single-linkage and \(k\)-means (discussed in
+Section~\ref{subsec:clustering}). The authors of~\cite{BenDavid2008} expand on
+these axioms to derive necessary and desirable properties of cluster-quality
+measures that are entirely agnostic to the clustering function at hand. The
+closing sections of that work offer a number of exemplar cluster-quality
+measures based on loss, cluster centres and linkage, including measures that
+correspond to the all-cluster normalised mean-squared error, and a
+within-versus-between variability measure. The latter can be considered as a
+generalisation of the silhouette coefficient that is invariant to its loss
+function or distance measure.
+
+\begin{itemize}
     \item fair clustering methods
     \item benchmark datasets (often classification datasets)
     \item synthetic datasets (benchmarks(?), how are they made?)
