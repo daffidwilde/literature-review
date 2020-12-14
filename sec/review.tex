@@ -543,7 +543,9 @@ clustering the globular datasets. However, Figure~\ref{fig:dbscan_ellipses}
 exemplifies the sensitivity of DBSCAN and its parameters; a small number of
 points have been deemed outliers with the particular value of \(\epsilon\) used
 here. DBSCAN narrowly improves upon the hierarchical method for the spheres
-dataset, but remains unable to correctly identify all of the data points.
+dataset, but is unable to correctly identify all of the data points.
+Section~\ref{subsubsec:clustering_evaluation} touches on the relevance of this
+occurrence.
 
 \subsection{Healthcare modelling}\label{subsec:healthcare}
 
@@ -716,7 +718,7 @@ goal; earlier and more contemporary works concur with this
 definition~\cite{Baumberger2017,Caswell1976,Currie2017}. The author suggests
 that model evaluation should be considered as the process of determining whether
 a model is \emph{adequate} for a purpose, i.e. whether a model is highly likely
-to achieve a goal. The author distinguishes this concept of adequacy and from
+to achieve a goal. The author distinguishes this concept of adequacy from
 individual success where a model achieves a purpose in a particular instance.
 
 Later, in~\cite{Parker2020}, the same author elaborates on this
@@ -761,13 +763,7 @@ declined. The remainder of this section summarises the established evaluation
 processes for clustering algorithms and healthcare models, highlighting their
 limitations and potential improvements to the current regime.
 
-\begin{itemize}
-    \item Objectivity vs. fairness
-    \item Human intervention
-    \item Unconscious bias
-\end{itemize}
-
-\subsubsection{Clustering}
+\subsubsection{Clustering}\label{subsubsec:clustering_evaluation}
 
 Algorithms for clustering, like many machine learning tasks, fall into the
 category of models that are primarily evaluated using confirmation processes. To
@@ -803,22 +799,51 @@ divisive clustering algorithms, a common internal measure is the inertia of a
 clustering, i.e. some loss function regarding the cluster
 centres~\cite{Everitt2011}. Using inertia as a quality measure is convenient
 given that practical implementations of centroid-based methods use inertia as
-their objective function, meaning it is readily available. However, interpreting
-inertia values can be difficult as it is scale-variant. As such, the inertia can
-be presented as a normalised measure using the all-cluster loss (i.e. the
-inertia when all points are contained in a single cluster), for instance.
+their objective function, meaning it is readily available~\cite{scikit-learn}.
+However, interpreting inertia values can be difficult as they are dependent on
+the number of clusters and are scale-variant. As such, the inertia can be
+presented as a normalised measure using the all-cluster loss (i.e. the inertia
+when all points are contained in a single cluster), for instance.
 
 Another popular internal quality measure is the silhouette
 coefficient~\cite{Rousseeuw1987} which presents a ratio between the tightness
 and separation of a set of clusters. This measure has the benefit of taking
 values in a finite range (from \(-1\) to \(1\)), making it interpretable across
-several methods. Furthermore, it does not rely on cluster centres, and so can be
-applied to other clustering
+any given array of methods. Furthermore, it does not rely on cluster centres,
+and so can be applied to other clustering
 paradigms~\cite{Garcia2011,Guan2019,Starczewski2015}. However, the primary
 drawback of the silhouette coefficient (as with inertia) is that it strongly
 favours linearly separable, spherical clusters. The authors
 of~\cite{Frederix2004} present two cluster-quality measures that avoid this
 bias, but rely on knowing the `true' clusters of a dataset.
+
+Using either external or internal metrics leaves the evaluation of a method
+susceptible to biases. In general, overcoming biases is not deemed a crucial
+element of analysis, but the recent widespread adoption of machine learning for
+human-related tasks has prompted discourse around its ethics, including these
+biases~\cite{Barocas2019,Grote2020,Mehrabi2019,Saltz2019}.
+In~\cite{Barocas2019}, the authors welcome machine learning as a tool that may
+discover and incorporate subtle characteristics of a dataset that are otherwise
+imperceptible to humans, streamlining complex decision-making processes.
+However, they note that any evidence-based method cannot guarantee to produce a
+reliable or fair output; this is because of the inherent --- and often
+unconscious --- biases introduced in all aspects of the analysis. For instance,
+biases exist in datasets through a number of avenues, including (but not limited
+to) improper and unethical data collection practices~\cite{Prabhu2020}, and
+existing socioeconomic inequities and
+prejudices~\cite{Crawford2013,Rangvid2019}.
+
+The other components which can be subjected to biases are the model design, and
+the evaluation of those models. To remedy any biases in these components, fair
+machine learning practices have been developed for designing
+algorithms~\cite{CorbettDavies2018,Goelz2019,Kearns2017}. For clustering, these
+include the centroid-based method introduced in~\cite{Chen2019} and the
+hierarchical method from~\cite{Ahmadian2020}. These methods tend to treat the
+data points as agents in the model, and rely on internal mechanisms that
+maximise their communal utility. Hence, they are in some respects
+self-validating. However, to be comparable, objective metrics are applied
+showing that the costs of fairness are small losses in objective quality
+measures.
 
 Further to particular metrics --- objective or otherwise --- clustering
 evaluation has been generalised to study more intrinsic properties of clustering
@@ -848,14 +873,11 @@ closing sections of that work offer a number of exemplar cluster-quality
 measures based on loss, cluster centres and linkage, including measures that
 correspond to the all-cluster normalised mean-squared error, and a
 within-versus-between variability measure. The latter can be considered as a
-generalisation of the silhouette coefficient that is invariant to its loss
-function or distance measure.
+generalisation of the silhouette coefficient with respect to its loss function
+or distance measure.
 
-\begin{itemize}
-    \item fair clustering methods
-    \item benchmark datasets (often classification datasets)
-    \item synthetic datasets (benchmarks(?), how are they made?)
-\end{itemize}
+% TODO do we need a brief discussion of datasets? Or should we leave that for
+% the thesis/EDO chapter?
 
 \subsubsection{Healthcare settings}
 
