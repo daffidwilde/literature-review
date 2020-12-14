@@ -3,11 +3,27 @@
 \usepackage[margin=25mm,includefoot,footskip=30mm]{geometry}
 \usepackage{setspace}
 
+\usepackage{pifont}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
 \usepackage[numbers]{natbib}
 \usepackage{hyperref}
 
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\doi}[1]{%
+    \href{https://doi.org/#1}{\nolinkurl{doi:#1}}%
+}
+
+\newlength{\hierheight}
+\setlength{\hierheight}{.2\paperheight}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
+
 
 \title{%
     Classic and data-driven surveys of literature covering the intersections of
