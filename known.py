@@ -32,6 +32,7 @@ words = {
     "hoc",
     "img",
     "infographic",
+    "interoperable",
     "interpretable",
     "intra",
     "invariance",
