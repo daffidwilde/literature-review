@@ -680,6 +680,87 @@ Python that is fully documented and tested.
 
 \subsection{Evaluating a model}
 
+In~\cite{Caswell1976}, the author presents a seminal work discussing the proper
+evaluation of scientific models, drawing attention to a component of modelling
+that (even now) is often skimmed over. The author establishes a need for a clear
+distinction between \emph{validation} and \emph{corroboration} when evaluating a
+model; given that a model characterises a part of a wider reality through some
+parameterisation, no model can be `valid', i.e. true. Instead, a model can be
+\emph{confirmed} and support some hypothesis about the reality which it models.
+This sentiment is echoed by the adage, `all models are wrong, but some are
+useful'~\cite{Box1979}, in that good models can and should illuminate a
+particular research problem. Works of this era raise important points,
+cautioning researchers about relying too heavily on their models, but the
+question still stands: how can (and should) a model be evaluated?
+
+With the large-scale use of electronic data and the advent of computer
+simulation models, the importance of this question grows. The authors
+of~\cite{Oreskes1994} presented a landmark work that reiterates the concerns of
+earlier works, framing the question of model evaluation more squarely for
+computer simulation models. Again, one focus of~\cite{Oreskes1994} is on the use
+of particular language when discussing the quality of a model, i.e. no model can
+be validated, but rather a model can be confirmed when its output aligns with
+some observed data. The authors go a step further in stating that any
+corroborative support offered by model confirmation is `inherently partial'
+given the assumptions made to construct a model. However, this confirmation
+process has become the standard response for evaluating computer simulation
+models --- choose a metric and dataset (or sets thereof) use these to quantify
+the quality of the model either alone or against some competitor(s).
+
+These works indicate that the evaluation of a model should not be purely
+mathematical or practical, and as such, it invokes a need for some philosophical
+thinking. In~\cite{Parker2010}, the author consolidates the concerns of
+practitioners and philosophers regarding model evaluation, defining scientific
+models as representational tools constructed to achieve a particular purpose or
+goal; earlier and more contemporary works concur with this
+definition~\cite{Baumberger2017,Caswell1976,Currie2017}. The author suggests
+that model evaluation should be considered as the process of determining whether
+a model is \emph{adequate} for a purpose, i.e. whether a model is highly likely
+to achieve a goal. The author distinguishes this concept of adequacy and from
+individual success where a model achieves a purpose in a particular instance.
+
+Later, in~\cite{Parker2020}, the same author elaborates on this
+adequacy-for-purpose view of model evaluation, highlighting the contrasts
+between determining adequacy of a model and measuring the accuracy of its
+representation against some target. In particular, the author emphasises the
+real-world dangers of overconfidence in a model's performance against any
+confirmation process. By defining models as tools constructed from parameters
+and simplifications, they are not generally boolean. Therefore, in general, they
+cannot be the subject of true confirmation. However, in practice, if a model is
+accredited through some confirmation process, the general merit and confidence
+in that model increases, potentially leading to the collective idea that the
+model has been `confirmed' and may be `better' than some other(s) without regard
+for its assumptions or limitations.
+
+The author offers four practical methods for assessing adequacy-for-purpose that
+address evaluation at the point of model construction, and as a part of post hoc
+analysis. However, they conclude by recommending that any sufficient assessment
+suite should include a synthesis of the presented strategies, leaving open
+questions regarding the criteria of how each assessment should be aggregated to
+form a single conclusion. The author presents several examples and addresses
+potential concerns, demonstrating that the rigorous evaluation of any model
+requires careful, measured processes.
+
+One quick alternative to this due diligence is to rephrase a purpose in terms of
+a reasonable limit on some criterion. For instance, rather than asking whether a
+method is adequate for predicting some quantity, the purpose could be rephrased
+as `predicting some quantity with an accuracy of \(x\)\%'. In these terms, the
+power of the statement is diminished, but practically, this question becomes
+much more straightforward to answer. In addition, rephrasing the purpose in this
+way results in a conclusion which is broadly equivalent to a confirmation
+process, indicating little about the true quality or robustness of the method.
+
+So, while these works are highly valuable in expanding the discussion of model
+evaluation, without concrete and readily applied methods with which to quantify
+their approaches, they are unlikely to be adopted widely. This unlikelihood is
+not necessarily the fault of the methods, but rather that (in some respects)
+convenience and velocity have surpassed merit in the evaluation of models. In an
+increasingly competitive environment where becoming the new `state-of-the-art'
+has become the norm, regard for robust, thoroughly evaluated models has
+declined. The remainder of this section summarises the established evaluation
+processes for clustering algorithms and healthcare models, highlighting their
+limitations and potential improvements to the current regime.
+
 \begin{itemize}
     \item General overview of evaluation
     \item Objectivity vs. fairness
@@ -689,11 +770,31 @@ Python that is fully documented and tested.
 
 \subsubsection{Clustering}
 
-Often lumped in with the task of
-classification, clustering is distinct in that it reveals the underlying
-structure of a dataset with knowledge that is fixed from the outset exclusively.
-The alternative being a method with access to some ground truth to refer to,
-such as a labelling.
+Algorithms for clustering, like many machine learning tasks, fall into the
+category of models that are primarily evaluated using confirmation processes. To
+reiterate, a confirmation process provides support for a model based on its
+alignment with a set of observed data according to some metric. Often lumped in
+with the task of classification, clustering is distinct in that it reveals the
+underlying structure of a dataset with knowledge that is fixed from the outset
+exclusively. However, the metrics used to evaluate clustering algorithms are
+often concerned with the retrieval of information such as accuracy, precision,
+and recall~\cite{Manning2008}. Examples of this method of evaluation are
+abundant, including many of the cited works from Section~\ref{subsec:clustering}
+such as~\cite{Agrawal1998,Aljarah2019,Bakr2015,Cao2009,Huang1998}.
+
+Information retrieval metrics can be considered \emph{external criteria} in that
+they measure an aspect of a model's clustering according to a external labelling
+of the dataset~\cite{Mitchell1997}. By evaluating a clustering algorithm based
+on a ground truth, the algorithm is being evaluated as a classifier --- a method
+which is trained using that ground truth. Regardless of the inherent structures
+of the dataset, if a clustering algorithm cannot replicate the external
+labelling, it will not be deemed fit using external, label-dependent criteria.
+When discussing the demonstrative figures in Section~\ref{subsec:clustering}, an
+informal form of this evaluation was made when referring to a `mis-labelling' of
+points. In reality, the data synthesis produced a structure within the data that
+is not necessarily congruent with the generative process. Therefore, a
+clustering algorithm (which identifies structure) should not be required to
+account for such anomalies.
 
 \begin{itemize}
     \item internal or external metrics
