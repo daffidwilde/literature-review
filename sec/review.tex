@@ -571,16 +571,26 @@ for improving condition-specific
 populations~\cite{Foster2019,Gambling2010,Gondek2016,Tsianakas2012} and more
 broadly~\cite{IAPO2012,Richards2015,Santana2019}.
 
+The remainder of this section considers two aspects of healthcare modelling
+research that directly contribute to the advancement of patient-centred care:
+segmentation analysis and the modelling of queues. The former is often achieved
+through clustering, and could be regarded as a direct application of cluster
+analysis to healthcare populations. The latter is a broader form of analysis
+with use cases in a variety of healthcare problems, including resource
+utilisation~\cite{Prokofyeva2020}, estimating bed capacity~\cite{Williams2015},
+and the taxonomy of patient pathways~\cite{Rojas2016}.
+
+
 \subsubsection{Segmentation analysis}
 
 Segmentation analysis allows for the targeted analysis of otherwise
-heterogeneous datasets and encompasses several techniques from operational
-research, statistics and machine learning. One of the most desirable qualities
-of this kind of analysis is the ability to glean and communicate simplified
-summaries of patient needs to stakeholders within a healthcare
-system~\cite{Tomar2013,Vuik2016b,Yoon2020}. For instance, clinical profiling
-often forms part of the broader analysis where each segment is summarised in a
-phrase or infographic~\cite{Vuik2016a,Yan2019}.
+heterogeneous healthcare datasets and encompasses several techniques from
+operational research, statistics and machine learning. One of the most desirable
+qualities of this kind of analysis is the ability to glean and communicate
+simplified summaries of patient needs to stakeholders within a healthcare
+system~\cite{ElDarzi2009,Tomar2013,Vuik2016b,Yoon2020}. For instance, clinical
+profiling often forms part of the broader analysis where each segment is
+summarised in a phrase or infographic~\cite{Vuik2016a,Yan2019}.
 
 The survey identified three commonplace groups of patient characteristics used
 to segment a patient population: system utilisation metrics; clinical
@@ -618,65 +628,137 @@ models~\cite{Hargett2017}.
 Furthermore, in \cite{Vuik2016a}, hierarchical clustering is utilised as a part
 of the formative analysis, identifying a suitable number of clusters.  In
 addition, supervised hierarchical segmentation methods such as classification
-and regression trees (as in~\cite{Harper2006}) have been used where an existing,
-well-defined label is of particular significance. An crucial and attractive
-reason for using hierarchical methods in healthcare settings comes from the
-dendogram visualisation. The use of effective visualisation tools encourages
-(and allows, in some cases) involvement by key, expert stakeholders in the
-simulation process. The same is true of \(k\)-means for its straightforward
+and regression trees (as in~\cite{Harper2006,Kumar2019}) have been used where an
+existing, well-defined label or attribute is of particular significance. A crucial
+and attractive reason for using hierarchical methods in healthcare settings comes
+from the dendogram visualisation. The use of effective visualisation tools
+encourages (and allows, in some cases) involvement by key, expert stakeholders in
+the simulation process. The same is true of \(k\)-means for its straightforward
 construction. The authors of~\cite{Jahangirian2015} present a analysis of the
 factors which result in a low level of engagement from stakeholders with
 healthcare simulation work. The key findings indicate that complexity and
 communication are the limiting factors for stakeholders, and so the onus resides
 with researchers to make their models informative, effective and transferable.
 
+\subsubsection{Queuing models}\label{subsubsec:queuing}
 
-\subsubsection{Queuing models}
-
-Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920} established the
-core concepts of queuing theory, the application of queues and queuing networks
-to real services has become abundant, including the healthcare service. By
-applying these models to healthcare settings, many aspects of the underlying
-system can be studied. A common area of study in healthcare settings is of
-service capacity. The study~\cite{McClain1976} is an early example of such work
-where acute bed capacity was determined using hospital occupancy data.
+A queue models the arrival (and exit) of customers to (and from) a point of
+service. A queuing network describes how two or more queues may interact with
+each other. Since the seminal works by Erlang~\cite{Erlang1917,Erlang1920}
+established the core concepts of queuing theory, the application of queues and
+queuing networks to real services has become abundant, including healthcare
+services. By applying these models to healthcare settings, many aspects of the
+underlying system can be studied. A common area of study in healthcare settings
+is of service capacity. The study~\cite{McClain1976} is an early example of such
+work where acute bed capacity was determined using hospital occupancy data.
 Meanwhile, more modern works consider more extensive sources of data to build
-their queuing models~\cite{Palvannan2012,Pinto2014}. Moreover, the output of a
-model is catered more towards being actionable --- as is the prerogative of
-operational research. For instance, in~\cite{Pinto2014}, the authors devise new
-categorisations for both hospital beds and arrivals that are informed by the
-queuing model. A further example is~\cite{Komashie2015} where queuing models are
-used to measure and understand satisfaction among patients and staff.
+their queuing models~\cite{Palvannan2012,Pinto2014,Williams2015}. Moreover, the
+output of a model is catered more towards being actionable --- as is the
+prerogative of operational research. For instance, in~\cite{Pinto2014}, the
+authors devise new categorisations for both hospital beds and arrivals that are
+informed by the queuing model. A further example is~\cite{Komashie2015} where
+queuing models are used to measure and understand satisfaction among patients and
+staff.
 
 In addition to these theoretic models, healthcare queuing research has expanded
 to include computer simulation models. The simulation of queues, or networks
 thereof, have the benefit of adeptly capturing the stochastic nuances of
 hospital systems over their theoretic counterparts. Example areas include the
 construction and simulation of Markov processes via process
-mining~\cite{Arnolds2018,Rebuge2012}, and patient flow~\cite{Bhattacharjee2014}.
-Regardless of the advantages of simulation models, a prerequisite is reliable
-software with which to construct those simulations. A common approach to
-building simulation models of queues is to use a graphical user interface such
-as Simul8. These tools are designed to be highly visual, making them attractive
-to organisations looking to implement queuing models without necessary technical
-expertise, including the NHS. The authors of~\cite{Brailsford2013} discuss the
-issues around operational research and simulation being taken up in the NHS
-despite the availability of intuitive software packages like Simul8.
+mining~\cite{Arnolds2018,Prokofyeva2020,Rebuge2012}, and phase-type patient
+flow analysis~\cite{Bhattacharjee2014,McClean2011}.
+
+Regardless of the advantages of simulation models, a prerequisite for simulation
+research is having access to reliable software with which to construct those
+simulations. A common approach to building simulation models of queues is to use
+a graphical user interface such as Simul8. These tools are designed to be highly
+visual, making them attractive to organisations looking to implement queuing
+models without necessary technical expertise, including the NHS. The authors
+of~\cite{Brailsford2013} discuss the issues around operational research and
+simulation being taken up in the NHS despite the availability of intuitive software
+packages like Simul8.
 
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
 importance to scientific research but continues to be an issue in simulation
-research generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues
-with reproducibility in scientific computing (simulation included), the source
-of any concerns is often with the software used~\cite{Ivie2018}. Using
-well-developed, open-source software can alleviate issues around reproducibility
-and reliability as how they are used involve less uncertainty and require more
-rigour than `drag-and-drop' software. One example of such a piece of software is
-Ciw~\cite{Palmer2019}. Ciw is a discrete event simulation library written in
-Python that is fully documented and tested.
+research generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues with
+reproducibility in scientific computing (simulation included), the source of any
+concerns is often with the software used~\cite{Ivie2018}. Using well-developed,
+open-source software can alleviate issues around reproducibility and reliability
+as how they are used involve less uncertainty and require more rigour than
+`drag-and-drop' software. One example of such a piece of software is the discrete
+event simulation library, Ciw~\cite{Palmer2019}.
 
-% TODO discussion of multiclass queuing models and lack of integration with
-% clustering
+The simulation of queues (or networks thereof) also makes the modelling of
+complex scenarios more practical and accessible. One scenario of interest in
+real-world settings is a queue with multiple customer classes. In a multi-class
+queue, each class of customer has its own set of attributes, which may include
+levels of priority for servicing, a specific arrival discipline or a particular
+service rate. Incorporating these characteristics allows for more realistic
+modelling and addresses the variety exhibited by agents in real-world queues.
+Defining attributes such as these is straightforward in a computer simulation,
+but this scenario is certainly not restricted to empirical studies. For
+instance, in~\cite{RomeroSilva2017}, the authors provide empirical,
+simulation-based evidence to dispel the idea that customers in multi-class
+queues experience identical waiting time distributions. Meanwhile, the authors
+of~\cite{Pompigna2020} demonstrate how a purely theoretical model of a motorway
+tollgate is improved by the use of multiple customer classes, and is verified
+using simulation. Finally, in~\cite{Reveil2014}, the authors derive a model that
+groups arrivals from the same class together by way of a two-stage arrival
+process. The motivation for grouping arrivals is to provide a schema which
+supports the common assumption that reducing the number of times a server must
+change the task they are completing will influence the overall throughput of
+that server; the article succeeds in demonstrating this.
+
+\subsubsection{Queuing and clustering}
+
+The beginning of Section~\ref{subsubsec:queuing} briefly mentions two methods
+for investigating patient pathways --- process mining and patient flow analysis
+--- that are underpinned by a queuing network. In each case, the healthcare
+system is represented as a network of nodes through which patients and resources
+move at certain rates, as in a queuing network. Patient flow analysis considers
+the entire network, while process mining attempts to identify critical parts of
+the network. 
+
+The modelling of patient pathways is of great importance to understanding
+patient care in a healthcare system. Recording and studying how a patient moves
+through the system may provide insights into the dynamics of the characteristics
+presented by individuals, and how their true pathway differs from any previously
+defined clinical ideal. Two recent surveys on the literature surrounding the
+modelling of clinical pathways are~\cite{Aspland2019,DeRamonFernandez2019} with
+the latter focusing on process management tools such as process mining.
+
+Often, clustering forms a fundamental part of these methodologies, creating a
+significant overlap. Clustering is a common resort in scenarios such as
+this where something must be implemented to rationalise an otherwise vast,
+heterogeneous set of behaviours. As an example, the authors
+of~\cite{Prokofyeva2020} use hierarchical clustering to group clinical pathways
+which, in turn, informs a broader, adaptive patient flow model. Meanwhile, the
+authors of~\cite{Rebuge2012} consider a pathway as a sequence of events sampled
+from a Markov chain. These chains (and their respective transition matrices)
+define the clusters in the sequence data, in accordance with the methodology
+presented in~\cite{Cadez2000}.
+
+Other than process mining, clustering has acted as a catalyst for optimising
+other healthcare processes which relate to the efficient treatment of patients.
+Namely, the scheduling and planning of resources, as exemplified
+in~\cite{Nasir2018,Steins2013,Yousefi2020}. In each of these works, some form of
+clustering is used to categorise patients according to their requirements. This
+clustering then informs the scheduling model, providing a richer and more
+sophisticated picture of the overall system. With the other methods discussed in
+this survey, clustering exclusively sits in the post hoc stage of analysis. In
+process mining, a generalisation is formed for patient pathways. In segmentation
+analysis, clustering provides a patient profiling scheme.
+
+Recalling the benefits of multi-class queues --- being able to better model the
+variety of agents in real-world queues --- it appears that clustering would be a
+natural fit to inform a model. Segmentation analysis would be able to quantise
+the idiosyncrasies of patients and quantify their effect on attributes of
+queuing networks, including arrival behaviour, transition probabilities,
+priority levels, and service requirements. However, the literature survey
+revealed scarce research into the application of clustering to inform a
+multi-class queuing model, theoretical or otherwise.
+
 
 \subsection{Evaluating a model}
 
