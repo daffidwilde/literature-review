@@ -937,6 +937,7 @@ which include~\cite{Bezdek1978,Jardine1971,Kleinberg2002}).
 In~\cite{Kleinberg2002}, the author defines clustering as a function, \(f\),
 over a dataset, \(X\), which maps a distance metric, \(d\), also over \(X\) to
 some partition, \(C\), of \(X\).
+% TODO Replace with mathematical definitions if appropriate.
 %i.e. a clustering function can be defined as
 %any \(f: \mathcal D_X \to \mathcal B(X)\) where \(\mathcal D_X\) is the set of
 %all distance metrics over \(X\) and \(\mathcal B(X)\) is the set of all
@@ -948,14 +949,17 @@ following `axiomatic' properties:
 \begin{itemize}
     \item Scale-invariance: the function is insensitive to changes in the unit
         distance
+       % TODO Replace with mathematical definitions if appropriate.
         %for every \(d \in D_X\) and for all \(\alpha > 0\) it follows that
         %\(f(d) = f(\alpha d)\)
     \item Richness: all partitions of the dataset are possible outputs of the
         function (by use of an alternative distance function)
+        % TODO Replace with mathematical definitions if appropriate.
         %for every \(C \in \mathcal B(X)\) there exists some \(d \in \mathcal
         %D_X\) such that \(f(d) = C\)
     \item Consistency: the outputted clustering is unchanged when within-cluster
         distances are decreased and between-cluster distances are increased
+        % TODO Replace with mathematical definitions if appropriate.
         %for every \(C\)-consistent distance metric, \(d' \in \left\{d' \in D_X
         %| d'(x, y) \le d(x, y) \forall x \sim_C y \wedge d'(x, y) \ge d(x, y)
         %\forall x \nsim_C y\right\}\), it follows that \(f(d) = f(d')\)
