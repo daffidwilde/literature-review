@@ -31,13 +31,14 @@ borne out of statistics, including regression, classification and clustering.
 
 Healthcare modelling is one crucial (albeit broad) branch of research in which
 decisions are increasingly being informed by data-driven
-methodologies~\cite{Alexander2018,Belle2015,RiosZertuche2020}, often based
-around machine learning techniques. Clustering is a long-standing and often-used
-% TODO Add a catch all reference for clustering?
-method in healthcare settings; its efficacy --- as a tool not only to expose
-homogeneous partitions within a dataset, but to straightforwardly garner the
-attention of non-technical stakeholders --- has proven it to be an essential
-part of healthcare modelling research, as is discussed in
+methodologies~\cite{Belle2015,Katsaliaki2011,RiosZertuche2020}, often based
+around machine learning techniques and big
+data~\cite{Alexander2018,Archenaa2015}. One such technique is \emph{clustering}
+--- the task of identifying a partition of a dataset with homogeneous parts. Its
+efficacy in identifying otherwise unknown structures in a dataset, as well as
+straightforwardly garnering the attention of non-technical stakeholders has
+proven it to be an essential part of healthcare modelling
+research~\cite{Tomar2013,Yoo2011}, as is discussed in
 Section~\ref{subsec:healthcare}.
 
 Regardless of the particular methods that are to be implemented, the quality of
@@ -45,8 +46,10 @@ a methodology must be evaluated as being fit for purpose before it can be used
 in a real world setting. The ways in which this evaluation is carried out is
 reliant on both the methods themselves and the setting in which they are
 applied, but there are some approaches used across research fields such as
-consensus by literature or beating some rival method(s) according to a metric on
-a dataset.
+consensus by literature or corroboration via some metric on some dataset(s). In
+healthcare settings, particularly, researchers should make efforts to consider
+the ethical quality of a method as well as any objective measurement.
+% TODO include citation for ethics in healthcare models
 
 This survey considers the literature surrounding these three components of
 modern operational and mathematical research --- clustering, the evaluation of

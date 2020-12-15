@@ -50,6 +50,7 @@ words = {
     "preprint",
     "preprocessing",
     "priori",
+    "quantise",
     "reframe(|d)",
     "reproducib(le|ility)",
     "rostering",

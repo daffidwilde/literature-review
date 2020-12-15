@@ -37,14 +37,11 @@ principles of clustering as a part of statistics. Furthermore, this period
 witnessed the advent of seminal work on clustering algorithms such as
 \(k\)-means~\cite{Hartigan1979} and hierarchical
 clustering~\cite{Defays1977,Sibson1973} that are still considered fundamental
-methods.
-% TODO Can we have a reference or 2 here to backup claim that they're
-% still fundamental? (Perhaps even the initialisation paper of yours.
-Since then, with an increase in the data under study, clustering has fallen more
-squarely into the category of machine learning techniques that perform
-\emph{unsupervised learning} --- this is because clustering relies solely on the
-entirety of the observed data and some a priori knowledge such as a set of
-parameters~\cite{Dayan1999}.
+methods~\cite{Aggarwal2013,Wu2009}. Since then, with an increase in the data
+under study, clustering has fallen more squarely into the category of machine
+learning techniques that perform \emph{unsupervised learning} --- this is
+because clustering relies solely on the entirety of the observed data and some a
+priori knowledge such as a set of parameters~\cite{Dayan1999}.
 
 The remainder of this section offers a summary of the three principle types of
 clustering algorithms: those belonging to the \(k\)-means (centroid-based)
@@ -134,9 +131,9 @@ substantial part of centroid-based clustering research. For instance, the
 authors of~\cite{Manoharan2016} provide a novel initialisation that pursues the
 Voronoi tessellation by use of a `divide-and-conquer' approach. Under the
 presented scheme, the initial centroids are selected based on a rough partition
-of the attribute space according to their extreme values.  Likewise, the
-initialisation presented in \cite{Singh2013} assigns each centroid using the
-arithmetic mean and dividing the remaining attribute space in two.  Meanwhile,
+of the attribute space according to their extreme values. Likewise, the
+initialisation presented in~\cite{Singh2013} assigns each centroid using the
+arithmetic mean and dividing the remaining attribute space in two. Meanwhile,
 the method introduced in~\cite{Katara2015} initialises \(k\)-means by sorting
 the instances in the dataset according to their distance from the origin. Once
 sorted, the instances are split into \(k\) disjoint sets and the mean of each
