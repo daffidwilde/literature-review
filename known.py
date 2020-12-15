@@ -58,6 +58,7 @@ words = {
     "simul",
     "subtree(|s)",
     "th",
+    "unaudited",
     "unimodal",
     "voronoi",
     "yellowbrick",
