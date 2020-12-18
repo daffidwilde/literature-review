@@ -14,7 +14,7 @@ number of techniques whose objective is to partition some dataset into parts
 (clusters) according to some distance (similarity) measure. The generated
 partition should be such that the members of one cluster are more similar to one
 another than the rest of the data~\cite{Everitt2011}. This form of analysis has
-found applications in a multitude of fields, including recently the optimisation
+found applications in an array of fields, including recently the optimisation
 of energy systems~\cite{Jing2019,Teichgraeber2019}, wireless sensor
 networking~\cite{Goswami2019}, and the biological
 sciences~\cite{Bulut2020,Kiselev2019}.
@@ -570,14 +570,19 @@ for improving condition-specific
 populations~\cite{Foster2019,Gambling2010,Gondek2016,Tsianakas2012} and more
 broadly~\cite{IAPO2012,Richards2015,Santana2019}.
 
-The remainder of this section considers two aspects of healthcare modelling
-research that directly contribute to the advancement of patient-centred care:
-segmentation analysis and the modelling of queues. The former is often achieved
-through clustering, and could be regarded as a direct application of cluster
-analysis to healthcare populations. The latter is a broader form of analysis
-with use cases in a variety of healthcare problems, including resource
-utilisation~\cite{Prokofyeva2020}, estimating bed capacity~\cite{Williams2015},
-and the taxonomy of patient pathways~\cite{Rojas2016}.
+Operational modelling and simulation form an integral part of advancing
+patient-centred care, and has been used to improve a great number of its facets,
+including improving patient safety~\cite{Jun2010}, identifying patients in need
+of critical care~\cite{Adeyemi2013}, reducing length of stay~\cite{Gul2012}, and
+implementing personalised monitoring~\cite{Velikova2014}. The remainder of this
+section considers two techniques whose applications directly contribute to the
+advancement of patient-centred care: segmentation analysis and the modelling of
+queues. The former is often achieved through clustering, and could be regarded
+as a direct application of cluster analysis to healthcare populations. The
+latter is a broader form of analysis with use cases in a variety of healthcare
+problems, including resource utilisation~\cite{Prokofyeva2020}, estimating bed
+capacity~\cite{Williams2015}, and the taxonomy of patient
+pathways~\cite{Rojas2016}.
 
 
 \subsubsection{Segmentation analysis}
@@ -841,7 +846,7 @@ increasingly competitive environment where becoming the new `state-of-the-art'
 has become the norm, regard for robust, thoroughly evaluated models has
 declined. The remainder of this section summarises the established evaluation
 processes for clustering algorithms and healthcare models, highlighting their
-limitations and potential improvements to the current regime.
+limitations and the avenues for improvement in the literature.
 
 \subsubsection{Clustering}\label{subsubsec:clustering_evaluation}
 
@@ -979,32 +984,102 @@ loss function or distance measure.
 \subsubsection{Healthcare settings}
 
 As discussed in Section~\ref{subsec:healthcare}, data-driven methodologies have
-become prevalent in healthcare modelling. Incorporating machine learning into
-decision-making processes allows healthcare practitioners and researchers to
-make full use of the sheer volume of information available in increasingly
+become prevalent in healthcare modelling. Incorporating computer-based modelling
+into decision-making processes allows healthcare practitioners and researchers
+to make full use of the sheer volume of information available in increasingly
 complex healthcare
 settings~\cite{Alexander2018,Belle2015,Taranu2016,Tomar2013,Tsui2015}.
 
 However, since these methods directly impact the well-being of humans ---
 perhaps in an unaudited manner --- any data-driven model applied in healthcare
 requires a richer evaluation process to be deemed
-fit-for-purpose~\cite{Gerhards2020,Ho2020}. In particular, introducing machine
-learning techniques raises new questions (and reinforces existing questions)
-about the ethical quality of a healthcare model in terms of things like
+fit-for-purpose~\cite{Boaz2003,Gerhards2020,Ho2020}. In healthcare settings, the
+entire application must be evaluated, not only the model itself. However,
+introducing machine learning techniques raises new questions (and reinforces
+existing questions) about the ethical quality of an application in terms of
+things like
 accountability~\cite{McCradden2020accountability,Ross2017,Zawati2020} and
 patient safety~\cite{Habli2020,McCradden2020safety,Sittig2015}. Like machine
 learning more generally, this aspect of modern ethics research has been active
-in recent years, and extensive reviews on the subject are
-available~\cite{Char2020,Findley2020,Grote2020,Obermeyer2016,Rajkomar2019}.
+in recent years, and extensive reviews on the subject are available as part of
+works seeking to map out points of
+concern~\cite{Char2020,Grote2020,Obermeyer2016,Rajkomar2019}.
 
-In addition to their review, the authors of~\cite{Char2020} present a systematic
-framework for evaluating the ethical quality of a machine learning application
-in healthcare. Their framework, which has proven influential in other recent
-works, is distilled from the collated literature on the ethics of machine
-learning in healthcare and non-healthcare settings. The framework considers an
-array of concerns from across the model pipeline which are relevant to
-healthcare, including societal biases, transparency, harm minimisation and
-accountability.
+Making ethical considerations is instrumental in developing trust in an
+application by stakeholders, which in turn marks its quality.
+In~\cite{Cutillo2020}, the authors describe the perspectives of researchers and
+care providers on the ethical application of `machine intelligence' in
+healthcare. They summarise that trust (for these stakeholders) requires
+confidence at all stages of an application: in the relevance of the data, the
+robustness and reproducibility of the system (i.e. the model itself), thorough
+auditing of the model output, and continual review of the entire workflow. They
+also make several calls for consistency across the application pipeline,
+including systematic review processes of existing methods, congruous terminology
+and nomenclature, and regularly reproducing existing model outputs on other data
+sources.
+
+These calls for unified best practices are matched in recent
+literature~\cite{Liu2019,Vollmer2020,WitjasPaalberends2017}. For
+instance, the authors of~\cite{Vollmer2020} present a list of questions to ask
+of an application regarding its ethical quality. They state that despite the
+burgeoning promise of data-driven methods, there is a distinct lack of best
+practice guidance, stifling the calibre of the research topic more generally.
+Their questions address concerns for researchers and practitioners, as well as
+editors and patients, from the point of inception up to long-term implementation
+guidelines. 
+
+Another work attempting to consolidate these ethical considerations
+is~\cite{Char2020}. Therein, the authors present a systematic framework for
+evaluating the ethical quality of a machine learning application in healthcare.
+Their framework, which has proven influential in other recent works (such
+as~\cite{Findley2020,Kraft2020}), is distilled from the collated literature on
+the ethics of machine learning in healthcare and non-healthcare settings. The
+framework considers an array of concerns from across the application pipeline
+which are relevant to healthcare, including recognising and mitigating the
+effect of societal biases, transparency, harm minimisation and accountability. 
+
+While this aspect of modelling research strives to improve and protect the
+standards of patient care, the presented solutions are primarily concerned with
+how data-driven healthcare applications can be improved for stakeholders within
+the healthcare system: practitioners and researchers. Patients form another
+group of stakeholders who are pivotal in the lifespan of any data-driven
+model. Patient-centred care relies on the involvement of patient experiences and
+feedback, and the authors of~\cite{Findley2020} argue that the same ethos should
+apply with the application of new data-assisted methods. They offer a critique
+of the process introduced in~\cite{Char2020}, arguing that it concentrates too
+heavily on technical challenges, and does not provide sufficient consideration
+of the core ethical issues regarding the subject of the application: the
+patients.
+
+The authors discuss how the perspective of a patient affects the real-time
+application of a data-driven healthcare model. Citing~\cite{Dietvorst2015} as
+motivation, they lay out examples demonstrating patients' distrust of automated,
+algorithmic decisions despite their potential improvements over practitioners in
+terms of objective measures like diagnostic accuracy. In turn, they argue that
+this aversion may degrade the patient-practitioner relationship, leading
+patients to believe their agency is being undermined, and breaking down trust in
+the system. Ultimately, the authors conclude that any successful application of
+data-driven decision-making processes requires transparency and disclosure to
+patients by practitioners to be considered ethical, let alone fit-for-purpose.
+The authors do not, however, provide any practical solutions to these issues,
+unlike the authors of~\cite{Kraft2020}. In that work, the authors emphasise the
+importance of trusting relationships in healthcare systems between patients,
+practitioners, and `machines'. The authors offer additions to the process
+from~\cite{Char2020} which include questions to protect and enhance the quality
+of those relationships.
+
+Given the seeming inevitability that healthcare is only going to become more
+reliant on data-driven processes, a crucial and convenient avenue by which to
+maintain patient trust is to ensure the privacy of their
+data~\cite{Iott2019,vanStaa2016}. In the EU, the introduction of strict data
+protection regulations has meant that the guidelines have been set out, but
+incidents of data mishandling continue to occur~\cite{bbc2017,edpb2020}. The
+authors of~\cite{Horn2020} highlight the importance of properly using patient
+data (i.e. securely, ethically and effectively) in maintaining the unwritten
+social contract between a healthcare system and its population. Failing to go
+beyond the legal requirements and enact some social good can lead to the
+downfall of an initiative, such as with the NHS England \emph{care.data}
+project~\cite{Carter2015}.
 
 % TODO discussion of:
 %   - trust in models
