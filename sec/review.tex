@@ -978,9 +978,6 @@ error, and a within-versus-between variability measure. The latter can be
 considered as a generalisation of the silhouette coefficient with respect to its
 loss function or distance measure.
 
-% TODO do we need a brief discussion of datasets? Or should we leave that for
-% the thesis/EDO chapter?
-
 \subsubsection{Healthcare settings}
 
 As discussed in Section~\ref{subsec:healthcare}, data-driven methodologies have
@@ -1081,8 +1078,19 @@ beyond the legal requirements and enact some social good can lead to the
 downfall of an initiative, such as with the NHS England \emph{care.data}
 project~\cite{Carter2015}.
 
-% TODO discussion of:
-%   - trust in models
-%   - calls for best practice and unifying guidelines
-%   - privacy (data synthesis),
-%   - human intervention and feedback
+A workaround to the potential misuse of patient data is to synthesise new
+datasets from existing, confidential data. The methods by which data synthesis
+is achieved are various, but include bespoke, often statistical
+models~\cite{Dahmen2019,Dube2014,McLachlan2016,Tucker2020} and, recently,
+generative adversarial networks (GANs)~\cite{Avino2018,Torfi2020}. Using
+synthetic datasets provides another level of anonymity to the patients, but
+their efficacy against real data has been contested. In a recent
+paper~\cite{Rankin2020}, the authors report consistent, although marginal,
+losses in accuracy by various supervised learning methods on synthetic datasets
+when compared with their performance on the corresponding real datasets. The
+authors of~\cite{Dahmen2019} find similar results, but demonstrate how their
+method of data synthesis may improve certain objective metrics when the amount
+of real data available is small. This scarcity is a common issue in modern
+operational research, where data-hungry methods (i.e. those from machine
+learning) are becoming increasingly mainstream, with healthcare research
+included~\cite{Panch2019}.
