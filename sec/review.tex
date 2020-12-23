@@ -14,7 +14,7 @@ number of techniques whose objective is to partition some dataset into parts
 (clusters) according to some distance (similarity) measure. The generated
 partition should be such that the members of one cluster are more similar to one
 another than the rest of the data~\cite{Everitt2011}. This form of analysis has
-found applications in a multitude of fields, including recently the optimisation
+found applications in an array of fields, including recently the optimisation
 of energy systems~\cite{Jing2019,Teichgraeber2019}, wireless sensor
 networking~\cite{Goswami2019}, and the biological
 sciences~\cite{Bulut2020,Kiselev2019}.
@@ -132,7 +132,7 @@ authors of~\cite{Manoharan2016} provide a novel initialisation that pursues the
 Voronoi tessellation by use of a `divide-and-conquer' approach. Under the
 presented scheme, the initial centroids are selected based on a rough partition
 of the attribute space according to their extreme values. Likewise, the
-initialisation presented in \cite{Singh2013} assigns each centroid using the
+initialisation presented in~\cite{Singh2013} assigns each centroid using the
 arithmetic mean and dividing the remaining attribute space in two. Meanwhile,
 the method introduced in~\cite{Katara2015} initialises \(k\)-means by sorting
 the instances in the dataset according to their distance from the origin. Once
@@ -540,7 +540,9 @@ clustering the globular datasets. However, Figure~\ref{fig:dbscan_ellipses}
 exemplifies the sensitivity of DBSCAN and its parameters; a small number of
 points have been deemed outliers with the particular value of \(\epsilon\) used
 here. DBSCAN narrowly improves upon the hierarchical method for the spheres
-dataset, but remains unable to correctly identify all of the data points.
+dataset, but is unable to correctly identify all of the data points.
+Section~\ref{subsubsec:clustering_evaluation} touches on the relevance of this
+occurrence.
 
 \subsection{Healthcare modelling}\label{subsec:healthcare}
 
@@ -568,14 +570,19 @@ for improving condition-specific
 populations~\cite{Foster2019,Gambling2010,Gondek2016,Tsianakas2012} and more
 broadly~\cite{IAPO2012,Richards2015,Santana2019}.
 
-The remainder of this section considers two aspects of healthcare modelling
-research that directly contribute to the advancement of patient-centred care:
-segmentation analysis and the modelling of queues. The former is often achieved
-through clustering, and could be regarded as a direct application of cluster
-analysis to healthcare populations. The latter is a broader form of analysis
-with use cases in a variety of healthcare problems, including resource
-utilisation~\cite{Prokofyeva2020}, estimating bed capacity~\cite{Williams2015},
-and the taxonomy of patient pathways~\cite{Rojas2016}.
+Operational modelling and simulation form an integral part of advancing
+patient-centred care, and has been used to improve a great number of its facets,
+including improving patient safety~\cite{Jun2010}, identifying patients in need
+of critical care~\cite{Adeyemi2013}, reducing length of stay~\cite{Gul2012}, and
+implementing personalised monitoring~\cite{Velikova2014}. The remainder of this
+section considers two techniques whose applications directly contribute to the
+advancement of patient-centred care: segmentation analysis and the modelling of
+queues. The former is often achieved through clustering, and could be regarded
+as a direct application of cluster analysis to healthcare populations. The
+latter is a broader form of analysis with use cases in a variety of healthcare
+problems, including resource utilisation~\cite{Prokofyeva2020}, estimating bed
+capacity~\cite{Williams2015}, and the taxonomy of patient
+pathways~\cite{Rojas2016}.
 
 
 \subsubsection{Segmentation analysis}
@@ -623,19 +630,20 @@ preferences~\cite{Liu2009}, and in mapping out effective healthcare leadership
 models~\cite{Hargett2017}.
 
 Furthermore, in \cite{Vuik2016a}, hierarchical clustering is utilised as a part
-of the formative analysis, identifying a suitable number of clusters.  In
+of the formative analysis, identifying a suitable number of clusters. In
 addition, supervised hierarchical segmentation methods such as classification
 and regression trees (as in~\cite{Harper2006,Kumar2019}) have been used where an
-existing, well-defined label or attribute is of particular significance. A crucial
-and attractive reason for using hierarchical methods in healthcare settings comes
-from the dendogram visualisation. The use of effective visualisation tools
-encourages (and allows, in some cases) involvement by key, expert stakeholders in
-the simulation process. The same is true of \(k\)-means for its straightforward
-construction. The authors of~\cite{Jahangirian2015} present a analysis of the
-factors which result in a low level of engagement from stakeholders with
-healthcare simulation work. The key findings indicate that complexity and
-communication are the limiting factors for stakeholders, and so the onus resides
-with researchers to make their models informative, effective and transferable.
+existing, well-defined label or attribute is of particular significance. A
+crucial and attractive reason for using hierarchical methods in healthcare
+settings comes from the dendogram visualisation. The use of effective
+visualisation tools encourages (and allows, in some cases) involvement by key,
+expert stakeholders in the simulation process. The same is true of \(k\)-means
+for its straightforward construction. The authors of~\cite{Jahangirian2015}
+present a analysis of the factors which result in a low level of engagement from
+stakeholders with healthcare simulation work. The key findings indicate that
+complexity and communication are the limiting factors for stakeholders, and so
+the onus resides with researchers to make their models informative, effective
+and transferable.
 
 \subsubsection{Queuing models}\label{subsubsec:queuing}
 
@@ -654,8 +662,8 @@ output of a model is catered more towards being actionable --- as is the
 prerogative of operational research. For instance, in~\cite{Pinto2014}, the
 authors devise new categorisations for both hospital beds and arrivals that are
 informed by the queuing model. A further example is~\cite{Komashie2015} where
-queuing models are used to measure and understand satisfaction among patients and
-staff.
+queuing models are used to measure and understand satisfaction among patients
+and staff.
 
 In addition to these theoretic models, healthcare queuing research has expanded
 to include computer simulation models. The simulation of queues, or networks
@@ -672,19 +680,19 @@ a graphical user interface such as Simul8. These tools are designed to be highly
 visual, making them attractive to organisations looking to implement queuing
 models without necessary technical expertise, including the NHS. The authors
 of~\cite{Brailsford2013} discuss the issues around operational research and
-simulation being taken up in the NHS despite the availability of intuitive software
-packages like Simul8.
+simulation being taken up in the NHS despite the availability of intuitive
+software packages like Simul8.
 
 However, they do not address a core principle of good simulation work:
 reproducibility. The ability to reliably reproduce a set of results is of great
 importance to scientific research but continues to be an issue in simulation
-research generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues with
-reproducibility in scientific computing (simulation included), the source of any
-concerns is often with the software used~\cite{Ivie2018}. Using well-developed,
-open-source software can alleviate issues around reproducibility and reliability
-as how they are used involve less uncertainty and require more rigour than
-`drag-and-drop' software. One example of such a piece of software is the discrete
-event simulation library, Ciw~\cite{Palmer2019}.
+research generally~\cite{Fitzpatrick2019,Taylor2018}. When considering issues
+with reproducibility in scientific computing (simulation included), the source
+of any concerns is often with the software used~\cite{Ivie2018}. Using
+well-developed, open-source software can alleviate issues around reproducibility
+and reliability as how they are used involve less uncertainty and require more
+rigour than `drag-and-drop' software. One example of such a piece of software is
+the discrete event simulation library, Ciw~\cite{Palmer2019}.
 
 The simulation of queues (or networks thereof) also makes the modelling of
 complex scenarios more practical and accessible. One scenario of interest in
@@ -759,36 +767,341 @@ multi-class queuing model, theoretical or otherwise.
 
 \subsection{Evaluating a model}
 
+In~\cite{Caswell1976}, the author presents a seminal work discussing the proper
+evaluation of scientific models, drawing attention to a component of modelling
+that (even now) is often skimmed over. The author establishes a need for a clear
+distinction between \emph{validation} and \emph{corroboration} when evaluating a
+model; given that a model characterises a part of a wider reality through some
+parameterisation, no model can be `valid', i.e. true. Instead, a model can be
+\emph{confirmed} and support some hypothesis about the reality which it models.
+This sentiment is echoed by the adage, `all models are wrong, but some are
+useful'~\cite{Box1979}, in that good models can and should illuminate a
+particular research problem. Works of this era raise important points,
+cautioning researchers about relying too heavily on their models, but the
+question still stands: how can (and should) a model be evaluated?
+
+With the large-scale use of electronic data and the advent of computer
+simulation models, the importance of this question grows. The authors
+of~\cite{Oreskes1994} presented a landmark work that reiterates the concerns of
+earlier works, framing the question of model evaluation more squarely for
+computer simulation models. Again, one focus of~\cite{Oreskes1994} is on the use
+of particular language when discussing the quality of a model, i.e. no model can
+be validated, but rather a model can be confirmed when its output aligns with
+some observed data. The authors go a step further in stating that any
+corroborative support offered by model confirmation is `inherently partial'
+given the assumptions made to construct a model. However, this confirmation
+process has become the standard response for evaluating computer simulation
+models --- choose a metric and dataset (or sets thereof) use these to quantify
+the quality of the model either alone or against some competitor(s).
+
+These works indicate that the evaluation of a model should not be purely
+mathematical or practical, and as such, it invokes a need for some philosophical
+thinking. In~\cite{Parker2010}, the author consolidates the concerns of
+practitioners and philosophers regarding model evaluation, defining scientific
+models as representational tools constructed to achieve a particular purpose or
+goal; earlier and more contemporary works concur with this
+definition~\cite{Baumberger2017,Caswell1976,Currie2017}. The author suggests
+that model evaluation should be considered as the process of determining whether
+a model is \emph{adequate} for a purpose, i.e. whether a model is highly likely
+to achieve a goal. The author notes the link between their notion of adequacy
+and a model being sufficient, following the principle of Occam's Razor, which is
+fundamental to scientific theory~\cite{Walsh1979}.
+
+The author distinguishes the property adequacy from model fitness and from
+individual adequacy, where a model achieves a purpose in a particular instance.
+The model presented in~\cite{Knight2012} exemplifies this last case. The authors
+present a model consisting of multiple phases in a specific, time-dependent
+process where the best-fitted model (i.e. that with the highest objective
+quality) produced the same results as a simpler one with fewer components on the
+data for which the model would be applied. The authors argue the importance of
+not doing more than is necessary to achieve their objective, and opt for the
+simpler model.
+
+Later, in~\cite{Parker2020}, the same author elaborates on this
+adequacy-for-purpose view of model evaluation, highlighting the contrasts
+between determining adequacy of a model and measuring the accuracy of its
+representation against some target. In particular, the author emphasises the
+real-world dangers of overconfidence in a model's performance against any
+confirmation process. By defining models as tools constructed from parameters
+and simplifications, they are not generally boolean. Therefore, in general, they
+cannot be the subject of true confirmation. However, in practice, if a model is
+accredited through some confirmation process, the general merit and confidence
+in that model increases, potentially leading to the collective idea that the
+model has been `confirmed' and may be `better' than some other(s) without regard
+for its assumptions or limitations.
+
+The author offers four practical methods for assessing adequacy-for-purpose that
+address evaluation at the point of model construction, and as a part of post hoc
+analysis. However, they conclude by recommending that any sufficient assessment
+suite should include a synthesis of the presented strategies, leaving open
+questions regarding the criteria of how each assessment should be aggregated to
+form a single conclusion. The author presents several examples and addresses
+potential concerns, indicating that the rigorous evaluation of any model
+requires careful, measured processes.
+
+One quick alternative to this due diligence is to rephrase a purpose in terms of
+a reasonable limit on some criterion. For instance, rather than asking whether a
+method is adequate for predicting some quantity, the purpose could be rephrased
+as `predicting some quantity with an accuracy of \(x\)\%'. In these terms, the
+power of the statement is diminished, but practically, this question becomes
+much more straightforward to answer. In addition, rephrasing the purpose in this
+way results in a conclusion which is broadly equivalent to a confirmation
+process, indicating little about the true quality or robustness of the method.
+
+So, while these works are highly valuable in expanding the discussion of model
+evaluation, without concrete and readily applied methods with which to quantify
+their approaches, they are unlikely to be adopted widely. This unlikelihood is
+not necessarily the fault of the methods, but rather that (in some respects)
+convenience and velocity have surpassed merit in the evaluation of models. In an
+increasingly competitive environment where becoming the new `state-of-the-art'
+has become the norm, regard for robust, thoroughly evaluated models has
+declined. The remainder of this section summarises the established evaluation
+processes for clustering algorithms and healthcare models, highlighting their
+limitations and the avenues for improvement in the literature.
+
+\subsubsection{Clustering}\label{subsubsec:clustering_evaluation}
+
+Algorithms for clustering, like many machine learning tasks, fall into the
+category of models that are primarily evaluated using confirmation processes. As
+discussed at the beginning of this section, a confirmation process provides
+support for a model based on its
+alignment with a set of observed data according to some metric. Often lumped in
+with the task of classification, clustering is distinct in that it reveals the
+underlying structure of a dataset with knowledge that is fixed from the outset
+exclusively. However, the metrics used to evaluate clustering algorithms are
+often concerned with the retrieval of information such as accuracy, precision,
+and recall~\cite{Manning2008}. Examples of this method of evaluation are
+abundant, including many of the cited works from Section~\ref{subsec:clustering}
+such as~\cite{Agrawal1998,Aljarah2019,Bakr2015,Cao2009,Huang1998}.
+
+Information retrieval metrics can be considered \emph{external criteria} in that
+they measure an aspect of a model's clustering according to an external labelling
+of the dataset~\cite{Mitchell1997}. The quality of any
+clustering is predicated on the data generation process, and if a clustering
+algorithm cannot replicate the external labelling, it will not be deemed fit
+using external, label-dependent criteria. When discussing the demonstrative
+figures in Section~\ref{subsec:clustering}, an informal form of this evaluation
+was made when referring to a `mislabelling' of points. In reality, the data
+synthesis produced a structure within the data that is not necessarily congruent
+with the generative process. Therefore, the clustering algorithms (which
+identify unknown structures) should not be penalised for not recognising these
+anomalies.
+
+Without the use of an external truth, \emph{internal criteria} exist to evaluate
+clustering algorithms. A criterion is considered internal if its sole source of
+information is the clustering produced by the algorithm. For centroid-based and
+divisive clustering algorithms, a common internal measure is the inertia of a
+clustering, i.e. some loss function regarding the cluster
+centres~\cite{Everitt2011}. Using inertia as a quality measure is convenient
+given that practical implementations of centroid-based methods use inertia as
+their objective function, meaning it is readily available~\cite{scikit-learn}.
+However, interpreting inertia values can be difficult as they are dependent on
+the number of clusters and are scale-variant. As such, the inertia can be
+presented as a normalised measure using the all-cluster loss (i.e. the inertia
+when all points are contained in a single cluster), for instance.
+
+Another popular internal quality measure is the silhouette
+coefficient~\cite{Rousseeuw1987} which presents a ratio between the tightness
+and separation of a set of clusters. This measure has the benefit of taking
+values in a finite range (from \(-1\) to \(1\)), making it interpretable across
+any given array of methods. Furthermore, it does not rely on cluster centres,
+and so can be applied to other clustering
+paradigms~\cite{Garcia2011,Guan2019,Starczewski2015}. However, the primary
+drawback of the silhouette coefficient (as with inertia) is that it strongly
+favours linearly separable, spherical clusters. The authors
+of~\cite{Frederix2004} present two cluster-quality measures that avoid this
+preference, but rely on knowing the `true' clusters of a dataset.
+
+Regardless of the nature of an objective metric, the evaluation of a method
+through corroboration can leave a method susceptible to societal biases. The
+recent widespread adoption of machine learning for human-related tasks has left
+society and machine learning inextricably linked, prompting discourse around its
+ethics, including these
+biases~\cite{Barocas2019,Grote2020,Mehrabi2019,Obermeyer2019,Saltz2019}.
+In~\cite{Barocas2019}, the authors welcome machine learning as a tool that may
+discover and incorporate subtle characteristics of a dataset that are otherwise
+imperceptible to humans, streamlining complex decision-making processes.
+However, they note that any evidence-based method cannot guarantee to produce a
+reliable or fair output; this is because of the inherent --- and often
+unconscious --- biases introduced in all aspects of the analysis. For instance,
+biases exist in datasets through a number of avenues, including (but not limited
+to) improper and unethical data collection practices~\cite{Prabhu2020}, and
+existing socioeconomic inequities and
+prejudices~\cite{Crawford2013,Rangvid2019}.
+
+The other components which can be subjected to biases are the model design, and
+the evaluation of those models. To remedy any biases in these components, fair
+machine learning practices have been developed for designing
+algorithms~\cite{CorbettDavies2018,Friedler2016,Goelz2019,Kearns2017}. For
+clustering, these include the centroid-based method introduced
+in~\cite{Chen2019} and the hierarchical method from~\cite{Ahmadian2020}. These
+methods tend to treat the data points as agents in the model, and rely on
+internal mechanisms that maximise their communal utility. Hence, they are in
+some respects self-validating. However, to be comparable, objective metrics are
+applied showing that the costs of fairness are small losses in objective quality
+measures.
+
+Further to particular metrics --- objective or otherwise --- clustering
+evaluation has been generalised to study more intrinsic properties of clustering
+instances such as clusterability~\cite{Ackerman2009,Ostrovsky2006,Zhang2001}.
+These works often rely on an axiomatic description of clustering (examples of
+which include~\cite{Bezdek1978,Jardine1971,Kleinberg2002}).
+In~\cite{Kleinberg2002}, the author defines clustering as a function, \(f\),
+over a dataset, \(X\), which maps a distance metric, \(d\), also over \(X\) to
+some partition, \(C\), of \(X\).
+% TODO Replace with mathematical definitions if appropriate.
+%i.e. a clustering function can be defined as
+%any \(f: \mathcal D_X \to \mathcal B(X)\) where \(\mathcal D_X\) is the set of
+%all distance metrics over \(X\) and \(\mathcal B(X)\) is the set of all
+%partitions of \(X\).
+The primary result of~\cite{Kleinberg2002} is a theorem
+stating that no clustering function exists which satisfies all three of the
+following `axiomatic' properties: 
+
 \begin{itemize}
-    \item General overview of evaluation
-    \item Objectivity vs. fairness
-    \item Human intervention
-    \item Unconscious bias
+    \item Scale-invariance: the function is insensitive to changes in the unit
+        distance
+       % TODO Replace with mathematical definitions if appropriate.
+        %for every \(d \in D_X\) and for all \(\alpha > 0\) it follows that
+        %\(f(d) = f(\alpha d)\)
+    \item Richness: all partitions of the dataset are possible outputs of the
+        function (by use of an alternative distance function)
+        % TODO Replace with mathematical definitions if appropriate.
+        %for every \(C \in \mathcal B(X)\) there exists some \(d \in \mathcal
+        %D_X\) such that \(f(d) = C\)
+    \item Consistency: the outputted clustering is unchanged when within-cluster
+        distances are decreased and between-cluster distances are increased
+        % TODO Replace with mathematical definitions if appropriate.
+        %for every \(C\)-consistent distance metric, \(d' \in \left\{d' \in D_X
+        %| d'(x, y) \le d(x, y) \forall x \sim_C y \wedge d'(x, y) \ge d(x, y)
+        %\forall x \nsim_C y\right\}\), it follows that \(f(d) = f(d')\)
 \end{itemize}
 
-\subsubsection{Clustering}
-
-Often lumped in with the task of
-classification, clustering is distinct in that it reveals the underlying
-structure of a dataset with knowledge that is fixed from the outset exclusively.
-The alternative being a method with access to some ground truth to refer to,
-such as a labelling.
-
-\begin{itemize}
-    \item internal or external metrics
-    \item mean-squared error (inertia), silhouette, other label-invariant
-        metrics
-    \item information retrieval metrics (fundamentally flawed; see above)
-    \item deriving agnostic cluster quality measures
-    \item fair clustering methods
-    \item benchmark datasets (often classification datasets)
-    \item synthetic datasets (benchmarks(?), how are they made?)
-\end{itemize}
+However, small changes to these properties accommodate various well-known
+clustering algorithms, including single-linkage and \(k\)-means clustering
+(discussed in Section~\ref{subsec:clustering}). The authors
+of~\cite{BenDavid2008} expand on these axioms to derive necessary and desirable
+properties of cluster-quality measures that are entirely agnostic to the
+clustering function at hand. The closing sections of that work offer a number of
+exemplar cluster-quality measures based on loss, cluster centres and linkage,
+including measures that correspond to the all-cluster normalised mean-squared
+error, and a within-versus-between variability measure. The latter can be
+considered as a generalisation of the silhouette coefficient with respect to its
+loss function or distance measure.
 
 \subsubsection{Healthcare settings}
 
-\begin{itemize}
-    \item often dependent on model
-    \item incorporating staff and patient feedback
-    \item where is model accountability?
-\end{itemize}
+As discussed in Section~\ref{subsec:healthcare}, data-driven methodologies have
+become prevalent in healthcare modelling. Incorporating computer-based modelling
+into decision-making processes allows healthcare practitioners and researchers
+to make full use of the sheer volume of information available in increasingly
+complex healthcare
+settings~\cite{Alexander2018,Belle2015,Taranu2016,Tomar2013,Tsui2015}.
+
+However, since these methods directly impact the well-being of humans ---
+perhaps in an unaudited manner --- any data-driven model applied in healthcare
+requires a richer evaluation process to be deemed
+fit-for-purpose~\cite{Boaz2003,Gerhards2020,Ho2020}. In healthcare settings, the
+entire application must be evaluated, not only the model itself. However,
+introducing machine learning techniques raises new questions (and reinforces
+existing questions) about the ethical quality of an application in terms of
+things like
+accountability~\cite{McCradden2020accountability,Ross2017,Zawati2020} and
+patient safety~\cite{Habli2020,McCradden2020safety,Sittig2015}. Like machine
+learning more generally, this aspect of modern ethics research has been active
+in recent years, and extensive reviews on the subject are available as part of
+works seeking to map out points of
+concern~\cite{Char2020,Grote2020,Obermeyer2016,Rajkomar2019}.
+
+Making ethical considerations is instrumental in developing trust in an
+application by stakeholders, which in turn marks its quality.
+In~\cite{Cutillo2020}, the authors describe the perspectives of researchers and
+care providers on the ethical application of `machine intelligence' in
+healthcare. They summarise that trust (for these stakeholders) requires
+confidence at all stages of an application: in the relevance of the data, the
+robustness and reproducibility of the system (i.e. the model itself), thorough
+auditing of the model output, and continual review of the entire workflow. They
+also make several calls for consistency across the application pipeline,
+including systematic review processes of existing methods, congruous terminology
+and nomenclature, and regularly reproducing existing model outputs on other data
+sources.
+
+These calls for unified best practices are matched in recent
+literature~\cite{Liu2019,Monks2018,Vollmer2020,WitjasPaalberends2017}. For
+instance, the authors of~\cite{Vollmer2020} present a list of questions to ask
+of an application regarding its ethical quality. They state that despite the
+burgeoning promise of data-driven methods, there is a distinct lack of best
+practice guidance, stifling the calibre of the research topic more generally.
+Their questions address concerns for researchers and practitioners, as well as
+editors and patients, from the point of inception up to long-term implementation
+guidelines. 
+
+Another work attempting to consolidate these ethical considerations
+is~\cite{Char2020}. Therein, the authors present a systematic framework for
+evaluating the ethical quality of a machine learning application in healthcare.
+Their framework, which has proven influential in other recent works (such
+as~\cite{Findley2020,Kraft2020}), is distilled from the collated literature on
+the ethics of machine learning in healthcare and non-healthcare settings. The
+framework considers an array of concerns from across the application pipeline
+which are relevant to healthcare, including recognising and mitigating the
+effect of societal biases, transparency, harm minimisation and accountability. 
+
+While this aspect of modelling research strives to improve and protect the
+standards of patient care, the presented solutions are primarily concerned with
+how data-driven healthcare applications can be improved for stakeholders within
+the healthcare system: practitioners and researchers. Patients form another
+group of stakeholders who are pivotal in the lifespan of any data-driven
+model. Patient-centred care relies on the involvement of patient experiences and
+feedback, and the authors of~\cite{Findley2020} argue that the same ethos should
+apply with the application of new data-assisted methods. They offer a critique
+of the process introduced in~\cite{Char2020}, arguing that it concentrates too
+heavily on technical challenges, and does not provide sufficient consideration
+of the core ethical issues regarding the subject of the application: the
+patients.
+
+The authors discuss how the perspective of a patient affects the real-time
+application of a data-driven healthcare model. Citing~\cite{Dietvorst2015} as
+motivation, they lay out examples demonstrating patients' distrust of automated,
+algorithmic decisions despite their potential improvements over practitioners in
+terms of objective measures like diagnostic accuracy. In turn, they argue that
+this aversion may degrade the patient-practitioner relationship, leading
+patients to believe their agency is being undermined, and breaking down trust in
+the system. Ultimately, the authors conclude that any successful application of
+data-driven decision-making processes requires transparency and disclosure to
+patients by practitioners to be considered ethical, let alone fit-for-purpose.
+The authors do not, however, provide any practical solutions to these issues,
+unlike the authors of~\cite{Kraft2020}. In that work, the authors emphasise the
+importance of trusting relationships in healthcare systems between patients,
+practitioners, and `machines'. The authors offer additions to the process
+from~\cite{Char2020} which include questions to protect and enhance the quality
+of those relationships.
+
+Given the seeming inevitability that healthcare is only going to become more
+reliant on data-driven processes, a crucial and convenient avenue by which to
+maintain patient trust is to ensure the privacy of their
+data~\cite{Iott2019,vanStaa2016}. In the EU, the introduction of strict data
+protection regulations has meant that the guidelines have been set out, but
+incidents of data mishandling continue to occur~\cite{bbc2017,edpb2020}. The
+authors of~\cite{Horn2020} highlight the importance of properly using patient
+data (i.e. securely, ethically and effectively) in maintaining the unwritten
+social contract between a healthcare system and its population. Failing to go
+beyond the legal requirements and enact some social good can lead to the
+downfall of an initiative, such as with the NHS England \emph{care.data}
+project~\cite{Carter2015}.
+
+A workaround to the potential misuse of patient data is to synthesise new
+datasets from existing, confidential data. The methods by which data synthesis
+is achieved are various, but include bespoke, often statistical
+models~\cite{Dahmen2019,Dube2014,McLachlan2016,Tucker2020} and, recently,
+generative adversarial networks (GANs)~\cite{Avino2018,Torfi2020}. Using
+synthetic datasets provides another level of anonymity to the patients, but
+their efficacy against real data has been contested. In a recent
+paper~\cite{Rankin2020}, the authors report consistent, although marginal,
+losses in accuracy by various supervised learning methods on synthetic datasets
+when compared with their performance on the corresponding real datasets. The
+authors of~\cite{Dahmen2019} find similar results, but demonstrate how their
+method of data synthesis may improve certain objective metrics when the amount
+of real data available is small. This scarcity is a common issue in modern
+operational research, where data-hungry methods (i.e. those from machine
+learning) are becoming increasingly mainstream, with healthcare research
+included~\cite{Panch2019}.
