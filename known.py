@@ -4,7 +4,7 @@ words = {
     "acyclic",
     "agglomerative",
     "analytics",
-    "bibliometric",
+    "bibliometric(|s)",
     "boolean",
     "cardinality",
     "centroid(|s|al)",
